@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | RoPE_craft</title>
+    <style>
+      .btn-square-shadow {
+        display: inline-block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        background: #668ad8;
+        color: #FFF;
+        border-bottom: solid 4px #627295;
+        border-radius: 3px;
+      }
+      .btn-square-shadow:active {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+        border-bottom: none;
+      }
+
+      .btn2-square-shadow {
+        display: inline-block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        background: #ff0300;
+        color: #FFF;
+        border-bottom: solid 4px #e47d7d;
+        border-radius: 3px;
+      }
+      .btn2-square-shadow:active {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+        border-bottom: none;
+      }
+    </style>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="button.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLRoPE.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+  <body>
+    <div>
+      <a href="#" class="btn-square-shadow" onclick="onBB()">BB</a>
+      <a href="#" class="btn-square-shadow" onclick="onMB()">MB</a>
+      <a href="#" class="btn-square-shadow" onclick="onMN()">MN</a>
+      <a href="#" class="btn-square-shadow" onclick="onMM()">MM</a>
+      <a href="#" class="btn-square-shadow" onclick="onTM()">TM</a>
+      <a href="#" class="btn-square-shadow" onclick="onTB()">TB</a>
+      <a href="#" class="btn2-square-shadow" onclick="onRemove()">X</a>
+    </div>
+    <div>
+      <a href="#" class="btn2-square-shadow" onclick="onSave()">Save</a>
+      <a href="#" class="btn2-square-shadow" onclick="onLoad()">Load</a>  
+    </div>
+    <div>
+      <a href="#" class="btn-square-shadow" onclick="GoMission()">Move</a>
+    </div>
+
+
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 1280px; height: 720px"></div>
+    </div>
+  </body>
+</html>
