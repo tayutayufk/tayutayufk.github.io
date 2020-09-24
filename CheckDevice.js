@@ -5,5 +5,6 @@ if(ua.indexOf("android") !== -1 || ua.indexOf("ios") !== -1 || ua.indexOf("ipad"
     unityInstance.SendMessage('Main Camera', 'setSmartPhoneMode')
 }else{
     Device = "Desktop";
+    gameInstance.SendMessage("MainCamera",  'setSmartPhoneMode')
 }
 document.write(Device)
