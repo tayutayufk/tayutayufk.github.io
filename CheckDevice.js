@@ -8,3 +8,4 @@ if(ua.indexOf("android") !== -1 || ua.indexOf("ios") !== -1 || ua.indexOf("ipad"
     //gameInstance.SendMessage("MainCamera",  'setSmartPhoneMode')
 }
 document.write(Device)
+
