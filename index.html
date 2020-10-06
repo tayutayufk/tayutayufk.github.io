@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <script src="monaco-editor/min/vs/loader.js"></script>
-    <script src="editor.js"></script>
+    
 
     <!-- skulpt -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script> 
-    <script src="skulpt.min.js" type="text/javascript"></script> 
-    <script src="skulpt-stdlib.js" type="text/javascript"></script> 
+    <script src="dist/skulpt.min.js" type="text/javascript"></script> 
+    <script src="dist/skulpt-stdlib.js" type="text/javascript"></script> 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | RoPE_craft</title>
@@ -23,48 +23,56 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script src="button.js"></script>
-    <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLRoPE.json", {onProgress: UnityProgress});
-    </script>
+    <script src="EssentialUnity.js"></script>
+    <script src="editor.js"></script>
+    
   </head>
+
   <body>
-    <script src="CheckDevice.js"></script>
+    <h1>Monaco and Python Test</h1> 
+    
     <p id="Device">fuck fuck</p>
-    <div>
+    
+    <div class="PartButton">
       <a href="#" class="btn-square-shadow" onclick="onClickButton('BB')">BB</a>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('MB')">MB</a>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('MN')">MN</a>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('MM')">MM</a>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('TM')">TM</a>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('TB')">TB</a>
+      <a href="#" class="btn-square-shadow" onclick="onClickButton('CS')">CS</a>
+      <a href="#" class="btn-square-shadow" onclick="onClickButton('RF')">RF</a>
       <a href="#" class="btn2-square-shadow" onclick="onClickButton('Remove')">X</a>
     </div>
-    <div>
+    <div class="GameButton">
       <a href="#" class="btn2-square-shadow" onclick="onClickButton('SaveJson')">Save</a>
       <a href="#" class="btn2-square-shadow" onclick="onClickButton('LoadJson')">Load</a>
-    </div>
-    <div>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('GoMission')">Move</a>
     </div>
+    
 
     <div>
-      <a href="#" class="btn-square-shadow" onclick="ManiRobot('MotorPower','motor_1',100)">0F</a>
-      <a href="#" class="btn-square-shadow" onclick="ManiRobot('motor_0',0)">0N</a>
-      <a href="#" class="btn-square-shadow" onclick="ManiRobot('motor_0',-100)">0B</a>
+      <a href="#" class="btn-square-shadow" onclick="ManiRobot('MotorPower','motor_0',100)">0F</a>
+      <a href="#" class="btn-square-shadow" onclick="getValue('CS_0')">CS Read</a>
+      <a href="#" class="btn-square-shadow" onclick="getValue('RF_0')">Rf Read</a>
     </div>
-
-
-    <div class="webgl-content">
+    
+    <div class="webgl">
       <div id="gameContainer" class="game_window"></div>
     </div>
-
-    <h3>Monaco and Python Test</h3> 
-    <button type="button" onclick="runit()">Run</button> 
-    <div id="container" style="width:20%;height:100px;border:1px solid grey;margin-left: 5%;" class="editor"></div>
-    <textarea id="output" style="width:20%;height:100px;border:1px solid grey;margin-left: 55%;" class="output"></textarea>
-    <pre id="output" ></pre> 
-    <!-- If you want turtle graphics include a canvas -->
-    <div id="mycanvas"></div> 
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLRoPE.json", {onProgress: UnityProgress});
+    </script>
+    
+    <div class="editor" style="position: absolute;margin-top: 40%;">
+      <a type="button" class="btn-square-shadow" onclick="runit()">Run</a> 
+      <div id="container"  class="monaco"></div>
+      <textarea id="output"  class="output"></textarea>
+      <pre id="output" ></pre> 
+      <!-- If you want turtle graphics include a canvas -->
+      <div id="mycanvas"></div> 
+    </div>
+    
 
   </body>
 </html>
