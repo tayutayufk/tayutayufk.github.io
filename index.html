@@ -1,6 +1,7 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
+    
 
     <!-- monaco-editor -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,20 +19,20 @@
 
     <link rel="stylesheet" type="text/css" href="outlook.css">
 
+    <script src="EssentialUnity.js"></script>
+
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
-    <script src="button.js"></script>
-    <script src="EssentialUnity.js"></script>
+    
     <script src="editor.js"></script>
+    <script src="button.js"></script>
     
   </head>
 
   <body>
     <h1>Monaco and Python Test</h1> 
-    
-    <p id="Device">fuck fuck</p>
     
     <div class="PartButton">
       <a href="#" class="btn-square-shadow" onclick="onClickButton('BB')">BB</a>
@@ -49,14 +50,7 @@
       <a href="#" class="btn2-square-shadow" onclick="onClickButton('LoadJson')">Load</a>
       <a href="#" class="btn-square-shadow" onclick="onClickButton('GoMission')">Move</a>
     </div>
-    
-
-    <div>
-      <a href="#" class="btn-square-shadow" onclick="ManiRobot('MotorPower','motor_0',100)">0F</a>
-      <a href="#" class="btn-square-shadow" onclick="getValue('CS_0')">CS Read</a>
-      <a href="#" class="btn-square-shadow" onclick="getValue('RF_0')">Rf Read</a>
-    </div>
-    
+  
     <div class="webgl">
       <div id="gameContainer" class="game_window"></div>
     </div>
@@ -64,8 +58,12 @@
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLRoPE.json", {onProgress: UnityProgress});
     </script>
     
-    <div class="editor" style="position: absolute;margin-top: 40%;">
-      <a type="button" class="btn-square-shadow" onclick="runit()">Run</a> 
+    <div class="editor" >
+      <div class="editorButtons">
+        <a type="button" class="btn-square-shadow" onclick="runit()">Run</a>
+        <a type="button" class="btn-square-shadow" onclick="SaveScript()">Save</a>  
+        <a type="button" class="btn-square-shadow" onclick="LoadScript()">Load</a>  
+      </div>
       <div id="container"  class="monaco"></div>
       <textarea id="output"  class="output"></textarea>
       <pre id="output" ></pre> 

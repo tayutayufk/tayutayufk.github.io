@@ -35,8 +35,10 @@ function runit() {
        console.log(err.toString());
    });
 } 
-Sk.onAfterImport = function(library) {
-    switch(library) {
-        
-    }
-  }
+
+function SaveScript(){
+    localStorage.setItem("script", editor.getValue());
+}
+function LoadScript(){
+    editor.getModel().setValue(localStorage.getItem("script"));
+}
