@@ -1,0 +1,145 @@
+.GameScreen{
+    position: absolute;
+    margin-top: 0%;
+    margin-left: 0%;
+
+    width: 80vw;
+    height: 100vh;
+}
+.GameWindow{
+    position: absolute;
+    margin-top: 0%;
+    margin-left: 80%;
+
+    width: 20vw;
+    height: 100vh;
+}
+.partimage{
+    height: 10vh;
+    width: 8vw;
+}
+.tab-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .tab-wrap:after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: DeepSkyBlue;
+    display: block;
+    order: -1;
+  }
+  .tab-label {
+    color: White;
+    background: LightGray;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px .5em;
+    order: -1;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    flex: 1;
+  }
+  .tab-label:not(:last-of-type) {
+    margin-right: 5px;
+  }
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    text-align:center;
+  }
+  /* アクティブなタブ */
+  .tab-switch:checked+.tab-label {
+    background: DeepSkyBlue;
+  }
+  .tab-switch:checked+.tab-label+.tab-content {
+    height: auto;
+    overflow: auto;
+    padding: 15px;
+    opacity: 1;
+    transition: .5s opacity;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+  }
+  /* ラジオボタン非表示 */
+  .tab-switch {
+    display: none;
+  }
+
+
+
+  /*ポップアップ*/
+
+  * {
+    box-sizing: border-box;
+    }
+  
+  .popup {
+    background-color: #efefef;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .8);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50vw;
+    height: 75vh;
+    overflow-y: scroll;
+  }
+  /* チェックボックスの初期設定 */
+  #popup-on{
+    display: none;
+  }
+  /* チェックされたらポップアップウインドウを開く */
+  #popup-on:checked + .popup{
+    display: block;
+  }
+  
+  /* 閉じるアイコン（右上） */
+  .icon-close{
+    background: #000;
+    color: #fff;
+    font-size: 30px;
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+  }
+  
+  /* 閉じるボタン */
+  .btn-close{
+    background: #000;
+    border-radius: 10px;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px auto;
+    width: 95%;
+    text-align: center;
+  }
+  
+  /* 開くボタン */
+  .btn-open{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    
+    text-align: center;
+  }
+  
+  /* ポップアップの内容 */
+  .popup-content{
+      display: flex;
+      flex-direction: column;
+    margin: 40px auto 40px auto;
+    width: 90%;
+  }

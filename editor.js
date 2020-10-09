@@ -3,8 +3,7 @@ var editor;
     require(['vs/editor/editor.main'], function() {
         editor = monaco.editor.create(document.getElementById('container'), {
         value: [].join('\n'),
-        language: 'python',
-        theme: "vs-dark"   
+        language: 'python'
     });
 });
 

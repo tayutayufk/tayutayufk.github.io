@@ -1,0 +1,74 @@
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+    <!-- Unity -->
+    <script src="unityRelated/EssentialUnity.js"></script>
+    <script src="unityRelated/Build/UnityLoader.js"></script>
+
+
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
+    </script>
+
+
+</head>
+
+<body>
+    <div id="gameContainer" class="GameScreen"></div>
+    <div class="GameWindow">
+        <div class="tab-wrap">
+            <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label"
+                for="TAB-01">General</label>
+            <div class="tab-content">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png">
+            </div>
+            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
+                for="TAB-02">Motor</label>
+            <div class="tab-content">
+                コンテンツ 2
+            </div>
+            <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
+                for="TAB-03">Sensor</label>
+            <div class="tab-content">
+                コンテンツ 3
+            </div>
+        </div>
+    </div>
+    <div class="pop-box">
+        <label for="popup-on">
+            <i class="fas fa-angle-double-left fa-4x" class="btn-open"></i>
+        </label>
+        <input type="checkbox" id="popup-on">
+        <div class="popup">
+            <label for="popup-on" class="icon-close">×</label>
+            <div class="popup-content">
+                <!-- ポップアップの中身 -->
+                ポップアップの内容<br>画像もOK<br>
+                <img src="https://homepagenopro.com/wp-content/uploads/2018/08/d11_img_mizudori.png" alt=""
+                    class="layer-img">
+                <!-- ./ポップアップの中身　ここまで -->
+            </div>
+            <label for="popup-on">
+                <div class="btn-close">閉じる</div>
+            </label>
+        </div>
+    </div>
+</body>
+
+</html>
