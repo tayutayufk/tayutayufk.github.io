@@ -17,8 +17,7 @@
     <script>
         var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
     </script>
-
-
+    <script src="button.js"></script>
 </head>
 
 <body>
@@ -28,47 +27,54 @@
             <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label"
                 for="TAB-01">General</label>
             <div class="tab-content">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
-                <input class="partimage" type="image" src="unityRelated/image.png">
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('BB')">
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('TB')">
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('TM')">
             </div>
             <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
                 for="TAB-02">Motor</label>
             <div class="tab-content">
-                コンテンツ 2
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('MB')">
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('MN')">
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('MM')">
             </div>
             <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
                 for="TAB-03">Sensor</label>
             <div class="tab-content">
-                コンテンツ 3
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('CS')">
+                <input class="partimage" type="image" src="unityRelated/image.png" onclick="onClickButton('RF')">
             </div>
         </div>
     </div>
+
+    <div class="LTicons">
+        <input class="icon" type="image" src="svg/arrow.svg" onclick="location.href='./index.html'">
+        <input class="icon" type="image" src="svg/save.svg" onclick="onClickButton('SaveJson')">
+        <input class="icon" type="image" src="svg/load.svg" onclick="onClickButton('LoadJson')">
+    </div>
+
+    <input class="icon" type="image" style="position: absolute;margin-top: 90vh;margin-left: 75vw;" src="svg/eraser.svg" onclick="onClickButton('Remove')">
+    <!--
     <div class="pop-box">
         <label for="popup-on">
-            <i class="fas fa-angle-double-left fa-4x" class="btn-open"></i>
+            <i class="fas fa-angle-double-left fa-4x btn-open"></i>
         </label>
         <input type="checkbox" id="popup-on">
         <div class="popup">
             <label for="popup-on" class="icon-close">×</label>
             <div class="popup-content">
-                <!-- ポップアップの中身 -->
+                
                 ポップアップの内容<br>画像もOK<br>
                 <img src="https://homepagenopro.com/wp-content/uploads/2018/08/d11_img_mizudori.png" alt=""
                     class="layer-img">
-                <!-- ./ポップアップの中身　ここまで -->
+               
             </div>
             <label for="popup-on">
                 <div class="btn-close">閉じる</div>
             </label>
         </div>
     </div>
+-->
 </body>
 
 </html>

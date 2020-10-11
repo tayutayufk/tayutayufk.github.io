@@ -5,12 +5,18 @@
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
+
+    <script src="unityRelated/EssentialUnity.js"></script>
+    <script src="unityRelated/Build/UnityLoader.js"></script>
+    <script style="display: none;">
+      var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
+    </script>
     <link rel="stylesheet" type="text/css" href="generalDesign.css">
   </head>
   <body>
     
     <div class="window">
-        <p class="logo" style="border: 2px solid;">RoPE</p>
+        <p class="logo">RoPE</p>
         <div class="mainbtn">
             <a href="craft.html" class="btn06">Craft</a>
             <a href="program.html" class="btn06">Program</a>
