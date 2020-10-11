@@ -1,27 +1,38 @@
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon.png" sizes="192x192" />
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("js/service-worker.jｓ").then(function () { console.log('Service Worker Registered'); });
+    }
+  </script>
 
 
-    <script src="unityRelated/EssentialUnity.js"></script>
-    <script src="unityRelated/Build/UnityLoader.js"></script>
-    <script style="display: none;">
-      var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
-    </script>
-    <link rel="stylesheet" type="text/css" href="generalDesign.css">
-  </head>
-  <body>
-    
-    <div class="window">
-        <p class="logo">RoPE</p>
-        <div class="mainbtn">
-            <a href="craft.html" class="btn06">Craft</a>
-            <a href="program.html" class="btn06">Program</a>
-            <a href="mission.html" class="btn06">Mission</a>
-        </div>
+  <script src="unityRelated/EssentialUnity.js"></script>
+  <script src="unityRelated/Build/UnityLoader.js"></script>
+  <script style="display: none;">
+    var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
+  </script>
+  <link rel="stylesheet" type="text/css" href="generalDesign.css">
+</head>
+
+<body>
+
+  <div class="window">
+    <p class="logo">RoPE</p>
+    <div class="mainbtn">
+      <a href="craft.html" class="btn06">Craft</a>
+      <a href="program.html" class="btn06">Program</a>
+      <a href="mission.html" class="btn06">Mission</a>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
