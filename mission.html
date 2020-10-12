@@ -1,19 +1,59 @@
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="generalDesign.css">
-  </head>
-    <div class="window">
-        
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-        <h1>Mission</h1>
+  <!--CSS-->
+  <link rel="stylesheet" type="text/css" href="generalDesign.css">
+  <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
+  <link rel="stylesheet" type="text/css" href="mission.css">
 
 
+  <!-- Unity -->
+  <script src="unityRelated/EssentialUnity.js"></script>
+  <script src="unityRelated/Build/UnityLoader.js"></script>
+
+  <!--skulpt-->
+  <script src="dist/skulpt.min.js" type="text/javascript"></script> 
+  <script src="dist/skulpt-stdlib.js" type="text/javascript"></script> 
+
+  <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
+  </script>
+  
+  <script src="button.js"></script>
+  <script src="RunPython.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="generalDesign.css">
+</head>
+
+<body>
+  <div class="MissionStart" id="shade">
+    <a type="button" class="btn06" style="margin-top: 50vh;font-size: 70;" onclick="MissionStart()">Start!</a>
+  </div>
+  <script>
+    function MissionStart(){
+      if(SceneName=="Mission"){
+       var StartShade = document.getElementById("shade");
+       StartShade.style.display = "none";
+       gameInstance.SendMessage('GameDirector','Move');
+       runit();
+      }
+    }
+  </script>
+  <div class="window">
+    <div id="gameContainer" class="GameScreen MissionScreen"></div>
+    <div class="LTicons">
+      <input class="icon" type="image" src="svg/arrow_white.svg" style="fill: rgb(200,200, 200);"onclick="location.href='./index.html'">
+      <input class="icon" type="image" src="svg/craft.svg" onclick="location.href='./craft.html'">
+      <input class="icon" type="image" src="svg/program.svg" onclick="location.href='./program.html'">
     </div>
-  </body>
+
+    
+  </div>
+  <textarea class="PyConsole" id="output"></textarea>
+</body>
+
 </html>

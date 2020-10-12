@@ -13,16 +13,16 @@ let SensorData;
 let SensorName;
 let Sensorflag;
 
+let SceneName;
+
 function getValue(name){
     Sensorflag = false;
     SensorName = name;
     
     if(name.indexOf("CS") != -1){
-        //console.log("CS");
         gameInstance.SendMessage('GameDirector','ReadCS',name);
     }
     if(name.indexOf("RF") != -1){
-        //console.log("RF");
         gameInstance.SendMessage('GameDirector','ReadRF',name);
     }
 
@@ -43,7 +43,22 @@ function ReturnValueJS(data){
         Sensorflag = true;
         SensorData = Number(strings[1]);
     }else{
+        console.log(strings,SensorName);
         Sensorflag = true;
         SensorData = -1;
     }
+}
+function FetchSceneData(){
+    let loc = window.location.href;
+
+    if(loc.indexOf("mission") != -1){
+        SceneName="Mission";
+        gameInstance.SendMessage('GameDirector','MoveScene','Mission');
+    }
+    if(loc.indexOf("craft") != -1){
+        SceneName="Craft";
+        gameInstance.SendMessage('GameDirector','MoveScene','Craft');
+    }
+    return SceneName;
+
 }

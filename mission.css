@@ -1,0 +1,36 @@
+.MissionScreen{
+    width: 100vw;
+    height:100vh;
+}
+.MissionStart{
+    
+    position: absolute;
+    margin-top:0px;
+    margin-left:0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.95);
+    
+    text-align: center;
+    z-index: 15;
+}
+.PyConsole{
+    position: absolute;
+    margin-top: 75vh;
+    margin-left: 75vw;
+    width: 25vw;
+    height: 25vh;
+    background-color: gray;
+    font-size: 20;
+    z-index: 13;
+
+    font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+}
+.PyConsole::-webkit-scrollbar {
+    display:none;
+}

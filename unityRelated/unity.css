@@ -16,8 +16,9 @@
 }
 
 .partimage {
-  height: 10vh;
-  width: 8vw;
+  padding: 2px;
+  height: 15vh;
+  width: 15vh;
 }
 
 .tab-wrap {
