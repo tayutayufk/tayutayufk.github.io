@@ -1,0 +1,20 @@
+.MissionImage{
+   padding:10px;
+   width: 35vw;
+   height:35vw;
+}
+.slide{
+    position: absolute;
+    margin-top: 20vh;
+    margin-left: 20vw;
+
+    width: 60vw;
+    height: 60vh;
+    
+}
+.slideContent{
+    text-align: center;
+}
+body{
+    background-color: white;
+}

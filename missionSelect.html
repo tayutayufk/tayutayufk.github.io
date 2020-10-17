@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoPE</title>
+
+  <link href="slick/slick.css" rel="stylesheet" type="text/css">
+  <link href="slick/slick-theme.css" rel="stylesheet" type="text/css">
+  <link href="missionSelect.css" rel="stylesheet" type="text/css">
+
+  <!--CSS-->
+  <link rel="stylesheet" type="text/css" href="generalDesign.css">
+  <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
+
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+
+</head>
+
+<body>
+  <div class="LTicons">
+    <input class="icon" type="image" src="svg/arrow.svg" onclick="location.href='./index.html'">
+  </div>
+  <div class="slide">
+    <div class="mission_slide">
+
+      <div class="slideContent">
+        <input type="image" src="unityRelated/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
+        <p><strong>BASIC</strong></p>
+        <p>level1</p>
+      </div>
+
+      <div class="slideContent">
+        <input type="image" src="unityRelated/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
+        <p><strong>BASIC</strong></p>
+        <p>level2</p>
+      </div>
+
+      <div class="slideContent">
+        <input type="image" src="unityRelated/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
+        <p ><strong>BASIC</strong></p>
+        <p>level3</p>
+      </div>
+
+      <div class="slideContent">
+        <input type="image" src="unityRelated/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
+        <p ><strong>BASIC</strong></p>
+        <p>level4</p>
+      </div>
+
+      
+    </div>
+  
+  </div>
+
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="slick/slick.min.js"></script>
+  <script>
+    $('.mission_slide').slick({
+      infinite: false,
+      centerMode: true,
+      dots: true,
+    });
+    var url = "mission.html";
+    function makeURL(missionName){
+      url += "?" + missionName + "&robo3&script";
+      location.href = url;
+    }
+  </script>
+</body>
+
+</html>

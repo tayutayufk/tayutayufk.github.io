@@ -7,17 +7,20 @@
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="generalDesign.css">
     <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
-    
+
 
     <!-- Unity -->
     <script src="unityRelated/EssentialUnity.js"></script>
     <script src="unityRelated/Build/UnityLoader.js"></script>
 
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <script>
         var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
     </script>
     <script src="button.js"></script>
+    <script src="craft.js"></script>
 </head>
 
 <body>
@@ -48,12 +51,13 @@
     </div>
 
     <div class="LTicons">
-        <input class="icon" type="image" src="svg/arrow_white.svg" onclick="location.href='./index.html'">
+        <input class="icon" type="image" src="svg/arrow_white.svg" onclick="Back()">
         <input class="icon" type="image" src="svg/save_white.svg" onclick="onClickButton('SaveJson')">
         <input class="icon" type="image" src="svg/load_white.svg" onclick="onClickButton('LoadJson')">
     </div>
 
-    <input class="icon" type="image" style="position: absolute;margin-top: 90vh;margin-left: 75vw;" src="svg/eraser.svg" onclick="onClickButton('Remove')">
+    <input class="icon" type="image" style="position: absolute;margin-top: 90vh;margin-left: 75vw;" src="svg/eraser.svg"
+        onclick="onClickButton('Remove')">
     <!--
     <div class="pop-box">
         <label for="popup-on">
@@ -75,6 +79,20 @@
         </div>
     </div>
 -->
+
+    <script>
+        var url = location.href;
+        var params = url.split("?");
+        if (params.length > 1) {
+            url = "mission.html?" + params[1];
+        } else {
+            url = "index.html";
+        }
+
+        function Back() {
+            location.href = url;
+        }
+    </script>
 </body>
 
 </html>

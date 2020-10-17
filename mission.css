@@ -16,11 +16,12 @@
 }
 .PyConsole{
     position: absolute;
-    margin-top: 75vh;
+    margin-top: 60vh;
     margin-left: 75vw;
     width: 25vw;
-    height: 25vh;
-    background-color: gray;
+    height: 40vh;
+    border: solid 10px rgb(83, 82, 82);
+    background-color: rgb(134, 133, 133);
     font-size: 20;
     z-index: 13;
 

@@ -8,8 +8,8 @@ function builtinRead(x) {
     return Sk.builtinFiles["files"][x];
 }
 
-function runit() { 
-   var prog = localStorage.getItem("script")
+function runit(pName) { 
+   var prog = localStorage.getItem(pName);
    var mypre = document.getElementById("output"); 
    mypre.innerHTML = ''; 
    Sk.pre = "output";

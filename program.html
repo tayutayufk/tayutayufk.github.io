@@ -21,11 +21,28 @@
 <div class="window">
   <div id="container" class="monaco"></div>
   <div class="LTicons">
-    <input class="icon" type="image" src="svg/arrow.svg" onclick="location.href='./index.html'">
-    <input class="icon" type="image" src="svg/save.svg" onclick="SaveScript()">
-    <input class="icon" type="image" src="svg/load.svg" onclick="LoadScript()">
+    <input class="icon" type="image" src="svg/arrow.svg" onclick="Back();">
+    <input class="icon" type="image" src="svg/save.svg" onclick="SaveScript('script');">
+    <input class="icon" type="image" src="svg/load.svg" onclick="LoadScript('script');">
+  </div>
 </div>
-</div>
+<script>
+  var url = location.href;
+  var params = url.split("?");
+  if (params.length > 1) {
+    url = "mission.html?" + params[1];
+    params = params[1].split("&");
+    pName = params[2];
+    LoadScript(pName);
+    
+  } else {
+    url = "index.html";
+  }
+
+  function Back() {
+    location.href = url;
+  }
+</script>
 </body>
 
 </html>

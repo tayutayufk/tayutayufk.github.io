@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/tayutayufk/tayutayufk.github.io#readme",
   "dependencies": {
-    "monaco-editor": "^0.21.2"
+    "jquery": "^3.5.1",
+    "monaco-editor": "^0.21.2",
+    "slick": "^1.12.2",
+    "vue": "^2.6.12"
   }
 }

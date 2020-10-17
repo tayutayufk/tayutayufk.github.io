@@ -30,30 +30,26 @@
 </head>
 
 <body>
-  <div class="MissionStart" id="shade">
-    <a type="button" class="btn06" style="margin-top: 50vh;font-size: 70;" onclick="MissionStart()">Start!</a>
+  <div class="MissionStart" id="shade" style="display: none;">
+    <a type="button" class="btn06" style="margin-top: 50vh;font-size: 70;color: white;" onclick="MissionStart()">Start!</a>
   </div>
-  <script>
-    function MissionStart(){
-      if(SceneName=="Mission"){
-       var StartShade = document.getElementById("shade");
-       StartShade.style.display = "none";
-       gameInstance.SendMessage('GameDirector','Move');
-       runit();
-      }
-    }
-  </script>
   <div class="window">
     <div id="gameContainer" class="GameScreen MissionScreen"></div>
     <div class="LTicons">
       <input class="icon" type="image" src="svg/arrow_white.svg" style="fill: rgb(200,200, 200);"onclick="location.href='./index.html'">
-      <input class="icon" type="image" src="svg/craft.svg" onclick="location.href='./craft.html'">
-      <input class="icon" type="image" src="svg/program.svg" onclick="location.href='./program.html'">
+      <input class="icon" type="image" src="svg/craft.svg" onclick="Move('craft.html');">
+      <input class="icon" type="image" src="svg/program.svg" onclick="Move('program.html');">
     </div>
 
     
   </div>
-  <textarea class="PyConsole" id="output"></textarea>
+  <textarea class="PyConsole" id="output" style="display: none;"></textarea>
+  <script>
+    function Move(html){
+      var params = location.href.split("?");
+      location.href = html + "?" + params[1];
+    }
+  </script>
 </body>
 
 </html>

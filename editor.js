@@ -8,9 +8,9 @@ var editor;
     });
 });
 
-function SaveScript(){
-    localStorage.setItem("script", editor.getValue());
+function SaveScript(pName){
+    localStorage.setItem(pName, editor.getValue());
 }
-function LoadScript(){
-    editor.getModel().setValue(localStorage.getItem("script"));
+function LoadScript(pName){
+    editor.getModel().setValue(localStorage.getItem(pName));
 }
