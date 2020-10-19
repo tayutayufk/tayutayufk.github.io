@@ -52,6 +52,7 @@ function ReturnValueJS(data) {
 //シーン、ミッション管理
 let SceneName;
 let SceneLoading;
+let MissionState;
 let mName;
 let rName;
 let pName;
@@ -84,12 +85,14 @@ function MissionLoad() {//ミッションシーンのロード前に呼ばれる
     return mName;
 }
 function MissionCourseLoad() {
+    
     SceneLoading = false;
     var StartShade = document.getElementById("shade");
     StartShade.style.display = "block";
 }
 function MissionStart() {
     if (SceneName == "Mission" && SceneLoading == false) {
+        MissionState = true;
         var StartShade = document.getElementById("shade");
         StartShade.style.display = "none";
         var outputdisplay = document.getElementById("output");
@@ -98,6 +101,11 @@ function MissionStart() {
         runit(pName);
     }
 }
-function MissionFinish() {
-
+function MissionFinish(str) {
+    if(MissionState){
+        MissionState = false;
+        alert("Mission was " + str + "!");
+        location.href = "index.html";
+    }
+    
 }
