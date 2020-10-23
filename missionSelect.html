@@ -26,32 +26,46 @@
     <div class="mission_slide">
 
       <div class="slideContent">
-        <input type="image" src="unityRelated/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
-        <p><strong>BASIC</strong></p>
+        <h2>Basic</h2>
         <p>level1</p>
+        <input type="image" src="unityRelated/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
       </div>
 
       <div class="slideContent">
-        <input type="image" src="unityRelated/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
-        <p><strong>BASIC</strong></p>
+        <h2>Basic</h2>
         <p>level2</p>
+        <input type="image" src="unityRelated/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
       </div>
 
       <div class="slideContent">
-        <input type="image" src="unityRelated/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
-        <p ><strong>BASIC</strong></p>
+        <h2>Basic</h2>
         <p>level3</p>
+        <input type="image" src="unityRelated/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
       </div>
 
       <div class="slideContent">
-        <input type="image" src="unityRelated/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
-        <p ><strong>BASIC</strong></p>
+        <h2>Basic</h2>
         <p>level4</p>
+        <input type="image" src="unityRelated/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
       </div>
 
-      
+      <div class="slideContent">
+        <h2>Line Tracking</h2>
+        <p>level1</p>
+        <input type="image" src="unityRelated/PartImage/l1.png" class="MissionImage"
+          onclick="makeURL('line_tracking_level1')">
+      </div>
+
+      <div class="slideContent">
+        <h2>Line Tracking</h2>
+        <p>level2</p>
+        <input type="image" src="unityRelated/PartImage/l2.png" class="MissionImage"
+          onclick="makeURL('line_tracking_level2')">
+      </div>
+
+
     </div>
-  
+
   </div>
 
   <script src="node_modules/vue/dist/vue.min.js"></script>
@@ -64,7 +78,7 @@
       dots: true,
     });
     var url = "mission.html";
-    function makeURL(missionName){
+    function makeURL(missionName) {
       url += "?" + missionName + "&robo3&script";
       location.href = url;
     }

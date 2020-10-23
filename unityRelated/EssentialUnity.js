@@ -85,7 +85,7 @@ function MissionLoad() {//ミッションシーンのロード前に呼ばれる
     return mName;
 }
 function MissionCourseLoad() {
-    
+    if(!SceneLoading)return;
     SceneLoading = false;
     var StartShade = document.getElementById("shade");
     StartShade.style.display = "block";

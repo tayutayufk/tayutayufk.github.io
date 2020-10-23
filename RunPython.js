@@ -1,3 +1,4 @@
+
 function outf(text) { 
     var mypre = document.getElementById("output"); 
     mypre.innerHTML = mypre.innerHTML + text; 
