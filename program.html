@@ -14,62 +14,112 @@
   <link rel="stylesheet" type="text/css" href="generalDesign.css">
   <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="button.js"></script>
 </head>
-<div class="window">
-  <div id="container" class="monaco"></div>
-  <div class="LTicons">
-    <input class="icon" type="image" src="svg/arrow.svg" onclick="Back();">
-    <input class="icon" type="image" src="svg/save.svg" onclick="SaveScript('script');">
-    <input class="icon" type="image" src="svg/load.svg" onclick="LoadScript('script');">
-  </div>
-</div>
 
-<div class="document">
-  <div class="func">
-    <a onclick="cp('Robot.Motor()');" class="funcbtn">Robot.Motor(name,power)</a>
-    <p>Function to operate a motor. You can set a motor speed</p>
-    <ul>
-      <li>name (string) :Motor Name</li>
-      <li>power (value) :-100～100</li>
-    </ul>
+<body>
+
+  <div class="actHopup">
+    <p class="contentHopup"></p>
   </div>
 
-  <div class="func">
-    <a onclick="cp('Robot.CSRead()');" class="funcbtn">Robot.CSRead(name)</a>
-    <p>Function to read a Color Sensor. Color Sensor measures the blightness.</p>
-    <ul>
-      <li>name (string) : Sensor Name</li>
-      <li>return (value) :0～100</li>
-    </ul>
-  </div>
-  <div class="func">
-    <a onclick="cp('Robot.RFRead()');" class="funcbtn">Robot.RFRead(name)</a>
-    <p>Function to read a Range Finder. Range Finder measures the distance.</p>
-    <ul>
-      <li>name (string) : Sensor Name</li>
-      <li>return (value) : 0～100</li>
-    </ul>
+  <div class="window">
+    <div id="container" class="monaco"></div>
+    <div class="LTicons">
+      <input class="icon" type="image" src="svg/arrow.svg" onclick="Back();">
+      <input class="icon" name="save" type="image" src="svg/save.svg" onclick="SaveScript('script');Hopup('Save');">
+      <input class="icon" type="image" src="svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
+    </div>
   </div>
 
+  <div class="document">
+    <div class="func">
+      <a onclick="cp('Robot.LED()');" class="funcbtn">Robot.LED(name,mode)</a>
+      <p>Function to operate LEDs. You have three LEDs.</p>
+      <ul>
+        <li>name (string) : LED Name (</li>
+        <li>mode (bool) : True or False</li>
+      </ul>
+    </div>
 
-</div>
+    <div class="func">
+      <a onclick="cp('Robot.Motor()');" class="funcbtn">Robot.Motor(name,power)</a>
+      <p>Function to operate a motor. You can set a motor speed</p>
+      <ul>
+        <li>name (string) :Motor Name</li>
+        <li>power (value) :-100～100</li>
+      </ul>
+    </div>
 
-<script>
-  var url = location.href;
-  var params = url.split("?");
-  if (params.length > 1) {
-    url = "mission.html?" + params[1];
-    params = params[1].split("&");
-    pName = params[2];
-    setText(localStorage.getItem(pName));
-  } else {
-    url = "index.html";
-  }
+    <div class="func">
+      <a onclick="cp('Robot.CSRead()');" class="funcbtn">Robot.CSRead(name)</a>
+      <p>Function to read a Color Sensor. Color Sensor measures the blightness.</p>
+      <ul>
+        <li>name (string) : Sensor Name</li>
+        <li>return (value) :0～100</li>
+      </ul>
+    </div>
+    <div class="func">
+      <a onclick="cp('Robot.RFRead()');" class="funcbtn">Robot.RFRead(name)</a>
+      <p>Function to read a Range Finder. Range Finder measures the distance.</p>
+      <ul>
+        <li>name (string) : Sensor Name</li>
+        <li>return (value) : 0～100</li>
+      </ul>
+    </div>
 
-  function Back() {
-    location.href = url;
-  }
-</script>
+    <div class="func">
+      <a onclick="cp('time.sleep()');" class="funcbtn">time.sleep(value)</a>
+      <p>Function to sleep. You can indicate by the second</p>
+      <ul>
+        <li>value (int) : time to sleep (second) </li>
+      </ul>
+    </div>
+
+  </div>
+  <script>
+    var url = location.href;
+    var params = url.split("?");
+    if (params.length > 1) {
+      url = "mission.html?" + params[1];
+      params = params[1].split("&");
+      pName = params[2];
+      setText(localStorage.getItem(pName));
+    } else {
+      url = "index.html";
+    }
+
+    function Back() {
+      location.href = url;
+    }
+
+    $(document).ready(function () {
+
+      $(window).keydown(function (event) {
+
+        var code = (event.keyCode ? event.keyCode : event.which);
+        if (!(code == 83 && event.ctrlKey)) return true;
+        event.preventDefault();
+        $('input[name="save"]').click();
+        return false;
+      });
+    });
+
+    $(function () {
+      $('.funcbtn').on('click', () => {
+        Hopup("Copy");
+      });
+    });
+
+    function Hopup(str) {
+      $('.contentHopup').text(str);
+      $('.actHopup').fadeIn(300,function (){
+        $('.actHopup').fadeOut(300);
+      });
+    }
+  </script>
 </body>
 
 </html>

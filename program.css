@@ -6,7 +6,7 @@
 
     width: 70vw;
     height: 80vh; 
-    text-align:left;
+    text-align:left;;
 }
 .editorButtons{
     
@@ -28,14 +28,23 @@
 }
 .document::-webkit-scrollbar {
     display:none;
+    padding: 5px;
 }
 .func{
     width: 90%;
     padding: 2em;
+    font-size: 0.5em;
+}
+.func:hover{
+    background-color: whitesmoke;
 }
 .funcbtn{
     border-left: solid 5px #000000;
     background: #d4d4d4;
-    font-size: 20;
+    font-size: 1.4em;
     font-weight: 500;
+}
+.funcbtn:hover{
+    border-left: solid 5px #fcb61e;
+    background: #ffe696;
 }

@@ -84,7 +84,7 @@ function MissionLoad() {//ミッションシーンのロード前に呼ばれる
     SceneLoading = true;
     return mName;
 }
-function MissionCourseLoad() {
+function MissionCourseLoad(str) {
     if(!SceneLoading)return;
     SceneLoading = false;
     var StartShade = document.getElementById("shade");
@@ -103,9 +103,15 @@ function MissionStart() {
 }
 function MissionFinish(str) {
     if(MissionState){
+        //str = "clear|12:40|bdbdajbfdja"
         MissionState = false;
-        alert("Mission was " + str + "!");
-        location.href = "index.html";
+        var params = str.split("|");
+        $('.result').text(params[0]);
+        if(params.length > 1){
+            $('.resultdes').text(params[1]);
+        }
+        $('.ScoreWindow').show();
+
+        SaveResult(mName,params[1]);
     }
-    
 }

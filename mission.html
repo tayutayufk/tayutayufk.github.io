@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
   <!--CSS-->
   <link rel="stylesheet" type="text/css" href="generalDesign.css">
@@ -25,6 +25,8 @@
   
   <script src="button.js"></script>
   <script src="RunPython.js"></script>
+  <script src="mission.js"></script>
+
 
   <link rel="stylesheet" type="text/css" href="generalDesign.css">
 </head>
@@ -41,10 +43,17 @@
       <input class="icon" type="image" src="svg/craft.svg" onclick="Move('craft.html');">
       <input class="icon" type="image" src="svg/program.svg" onclick="Move('program.html');">
     </div>
-
-    
   </div>
   <textarea class="PyConsole" id="output" style="display: none;"></textarea>
+  
+  <div class="ScoreWindow">
+    <div class="Score">
+      <p class="result">Clear</p>
+      <p class="resultdes">bsbo;bbavbf;a;oeboaleb</p>
+      <a href="missionSelect.html" class="btn06 next">Next</a>
+    </div>
+  </div>
+  
   <script>
     function Move(html){
       var params = location.href.split("?");

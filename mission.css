@@ -35,3 +35,38 @@
 .PyConsole::-webkit-scrollbar {
     display:none;
 }
+.ScoreWindow{
+    display: none;
+    z-index: 100;
+    position: absolute;
+    margin-top: 0%;
+    margin-left: 0%;
+    padding: 0%;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(26, 26, 26, 0.95);
+    
+    text-align: center;
+}
+.Score{
+    margin-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 30vw;
+    height: 60vh;
+    background-color: white;
+}
+.result{
+    font-size: 3em;
+    margin-top: 10vh;
+    font-weight: 50;
+}
+
+.next{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

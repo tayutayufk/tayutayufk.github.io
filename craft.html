@@ -24,6 +24,11 @@
 </head>
 
 <body>
+    <div class="actHopup">
+        <p class="contentHopup"></p>
+    </div>
+
+
     <div id="gameContainer" class="GameScreen"></div>
     <div class="GameWindow">
         <div class="tab-wrap">
@@ -31,44 +36,58 @@
                 for="TAB-01">General</label>
             <div class="tab-content">
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/BB.png" onclick="onClickButton('BB')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/BB.png"
+                        onclick="onClickButton('BB')">
                     <h2>Basic Block</h2>
                 </div>
 
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/BB.png" onclick="onClickButton('BB1')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/BB1.png"
+                        onclick="onClickButton('BB1')">
                     <h2>Basic Block</h2>
                 </div>
 
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/BB.png" onclick="onClickButton('BB2')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/BB2.png"
+                        onclick="onClickButton('BB2')">
                     <h2>Basic Block</h2>
                 </div>
 
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/TB.png" onclick="onClickButton('TB')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/BB3.png"
+                        onclick="onClickButton('BB3')">
+                    <h2>Basic Block</h2>
+                </div>
+
+                <div class="partDes">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/TB.png"
+                        onclick="onClickButton('TB')">
                     <h2>Tire Big</h2>
                 </div>
 
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/TM.png" onclick="onClickButton('TM')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/TM.png"
+                        onclick="onClickButton('TM')">
                     <h2>Tire mini</h2>
                 </div>
-                
+
             </div>
             <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
                 for="TAB-02">Motor</label>
             <div class="tab-content">
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/MB.png" onclick="onClickButton('MB')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/MB.png"
+                        onclick="onClickButton('MB')">
                     <h2>Motor </h2>
                 </div>
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/MN.png" onclick="onClickButton('MN')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/MM.png"
+                        onclick="onClickButton('MN')">
                     <h2>Motor</h2>
                 </div>
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/MM.png" onclick="onClickButton('MM')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/MN.png"
+                        onclick="onClickButton('MM')">
                     <h2>Motor Mini</h2>
                 </div>
             </div>
@@ -76,11 +95,13 @@
                 for="TAB-03">Sensor</label>
             <div class="tab-content">
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/CS.png" onclick="onClickButton('CS')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/CS.png"
+                        onclick="onClickButton('CS')">
                     <h2>Color Sensor</h2>
                 </div>
                 <div class="partDes">
-                    <input class="partimage" type="image" src="unityRelated/PartImage/RF.png" onclick="onClickButton('RF')">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/RF.png"
+                        onclick="onClickButton('RF')">
                     <h2>Range Finder</h2>
                 </div>
             </div>
@@ -89,8 +110,8 @@
 
     <div class="LTicons">
         <input class="icon" type="image" src="svg/arrow_white.svg" onclick="Back()">
-        <input class="icon" type="image" src="svg/save_white.svg" onclick="onClickButton('SaveJson')">
-        <input class="icon" type="image" src="svg/load_white.svg" onclick="onClickButton('LoadJson')">
+        <input class="icon" type="image" src="svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
+        <input class="icon" type="image" src="svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
     </div>
 
     <input class="icon" type="image" style="position: absolute;margin-top: 90vh;margin-left: 75vw;" src="svg/eraser.svg"
@@ -128,6 +149,25 @@
 
         function Back() {
             location.href = url;
+        }
+
+        $(document).ready(function () {
+
+            $(window).keydown(function (event) {
+
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (!(code == 83 && event.ctrlKey)) return true;
+                event.preventDefault();
+                $('input[name="save"]').click();
+                return false;
+            });
+        });
+
+        function Hopup(str) {
+            $('.contentHopup').text(str);
+            $('.actHopup').fadeIn(300, function () {
+                $('.actHopup').fadeOut(300);
+            });
         }
     </script>
 </body>

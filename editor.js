@@ -8,7 +8,7 @@ var editor;
         editor = monaco.editor.create(document.getElementById('container'), {
         value: initText,
         language: 'python',
-        fontSize: "20px"
+        fontSize: "15%"
     });
 });
 

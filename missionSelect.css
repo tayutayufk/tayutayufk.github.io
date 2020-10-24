@@ -1,15 +1,15 @@
 .MissionImage{
    padding:10px;
-   width: 35vw;
-   height:35vw;
+   width: 50vh;
+   height:50vh;
 }
 .slide{
     position: absolute;
-    margin-top: 20vh;
+    margin-top: 8vh;
     margin-left: 20vw;
 
-    width: 60vw;
-    height: 60vh;
+    width: 55vw;
+    height: 55vh;
     
 }
 .slideContent{
@@ -17,4 +17,7 @@
 }
 body{
     background-color: white;
+}
+.basic{
+    
 }
