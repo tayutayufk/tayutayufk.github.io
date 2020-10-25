@@ -37,71 +37,84 @@
             <div class="tab-content">
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/BB.png"
-                        onclick="onClickButton('BB')">
+                        onclick="PS('BB')">
                     <h2>Basic Block</h2>
                 </div>
 
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/BB1.png"
-                        onclick="onClickButton('BB1')">
+                        onclick="PS('BB1')">
                     <h2>Basic Block</h2>
                 </div>
 
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/BB2.png"
-                        onclick="onClickButton('BB2')">
+                        onclick="PS('BB2')">
                     <h2>Basic Block</h2>
                 </div>
 
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/BB3.png"
-                        onclick="onClickButton('BB3')">
+                        onclick="PS('BB3')">
                     <h2>Basic Block</h2>
                 </div>
+            </div>
+
+            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label"
+                for="TAB-02">Tire</label>
+            <div class="tab-content">
 
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/TB.png"
-                        onclick="onClickButton('TB')">
+                        onclick="PS('TB')">
                     <h2>Tire Big</h2>
                 </div>
 
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/TM.png"
-                        onclick="onClickButton('TM')">
+                        onclick="PS('TM')">
                     <h2>Tire mini</h2>
                 </div>
 
+                <div class="partDes">
+                    <input class="partimage" type="image" src="unityRelated/PartImage/TM.png"
+                        onclick="PS('BT')">
+                    <h2>Ball Tire</h2>
+                </div>
+
             </div>
-            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
-                for="TAB-02">Motor</label>
+
+            <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
+                for="TAB-03">Motor</label>
             <div class="tab-content">
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/MB.png"
-                        onclick="onClickButton('MB')">
+                        onclick="PS('MB')">
                     <h2>Motor </h2>
                 </div>
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/MM.png"
-                        onclick="onClickButton('MN')">
+                        onclick="PS('MN')">
                     <h2>Motor</h2>
                 </div>
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/MN.png"
-                        onclick="onClickButton('MM')">
+                        onclick="PS('MM')">
                     <h2>Motor Mini</h2>
                 </div>
             </div>
-            <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
-                for="TAB-03">Sensor</label>
+
+            <input id="TAB-04" type="radio" name="TAB" class="tab-switch" /><label class="tab-label"
+                for="TAB-04">Sensor</label>
             <div class="tab-content">
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/CS.png"
-                        onclick="onClickButton('CS')">
+                        onclick="PS('CS')">
                     <h2>Color Sensor</h2>
                 </div>
                 <div class="partDes">
                     <input class="partimage" type="image" src="unityRelated/PartImage/RF.png"
-                        onclick="onClickButton('RF')">
+                        onclick="PS('RF')">
                     <h2>Range Finder</h2>
                 </div>
             </div>
@@ -110,7 +123,8 @@
 
     <div class="LTicons">
         <input class="icon" type="image" src="svg/arrow_white.svg" onclick="Back()">
-        <input class="icon" type="image" src="svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
+        <input class="icon" type="image" src="svg/save_white.svg" name="save"
+            onclick="onClickButton('SaveJson');Hopup('Save');">
         <input class="icon" type="image" src="svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
     </div>
 
@@ -139,6 +153,9 @@
 -->
 
     <script>
+        function PS(str) {
+            gameInstance.SendMessage('GameDirector', 'PS', str);
+        }
         var url = location.href;
         var params = url.split("?");
         if (params.length > 1) {

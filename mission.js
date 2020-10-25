@@ -1,20 +1,31 @@
-var missionData = {};
+var missionData = [];
 
 window.onload = function(){
     for(key in localStorage){
         if(key == "MissionDataContainer"){
-            missionData = localStorage.getItem(key);
+            var json = localStorage.getItem(key);
+            missionData = JSON.parse( json );
         }
     }
 }
 
 function MDSave(){
-    localStorage.setItem("MissionDataContainer",missionData);
+    var json = JSON.stringify( missionData );
+    localStorage.setItem("MissionDataContainer",json);
 }
 function SaveResult(mname,result,meta){
-    var m = {name:mname,result:result,meta:meta};
+    for(i = 0;i < missionData.length;i++){
+        if(missionData[i].name == mname){
+            missionData[i].rlt = result;
+            missionData[i].m = meta;
+            MDSave();
+            return;
+        }
+    }
+    m = {name:mname,rlt:result,m:meta};
     missionData.push(m);
     MDSave();
+    return;
 }
 function ReadResult(mname){
     for(m in missionData){

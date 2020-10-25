@@ -112,6 +112,6 @@ function MissionFinish(str) {
         }
         $('.ScoreWindow').show();
 
-        SaveResult(mName,params[1]);
+        SaveResult(mName,params[0]);
     }
 }
