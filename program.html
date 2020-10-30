@@ -34,7 +34,8 @@
     </div>
   </div>
 
-  <div class="document">
+  <div class="document" id="editorVue">
+    <!--
     <div class="func">
       <a onclick="cp('Robot.LED()');" class="funcbtn">Robot.LED(name,mode)</a>
       <p>Function to operate LEDs. You have three LEDs.</p>
@@ -77,7 +78,7 @@
         <li>value (int) : time to sleep (second) </li>
       </ul>
     </div>
-
+-->
   </div>
   <script>
     var url = location.href;
@@ -120,6 +121,8 @@
       });
     }
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+  <script src="vuepart.js"></script>
 </body>
 
 </html>

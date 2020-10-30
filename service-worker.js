@@ -1,7 +1,26 @@
-self.addEventListener('install', function (e) {
-    console.log('[ServiceWorker] Install');
+var CACHE_NAME = 'rope-caches';
+var urlsToCache = [
+    '/ropeproject.sakura.ne.jp/',
+];
+
+// インストール処理
+self.addEventListener('install', function(event) {
+    event.waitUntil(
+        caches
+            .open(CACHE_NAME)
+            .then(function(cache) {
+                return cache.addAll(urlsToCache);
+            })
+    );
 });
-self.addEventListener('activate', function (e) {
-    console.log('[ServiceWorker] Activate');
+
+// リソースフェッチ時のキャッシュロード処理
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches
+            .match(event.request)
+            .then(function(response) {
+                return response ? response : fetch(event.request);
+            })
+    );
 });
-self.addEventListener('fetch', function (event) { });
