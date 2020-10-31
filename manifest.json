@@ -1,20 +1,13 @@
 {
     "short_name": "RoPE",
     "name": "RoPE",
-    "icons": [
-      {
-        "src": "./icon.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
+    "icons": [{
         "src": "./icon.png",
         "type": "image/png",
         "sizes": "512x512"
-      }
-    ],
+    }],
     "start_url": "index.html",
     "background_color": "#CDCDCD",
-    "display": "standalone",
+    "display": "fullscreen",
     "theme_color": "#000000"
-  }
+}
