@@ -2,116 +2,182 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RoPE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoPE</title>
 
-  <link href="slick/slick.css" rel="stylesheet" type="text/css">
-  <link href="slick/slick-theme.css" rel="stylesheet" type="text/css">
-  <link href="missionSelect.css" rel="stylesheet" type="text/css">
+    <link href="slick/slick.css" rel="stylesheet" type="text/css">
+    <link href="slick/slick-theme.css" rel="stylesheet" type="text/css">
+    <link href="missionSelect.css" rel="stylesheet" type="text/css">
 
-  <!--CSS-->
-  <link rel="stylesheet" type="text/css" href="generalDesign.css">
-  <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
 
-  <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="mission.js"></script>
 
 </head>
 
 <body>
-  <div class="LTicons">
-    <input class="icon" type="image" src="svg/arrow.svg" onclick="location.href='./index.html'">
-  </div>
-
-  
-  <div class="slide">
-    <div class="mission_slide">
-
-      <div class="slideContent basic">
-        <h2 class="basic">Basic</h2>
-        <p>level1</p>
-        <input type="image" src="unityRelated/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Basic</h2>
-        <p>level2</p>
-        <input type="image" src="unityRelated/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Basic</h2>
-        <p>level3</p>
-        <input type="image" src="unityRelated/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Basic</h2>
-        <p>level4</p>
-        <input type="image" src="unityRelated/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Line Tracking</h2>
-        <p>level1</p>
-        <input type="image" src="unityRelated/PartImage/l1.png" class="MissionImage"
-          onclick="makeURL('line_tracking_level1')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Line Tracking</h2>
-        <p>level2</p>
-        <input type="image" src="unityRelated/PartImage/l2.png" class="MissionImage"
-          onclick="makeURL('line_tracking_level2')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Line Tracking</h2>
-        <p>level3</p>
-        <input type="image" src="unityRelated/PartImage/l3.png" class="MissionImage"
-          onclick="makeURL('line_tracking_level3')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Line Tracking</h2>
-        <p>level4</p>
-        <input type="image" src="unityRelated/PartImage/l4.png" class="MissionImage"
-          onclick="makeURL('line_tracking_level4')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Line Tracking</h2>
-        <p>level5</p>
-        <input type="image" src="unityRelated/PartImage/l5.png" class="MissionImage"
-          onclick="makeURL('line_tracking_level5')">
-      </div>
-
-      <div class="slideContent">
-        <h2>Line Tracking</h2>
-        <p>level6</p>
-        <input type="image" src="unityRelated/PartImage/l6.png" class="MissionImage"
-          onclick="makeURL('line_tracking_level6')">
-      </div>
-
-
+    <div class="LTicons">
+        <input class="icon" type="image" src="svg/arrow.svg" onclick="location.href='./index.html'">
     </div>
-  </div>
 
-  <script src="node_modules/vue/dist/vue.min.js"></script>
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="slick/slick.min.js"></script>
-  <script>
-    $('.mission_slide').slick({
-      infinite: false,
-      centerMode: true,
-      dots: true,
-    });
-    var url = "mission.html";
-    function makeURL(missionName) {
-      url += "?" + missionName + "&robo3&script";
-      location.href = url;
-    }
-  </script>
+    <div class="basic_stage">
+        <div class="slide">
+            <div class="mission_slide">
+
+                <div class="slideContent" id="b1">
+                    <p></p>
+                    <h2 class="basic">Basic</h2>
+                    <p>level1</p>
+                    <input type="image" src="unityRelated/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
+                </div>
+
+                <div class="slideContent" id="b2">
+                    <h2>Basic</h2>
+                    <p>level2</p>
+                    <input type="image" src="unityRelated/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
+                </div>
+
+                <div class="slideContent" id="b3">
+                    <h2>Basic</h2>
+                    <p>level3</p>
+                    <input type="image" src="unityRelated/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
+                </div>
+
+                <div class="slideContent" id="b4">
+                    <h2>Basic</h2>
+                    <p>level4</p>
+                    <input type="image" src="unityRelated/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="line_trace_stage">
+        <div class="slide line_tracking_stage">
+            <div class="mission_slide">
+
+                <div class="slideContent" id="l1">
+                    <h2>Line Tracking</h2>
+                    <p>level1</p>
+                    <input type="image" src="unityRelated/PartImage/l1.png" class="MissionImage" onclick="makeURL('line_tracking_level1')">
+                </div>
+
+                <div class="slideContent" id="l2">
+                    <h2>Line Tracking</h2>
+                    <p>level2</p>
+                    <input type="image" src="unityRelated/PartImage/l2.png" class="MissionImage" onclick="makeURL('line_tracking_level2')">
+                </div>
+
+                <div class="slideContent" id="l3">
+                    <h2 id="b1">Line Tracking</h2>
+                    <p>level3</p>
+                    <input type="image" src="unityRelated/PartImage/l3.png" class="MissionImage" onclick="makeURL('line_tracking_level3')">
+                </div>
+
+                <div class="slideContent" id="l4">
+                    <h2>Line Tracking</h2>
+                    <p>level4</p>
+                    <input type="image" src="unityRelated/PartImage/l4.png" class="MissionImage" onclick="makeURL('line_tracking_level4')">
+                </div>
+
+                <div class="slideContent" id="l5">
+                    <h2>Line Tracking</h2>
+                    <p>level5</p>
+                    <input type="image" src="unityRelated/PartImage/l5.png" class="MissionImage" onclick="makeURL('line_tracking_level5')">
+                </div>
+
+                <div class="slideContent" id="l6">
+                    <h2>Line Tracking</h2>
+                    <p>level6</p>
+                    <input type="image" src="unityRelated/PartImage/l6.png" class="MissionImage" onclick="makeURL('line_tracking_level6')">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="line_trace_stage">
+        <div class="slide maze_stage">
+            <div class="mission_slide">
+                <div class="slideContent" id="m1">
+                    <h2>Maze</h2>
+                    <p>level1</p>
+                    <input type="image" src="unityRelated/PartImage/m1.png" class="MissionImage" onclick="makeURL('maze_level1')">
+                </div>
+
+                <div class="slideContent" id="m2">
+                    <h2>Maze</h2>
+                    <p>level2</p>
+                    <input type="image" src="unityRelated/PartImage/m2.png" class="MissionImage" onclick="makeURL('maze_level2')">
+                </div>
+
+                <div class="slideContent" id="m3">
+                    <h2>Maze</h2>
+                    <p>level3</p>
+                    <input type="image" src="unityRelated/PartImage/m3.png" class="MissionImage" onclick="makeURL('maze_level3')">
+                </div>
+
+                <div class="slideContent" id="m4">
+                    <h2>Maze</h2>
+                    <p>level4</p>
+                    <input type="image" src="unityRelated/PartImage/m4.png" class="MissionImage" onclick="makeURL('maze_level4')">
+                </div>
+
+                <div class="slideContent" id="m5">
+                    <h2>Maze</h2>
+                    <p>level5</p>
+                    <input type="image" src="unityRelated/PartImage/m5.png" class="MissionImage" onclick="makeURL('maze_level5')">
+                </div>
+
+                <div class="slideContent" id="m6">
+                    <h2>Maze</h2>
+                    <p>level6</p>
+                    <input type="image" src="unityRelated/PartImage/m6.png" class="MissionImage" onclick="makeURL('maze_level6')">
+                </div>
+
+                <div class="slideContent" id="m7">
+                    <h2>Maze</h2>
+                    <p>level7</p>
+                    <input type="image" src="unityRelated/PartImage/m7.png" class="MissionImage" onclick="makeURL('maze_level7')">
+                </div>
+
+                <div class="slideContent" id="m8">
+                    <h2>Maze</h2>
+                    <p>level8</p>
+                    <input type="image" src="unityRelated/PartImage/m8.png" class="MissionImage" onclick="makeURL('maze_level8')">
+                </div>
+
+                <div class="slideContent" id="m9">
+                    <h2>Maze</h2>
+                    <p>level9</p>
+                    <input type="image" src="unityRelated/PartImage/m9.png" class="MissionImage" onclick="makeURL('maze_level9')">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="slick/slick.min.js"></script>
+    <script>
+        $('.mission_slide').slick({
+            infinite: false,
+            centerMode: true,
+            dots: true,
+        });
+        var url = "mission.html";
+
+        function makeURL(missionName) {
+            url += "?" + missionName + "&robo3&script";
+            location.href = url;
+        }
+    </script>
+    <script src="generalJS.js"></script>
 </body>
 
 </html>

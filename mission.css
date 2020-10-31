@@ -1,20 +1,20 @@
-.MissionScreen{
+.MissionScreen {
     width: 100vw;
-    height:100vh;
+    height: 100vh;
 }
-.MissionStart{
-    
+
+.MissionStart {
     position: absolute;
-    margin-top:0px;
-    margin-left:0px;
+    margin-top: 0px;
+    margin-left: 0px;
     width: 100vw;
     height: 100vh;
     background-color: rgba(26, 26, 26, 0.95);
-    
     text-align: center;
     z-index: 15;
 }
-.PyConsole{
+
+.PyConsole {
     position: absolute;
     margin-top: 60vh;
     margin-left: 75vw;
@@ -24,48 +24,57 @@
     background-color: rgb(134, 133, 133);
     font-size: 20;
     z-index: 13;
+}
 
-    font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
-    sans-serif;
-}
 .PyConsole::-webkit-scrollbar {
-    display:none;
+    display: none;
 }
-.ScoreWindow{
+
+.ScoreWindow {
     display: none;
     z-index: 100;
     position: absolute;
     margin-top: 0%;
     margin-left: 0%;
     padding: 0%;
-
     width: 100vw;
     height: 100vh;
-
     background-color: rgba(26, 26, 26, 0.95);
-    
     text-align: center;
+    -webkit-transition: .2s;
+    transition: .2s;
 }
-.Score{
+
+.Score {
     margin-top: 20vh;
     margin-left: auto;
     margin-right: auto;
-
     width: 30vw;
     height: 60vh;
     background-color: white;
+    overflow-y: scroll;
 }
-.result{
+
+.Score::-webkit-scrollbar {
+    display: none;
+    padding: 5px;
+}
+
+.result {
+    color: lightgreen;
+    background-origin: border-box;
+    border: 1px solid;
+    box-shadow: 2px 2px;
     font-size: 3em;
     margin-top: 10vh;
     font-weight: 50;
 }
 
-.next{
+.RltDes {
+    font-size: 30;
+}
+
+.next {
     margin-left: auto;
     margin-right: auto;
     width: 50%;

@@ -14,12 +14,10 @@
     <script src="unityRelated/Build/UnityLoader.js"></script>
 
     <script src="node_modules/vue/dist/vue.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <script>
         var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
     </script>
-    <script src="button.js"></script>
     <script src="craft.js"></script>
 </head>
 
@@ -122,13 +120,12 @@
     </div>
 
     <div class="LTicons">
-        <input class="icon" type="image" src="svg/arrow_white.svg" onclick="Back()">
-        <input class="icon" type="image" src="svg/save_white.svg" name="save"
-            onclick="onClickButton('SaveJson');Hopup('Save');">
+        <input class="icon" type="image" src="svg/arrow_white.svg" onclick="Back();">
+        <input class="icon" type="image" src="svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
         <input class="icon" type="image" src="svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
     </div>
 
-    <input class="icon" type="image" style="position: absolute;margin-top: 90vh;margin-left: 75vw;" src="svg/eraser.svg"
+    <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="svg/eraser.svg"
         onclick="onClickButton('Remove')">
     <!--
     <div class="pop-box">
@@ -152,6 +149,7 @@
     </div>
 -->
 
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script>
         function PS(str) {
             gameInstance.SendMessage('GameDirector', 'PS', str);
@@ -179,14 +177,8 @@
                 return false;
             });
         });
-
-        function Hopup(str) {
-            $('.contentHopup').text(str);
-            $('.actHopup').fadeIn(300, function () {
-                $('.actHopup').fadeOut(300);
-            });
-        }
     </script>
+    <script src="generalJS.js"></script>
 </body>
 
 </html>

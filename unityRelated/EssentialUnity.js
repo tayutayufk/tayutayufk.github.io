@@ -4,6 +4,7 @@ function FitToDevice() {
         gameInstance.SendMessage("Main Camera", 'setSmartPhoneMode');
     }
 }
+
 function ManiRobot(func, motor, power) {
     var v = motor + "|" + power.toFixed();
     gameInstance.SendMessage('GameDirector', func, v);
@@ -14,6 +15,7 @@ function ManiRobot(func, motor, power) {
 let SensorData;
 let SensorName;
 let Sensorflag;
+
 function getValue(name) {
     Sensorflag = false;
     SensorName = name;
@@ -26,7 +28,7 @@ function getValue(name) {
     }
 
 
-    let to = setTimeout(function () {
+    let to = setTimeout(function() {
         Sensorflag = true;
     }, 500);
     while (!Sensorflag)
@@ -34,6 +36,7 @@ function getValue(name) {
     //console.log(SensorData);
     return SensorData;
 }
+
 function ReturnValueJS(data) {
 
     let strings = data.split('|');
@@ -56,6 +59,7 @@ let MissionState;
 let mName;
 let rName;
 let pName;
+
 function FetchSceneData() {
     let loc = window.location.href;
 
@@ -80,16 +84,19 @@ function FetchSceneData() {
     return SceneName;
 
 }
-function MissionLoad() {//ミッションシーンのロード前に呼ばれる
+
+function MissionLoad() { //ミッションシーンのロード前に呼ばれる
     SceneLoading = true;
     return mName;
 }
+
 function MissionCourseLoad(str) {
-    if(!SceneLoading)return;
+    if (!SceneLoading) return;
     SceneLoading = false;
     var StartShade = document.getElementById("shade");
     StartShade.style.display = "block";
 }
+
 function MissionStart() {
     if (SceneName == "Mission" && SceneLoading == false) {
         MissionState = true;
@@ -101,17 +108,25 @@ function MissionStart() {
         runit(pName);
     }
 }
+
 function MissionFinish(str) {
-    if(MissionState){
-        //str = "clear|12:40|bdbdajbfdja"
+    if (MissionState) {
         MissionState = false;
         var params = str.split("|");
-        $('.result').text(params[0]);
-        if(params.length > 1){
-            $('.resultdes').text(params[1]);
+        if (params[0] == "clear") {
+            $('.result').text("Clear!");
+        } else {
+            $('.result').text("Faild");
+            $('.result').css({ 'color': 'red' })
+        }
+
+        if (params.length > 1) {
+            $('.RltTime').text("Time : " + params[1]);
+            $('.RltDes').text(params[3] + "!!!");
+
         }
         $('.ScoreWindow').show();
 
-        SaveResult(mName,params[0]);
+        SaveResult(mName, params[0], params[1], params[2]);
     }
 }

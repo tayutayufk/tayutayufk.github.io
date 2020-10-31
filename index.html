@@ -1,48 +1,55 @@
 <html lang="en-us">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>RoPE</title>
-  <link ref="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon.png" sizes="192x192" />
-  <link rel="manifest" href="manifest.json">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register("js/service-worker.jｓ").then(function () { console.log('Service Worker Registered'); });
-    }
-  </script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>RoPE</title>
+    <link ref="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png" sizes="192x192" />
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("js/service-worker.jｓ").then(function() {
+                console.log('Service Worker Registered');
+            });
+        }
+    </script>
 
 
-  <script src="unityRelated/EssentialUnity.js"></script>
-  <script src="unityRelated/Build/UnityLoader.js"></script>
-  <script style="display: none;">
-    var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
-  </script>
-  <link rel="stylesheet" type="text/css" href="generalDesign.css">
+    <script src="unityRelated/EssentialUnity.js"></script>
+    <script src="unityRelated/Build/UnityLoader.js"></script>
+    <script style="display: none;">
+        var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
+    </script>
+    <link rel="stylesheet" type="text/css" href="generalDesign.css">
 </head>
 
 <body>
 
-  <div class="window">
-    <p class="logo">RoPE</p>
-    <div class="mainbtn">
-      <a href="craft.html" class="btn06">Craft</a>
-      <a href="program.html" class="btn06">Program</a>
-      <a href="missionSelect.html" class="btn06">Mission</a>
-    </div>
-    
-  </div>
-  <script>
-    var missionData = {'b1':false};
+    <div class="window">
+        <p class="logo">RoPE</p>
+        <div class="mainbtn">
+            <a href="craft.html" class="btn06">Craft</a>
+            <a href="program.html" class="btn06">Program</a>
+            <a href="missionSelect.html" class="btn06">Mission</a>
+            <a href="missionSelect.html" class="btn06">Learn</a>
+        </div>
 
-    missionData.b1 = true;
-    missionData.b1.time = 100;
-    console.log(missionData);
-  </script>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        var missionData = {
+            'b1': false
+        };
+
+        missionData.b1 = true;
+        missionData.b1.time = 100;
+        console.log(missionData);
+    </script>
+    <script src="generalJS.js"></script>
 </body>
 
 </html>
