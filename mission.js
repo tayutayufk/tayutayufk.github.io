@@ -1,11 +1,9 @@
 var missionData = [];
 
-window.onload = function() {
-    for (key in localStorage) {
-        if (key == "MissionDataContainer") {
-            var json = localStorage.getItem(key);
-            missionData = JSON.parse(json);
-        }
+for (key in localStorage) {
+    if (key == "MissionDataContainer") {
+        var json = localStorage.getItem(key);
+        missionData = JSON.parse(json);
     }
 }
 
@@ -24,7 +22,7 @@ function SaveResult(mname, result, time, meta) {
             return;
         }
     }
-    m = { name: mname, rlt: result, m: meta };
+    m = { "name": mname, "rlt": result, "time": time, "m": meta };
     missionData.push(m);
     MDSave();
     return;
