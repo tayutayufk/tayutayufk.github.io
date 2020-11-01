@@ -215,9 +215,9 @@
         $(".line_tracking_stage").find("progress").val((line_clear / 6 * 100).toString());
         $(".maze_stage").find("progress").val((maze_clear / 9 * 100).toString());
 
-        if ((basic_clear / 4 * 100) > 75) {
+        if ((basic_clear / 4 * 100) > 60) {
             $(".line_tracking_stage").css("display", "block");
-            if ((line_clear / 6 * 100) > 75) {
+            if ((line_clear / 6 * 100) > 60) {
                 $(".maze_stage").css("display", "block");
             }
         }
