@@ -32,6 +32,7 @@
                     <h2>level1</h2>
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
+                    <p>Go through the checkpoint.</p>
                     <input type="image" src="unityRelated/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
                 </div>
 
@@ -39,6 +40,7 @@
                     <h2>level2</h2>
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
+                    <p>Go through the checkpoint.</p>
                     <input type="image" src="unityRelated/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
                 </div>
 
@@ -46,6 +48,7 @@
                     <h2>level3</h2>
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
+                    <p>Go through the checkpoint.</p>
                     <input type="image" src="unityRelated/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
                 </div>
 
@@ -53,6 +56,7 @@
                     <h2>level4</h2>
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
+                    <p>Go through the checkpoint.</p>
                     <input type="image" src="unityRelated/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
                 </div>
             </div>
@@ -64,7 +68,7 @@
         <h2 class="basic">Line Tracking</h2>
         <progress value="0" max="100" style="overflow: hidden;"></progress>
         <div class="slide">
-            <div class="mission_slide">
+            <div class="mission_slide" style="background: rgba(10, 1, 1, 0.61);">
                 <div class="slideContent" id="line_tracking_level1">
                     <h2>level1</h2>
                     <p id="tim">Time : 0.0</p>
@@ -114,7 +118,7 @@
         <h2>Maze</h2>
         <progress value="0" max="100" style="overflow: hidden;"></progress>
         <div class="slide">
-            <div class="mission_slide">
+            <div class="mission_slide" style="background: rgba(10, 1, 1, 0.61);">
                 <div class="slideContent" id="maze_level1">
                     <h2>level1</h2>
                     <p id="tim">Time : 0.0</p>
@@ -215,13 +219,15 @@
         $(".line_tracking_stage").find("progress").val((line_clear / 6 * 100).toString());
         $(".maze_stage").find("progress").val((maze_clear / 9 * 100).toString());
 
+
         if ((basic_clear / 4 * 100) > 60) {
-            $(".line_tracking_stage").css("display", "block");
+            
+            $(".line_tracking_stage").find(".mission_slide").css("background", "#fff");
+
             if ((line_clear / 6 * 100) > 60) {
-                $(".maze_stage").css("display", "block");
+                $(".maze_stage").find(".mission_slide").css("background", "#fff");
             }
         }
-
 
         $('.mission_slide').slick({
             infinite: false,
@@ -231,6 +237,16 @@
         var url = "mission.html";
 
         function makeURL(missionName) {
+            if (missionName.indexOf("line_tracking") > -1) {
+                if ((basic_clear / 4 * 100) <= 60) {
+                    return;
+                }
+            }
+            if (missionName.indexOf("maze_") > -1) {
+                if ((line_clear / 6 * 100) <= 60) {
+                    return;
+                }
+            }
             url += "?" + missionName + "&robo3&script";
             location.href = url;
         }
