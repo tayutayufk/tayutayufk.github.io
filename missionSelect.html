@@ -68,7 +68,7 @@
         <h2 class="basic">Line Tracking</h2>
         <progress value="0" max="100" style="overflow: hidden;"></progress>
         <div class="slide">
-            <div class="mission_slide" style="background: rgba(10, 1, 1, 0.61);">
+            <div class="mission_slide">
                 <div class="slideContent" id="line_tracking_level1">
                     <h2>level1</h2>
                     <p id="tim">Time : 0.0</p>
@@ -118,7 +118,7 @@
         <h2>Maze</h2>
         <progress value="0" max="100" style="overflow: hidden;"></progress>
         <div class="slide">
-            <div class="mission_slide" style="background: rgba(10, 1, 1, 0.61);">
+            <div class="mission_slide">
                 <div class="slideContent" id="maze_level1">
                     <h2>level1</h2>
                     <p id="tim">Time : 0.0</p>
@@ -220,12 +220,11 @@
         $(".maze_stage").find("progress").val((maze_clear / 9 * 100).toString());
 
 
+        $(".basic_stage").find(".slide").css("background", "#fff");
         if ((basic_clear / 4 * 100) > 60) {
-            
-            $(".line_tracking_stage").find(".mission_slide").css("background", "#fff");
-
+            $(".line_tracking_stage").find(".slide").css("background", "#fff");
             if ((line_clear / 6 * 100) > 60) {
-                $(".maze_stage").find(".mission_slide").css("background", "#fff");
+                $(".maze_stage").find(".slide").css("background", "#fff");
             }
         }
 
