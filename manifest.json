@@ -1,6 +1,6 @@
 {
-    "short_name": "RoPE",
-    "name": "RoPE",
+    "short_name": "RoboPy",
+    "name": "RoboPy",
     "icons": [{
         "src": "./icon.png",
         "type": "image/png",
@@ -9,5 +9,6 @@
     "start_url": "index.html",
     "background_color": "#CDCDCD",
     "display": "fullscreen",
-    "theme_color": "#000000"
+    "theme_color": "#000000",
+    "orientation": "landscape"
 }
