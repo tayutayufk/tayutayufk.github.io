@@ -1,0 +1,71 @@
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!--CSS-->
+    
+    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/unity.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/mission.css">
+
+
+    <!-- Unity -->
+    <script src="/static/js/unityRelated/EssentialUnity.js"></script>
+    <script src="/static/js/unityRelated/Build/UnityLoader.js"></script>
+
+    <!--skulpt-->
+    <script src="/static/js/dist/skulpt.min.js" type="text/javascript"></script>
+    <script src="/static/js/dist/skulpt-stdlib.js" type="text/javascript"></script>
+
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "/static/js/unityRelated/Build/WebGLRoPE.json");
+    </script>
+
+    <script src="/static/js/RunPython.js"></script>
+    <script src="/static/js/mission.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="MissionStart" id="shade" style="display: none;">
+        <a type="button" class="btn06" style="margin-top: 50vh;font-size: 70;color: white;" onclick="MissionStart()">Start!</a>
+    </div>
+
+    <div class="window">
+        <div id="gameContainer" class="GameScreen MissionScreen"></div>
+        <div class="LTicons">
+            <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" style="fill: rgb(200,200, 200);" onclick="location.href='./missionSelect.html'">
+            <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="Move('craft.html');">
+            <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="Move('program.html');">
+        </div>
+    </div>
+    <textarea class="PyConsole" id="output" style="display: none;"></textarea>
+
+    <div class="ScoreWindow">
+        <div class="Score">
+            <p class="result">Clear!</p>
+            <p class="RltTime">00:00:00</p>
+            <p class="RltDes"></p>
+            <a href="missionSelect.html" class="btn06 next">Next</a>
+        </div>
+    </div>
+
+    <script>
+        function Move(html) {
+            var params = location.href.split("?");
+            location.href = html + "?" + params[1];
+        }
+        window.onload = function() {
+
+        }
+    </script>
+    <script src="/static/js/generalJS.js"></script>
+</body>
+
+</html>

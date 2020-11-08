@@ -2,11 +2,11 @@
     "short_name": "RoboPy",
     "name": "RoboPy",
     "icons": [{
-        "src": "./icon.png",
+        "src": "/static/img/icon.png",
         "type": "image/png",
         "sizes": "512x512"
     }],
-    "start_url": "index.html",
+    "start_url": "/",
     "background_color": "#CDCDCD",
     "display": "fullscreen",
     "theme_color": "#000000",

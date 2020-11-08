@@ -5,20 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="generalDesign.css">
-    <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/unity.css">
 
 
     <!-- Unity -->
-    <script src="unityRelated/EssentialUnity.js"></script>
-    <script src="unityRelated/Build/UnityLoader.js"></script>
-
-    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="/static/js/unityRelated/EssentialUnity.js"></script>
+    <script src="/static/js/unityRelated/Build/UnityLoader.js"></script>
 
     <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "unityRelated/Build/WebGLRoPE.json");
+        var gameInstance = UnityLoader.instantiate("gameContainer", "/static/js/unityRelated/Build/WebGLRoPE.json");
     </script>
-    <script src="craft.js"></script>
+    <script src="/static/js/craft.js"></script>
 </head>
 
 <body>
@@ -33,32 +31,32 @@
             <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">General</label>
             <div class="tab-content">
                 <div class="partDes" onclick="PS('BB')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/BB.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/BB.png">
                     <h2 class="partNam">Basic Block</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('BB1')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/BB1.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/BB1.png">
                     <h2 class="partNam">Basic Block</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('BB2')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/BB2.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/BB2.png">
                     <h2 class="partNam">Basic Block</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('BB3')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/BB3.png">
+                    <img class="partimage" type="image" src="/static/img//PartImage/BB3.png">
                     <h2 class="partNam">Basic Block</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('BB3')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/BB3.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/BB3.png">
                     <h2 class="partNam">Basic Block</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('BB3')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/BB3.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/BB3.png">
                     <h2 class="partNam">Basic Block</h2>
                 </div>
             </div>
@@ -67,17 +65,17 @@
             <div class="tab-content">
 
                 <div class="partDes" onclick="PS('TB')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/TB.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/TB.png">
                     <h2 class="partNam">Tire Big</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('TM')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/TM.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/TM.png">
                     <h2 class="partNam">Tire mini</h2>
                 </div>
 
                 <div class="partDes" onclick="PS('BT')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/TM.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/TM.png">
                     <h2 class="partNam">Ball Tire</h2>
                 </div>
 
@@ -86,15 +84,15 @@
             <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">Motor</label>
             <div class="tab-content">
                 <div class="partDes" onclick="PS('MB')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/MB.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/MB.png">
                     <h2 class="partNam">Motor </h2>
                 </div>
                 <div class="partDes" onclick="PS('MN')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/MM.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/MM.png">
                     <h2 class="partNam">Motor</h2>
                 </div>
                 <div class="partDes" onclick="PS('MM')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/MN.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/MN.png">
                     <h2 class="partNam">Motor Mini</h2>
                 </div>
             </div>
@@ -102,11 +100,11 @@
             <input id="TAB-04" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-04">Sensor</label>
             <div class="tab-content">
                 <div class="partDes" onclick="PS('CS')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/CS.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/CS.png">
                     <h2 class="partNam">Color Sensor</h2>
                 </div>
                 <div class="partDes" onclick="PS('RF')">
-                    <img class="partimage" type="image" src="unityRelated/PartImage/RF.png">
+                    <img class="partimage" type="image" src="/static/img/PartImage/RF.png">
                     <h2 class="partNam">Range Finder</h2>
                 </div>
             </div>
@@ -114,12 +112,12 @@
     </div>
 
     <div class="LTicons">
-        <input class="icon" type="image" src="svg/arrow_white.svg" onclick="Back();">
-        <input class="icon" type="image" src="svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
-        <input class="icon" type="image" src="svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
+        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="Back();">
+        <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
+        <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
     </div>
 
-    <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="svg/eraser.svg" onclick="onClickButton('Remove')">
+    <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="/static/img/svg/eraser.svg" onclick="onClickButton('Remove')">
     <!--
     <div class="pop-box">
         <label for="popup-on">
@@ -142,7 +140,7 @@
     </div>
 -->
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
         function PS(str) {
             gameInstance.SendMessage('GameDirector', 'PS', str);
@@ -171,7 +169,7 @@
             });
         });
     </script>
-    <script src="generalJS.js"></script>
+    <script src="/static/js/generalJS.js"></script>
 </body>
 
 </html>

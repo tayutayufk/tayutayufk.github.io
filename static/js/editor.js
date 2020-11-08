@@ -3,7 +3,7 @@ var initText = [
     'from time import sleep'
 ].join('\n');
 var editor;
-require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' } });
+require.config({ paths: { 'vs': 'static/js/node_modules/monaco-editor/min/vs' } });
 require(['vs/editor/editor.main'], function() {
     editor = monaco.editor.create(document.getElementById('container'), {
         value: initText,

@@ -3,21 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
 
     <!-- monaco-editor -->
-    <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
-    <script src="editor.js"></script>
+    <script src="/static/js/node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script src="/static/js/editor.js"></script>
+
 
     <!--CSS-->
-    <link rel="stylesheet" tyoe="text/css" href="program.css">
-    <link rel="stylesheet" type="text/css" href="generalDesign.css">
-    <link rel="stylesheet" type="text/css" href="unityRelated/unity.css">
+    <link rel="stylesheet" tyoe="text/css" href="/static/css/program.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/unity.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="button.js"></script>
 </head>
 
 <body>
@@ -29,9 +28,9 @@
     <div class="window">
         <div id="container" class="monaco"></div>
         <div class="LTicons">
-            <input class="icon" type="image" src="svg/arrow.svg" onclick="SaveScript('script');Hopup('Save');Back();">
-            <input class="icon" name="save" type="image" src="svg/save.svg" onclick="SaveScript('script');Hopup('Save');">
-            <input class="icon" type="image" src="svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
+            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
+            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript('script');Hopup('Save');">
+            <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
         </div>
     </div>
 
@@ -84,6 +83,7 @@
             </ul>
         </div>
     </div>
+    <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
         var url = location.href;
         var params = url.split("?");
@@ -155,7 +155,7 @@
             });
         }
     </script>
-    <script src="generalJS.js"></script>
+    <script src="/static/js/generalJS.js"></script>
 </body>
 
 </html>
