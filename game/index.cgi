@@ -1,3 +1,4 @@
+#!/home/ropeproject/local/python/bin/python3
 import cgitb
 cgitb.enable()
 
