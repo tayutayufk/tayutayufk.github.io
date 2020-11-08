@@ -6,7 +6,7 @@ from app import app
 #-------------------以下、書き換え部分------------------------
 from sys import path
 
-path.insert(0, '/ropeproject/www/')
+path.insert(0, '/ropeproject/www/game/')
 from app import app
 class ProxyFix(object):
   def __init__(self, app):
