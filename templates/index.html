@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>RoPE</title>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <link rel="apple-touch-icon" href="/static/img/icon.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/static/icon.png" sizes="192x192" />
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register("/static/js/service-worker.js").then(function() {
@@ -23,28 +23,62 @@
     <script style="display: none;">
         var gameInstance = UnityLoader.instantiate("gameContainer", "/static/js/unityRelated/Build/WebGLRoPE.json");
     </script>
+
+    <!--CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
 
-
+    <!--Google Acount-->
+    <!--
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="903173950355-lommg8dbvtbttqtelg0c6bjlcg04bt84.apps.googleusercontent.com">
+        -->
 </head>
 
 <body>
 
-    <div class="window">
-        <img src="/static/img/white.png" class="logo">
 
-        <div class="mainbtn">
-            <a href="{{url_for('craft')}}" class="btn06" style="font-size: 5vh;">Craft</a>
-            <a href="{{url_for('program')}}" class="btn06" style="font-size: 5vh;">Program</a>
-            <a href="{{url_for('missionSelect')}}" class="btn06" style="font-size: 5vh;">Mission</a>
-            <a href="https://ropeproject.net/docs/doc.html" target="_blank" rel="noopener noreferrer" class="btn06" style="font-size: 5vh;">Learn</a>
+    <div class="window">
+        <ul>
+
+            <li><a href="{{url_for( 'logout')}} ">logout</a></li>
+
+            <li><a href="{{url_for( 'login')}} ">login</a></li>
+
+        </ul>
+
+
+
+        <!--<div class="g-signin2 " data-onsuccess="onSignIn "></div>-->
+        <img src="/static/img/white.png " class="logo ">
+
+        <div class="mainbtn ">
+            <a href="{{url_for( 'craft')}} " class="btn06 " style="font-size: 5vh; ">Craft</a>
+            <a href="{{url_for( 'program')}} " class="btn06 " style="font-size: 5vh; ">Program</a>
+            <a href="{{url_for( 'missionSelect')}} " class="btn06 " style="font-size: 5vh; ">Mission</a>
+            <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
         </div>
 
     </div>
-    <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
+
+
+    <script src="/static/js/node_modules/jquery/dist/jquery.min.js "></script>
     <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+
+        function login() {
+            $.post('/login', 'id=takayasu');
+
+        }
     </script>
-    <script src="/static/js/generalJS.js"></script>
+    <script src="/static/js/generalJS.js "></script>
+
+
 </body>
 
 </html>
