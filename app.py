@@ -42,26 +42,50 @@ def manifest():
 def sw():
     return app.send_static_file('service-worker.js')
 
+@app.route('/favicon.png')
+def favicon():
+   return app.send_static_file('icon.png')
+
 
 #main
 @app.route("/",methods=["GET","POST"]) 
 def m():
     if check_login():
-        return render_template("index.html")
+        state = "login"
     else:
-        return redirect('/login')
+        state="logout"
+
+    return render_template("index.html",state=state)
 
 @app.route("/index.html")
 def index():
     if check_login():
-        return render_template("index.html")
+        state = "login"
     else:
-        return redirect('/login')
+        state="logout"
+
+    return render_template("index.html",state=state)
 
 @app.route("/craft.html", methods=['POST', 'GET']) 
 def craft():
     if check_login():
-        return render_template("craft.html")
+        parts = {}
+        Basic = [['BB','BasicBlock'],
+                    ['BB1','BasicBlock'],
+                    ['BB2','BasicBlock']]
+        
+        Wheel = [['TB','Wheel big'],['TM','Wheel mini'],['BT','Ball Wheel']]
+
+        Motor = [['MB','Motor big'],
+                ['MN','Motor'],
+                ['MM','Motor mini']]
+        Sensor = [['CS','Color Sensor'],['RF','RangeFinder']]
+
+        parts['Basic'] = Basic
+        parts['Wheel'] = Wheel
+        parts['Motor'] = Motor
+        parts['Sensor'] = Sensor
+        return render_template("craft.html",parts=parts)
     else:
         return redirect('/login')
 
@@ -75,7 +99,36 @@ def mission():
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
     if check_login():
-        return render_template("missionSelect.html")
+        missions = []
+        Basic = ['basic_','Basic',[
+            '<p>Go through the checkpoint.</p>',
+            '<p>Go through the checkpoint.</p>',
+            '<p>Go through the checkpoint.</p>',
+            '<p>Go through the checkpoint.</p>'
+        ]]
+        LineTracking = ['line_tracking_','Line Tracking',[
+            '<p>Stop above the <strong>first</strong> line!</p>',
+            '<p>Stop above the <strong>second</strong> line!</p>',
+            '<p>Stop above the <strong>8th</strong> line!</p>',
+            '<p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>',
+            '<p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>',
+            '<p>This mission is time attack.You need go through goal as fast as possible. <strong>Make good use of the markings.</strong></p>'
+        ]]
+        Maze = ['maze_','Maze',[
+            '<p>Go through the checkpoint. This wall will destroy your robot.</p>',
+            '<p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>',
+            '<p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>',
+            '<p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>',
+            '<p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>',
+            '<p>Go through checkpoint.</p><strong>You probably notice that you cannot use the method you use before.</strong></p>',
+            '<p>Go through checkpoint.</p>',
+            '<p>Go through checkpoint.</p>',
+            '<p>Go through checkpoint.</p>',
+        ]]
+        missions.append(Basic)
+        missions.append(LineTracking)
+        missions.append(Maze)
+        return render_template("missionSelect.html",missions = missions)
     else:
         return redirect('/login')
 

@@ -23,182 +23,25 @@
         <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
     </div>
 
-    <div class="basic_stage">
-        <h2 class="basic">Basic</h2>
+    {%for key in range(missions|count)%}
+    <div class="{{missions[key][0]}}stage">
+        <h2 class="basic">{{missions[key][1]}}</h2>
         <progress value="0" max="100" style="overflow: hidden;"></progress>
         <div class="slide">
             <div class="mission_slide">
-                <div class="slideContent" id="basic_level1">
-                    <h2>level1</h2>
+                {%for i in range(missions[key][2]|count)%}
+                <div class="slideContent" id='{{ missions[key][0]}}level{{i+1}}'>
+                    <h2>level{{i+1}}</h2>
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
-                    <p>Go through the checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/b1.png" class="MissionImage" onclick="makeURL('basic_level1')">
+                    {{missions[key][1][2]}}
+                    <input type="image" src="/static/img/PartImage/{{ missions[key][0]}}level{{i+1}}.png" class="MissionImage" onclick="makeURL('{{ missions[key][0]}}level{{i+1}}')">
                 </div>
-
-                <div class="slideContent" id="basic_level2">
-                    <h2>level2</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through the checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/b2.png" class="MissionImage" onclick="makeURL('basic_level2')">
-                </div>
-
-                <div class="slideContent" id="basic_level3">
-                    <h2>level3</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through the checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/b3.png" class="MissionImage" onclick="makeURL('basic_level3')">
-                </div>
-
-                <div class="slideContent" id="basic_level4">
-                    <h2>level4</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through the checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/b4.png" class="MissionImage" onclick="makeURL('basic_level4')">
-                </div>
+                {%endfor%}
             </div>
         </div>
     </div>
-
-
-    <div class="line_tracking_stage">
-        <h2 class="basic">Line Tracking</h2>
-        <progress value="0" max="100" style="overflow: hidden;"></progress>
-        <div class="slide">
-            <div class="mission_slide">
-                <div class="slideContent" id="line_tracking_level1">
-                    <h2>level1</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt"></p>
-                    <p>Stop above the <strong>first</strong> line!</p>
-                    <input type="image" src="/static/img/PartImage/l1.png" class="MissionImage" onclick="makeURL('line_tracking_level1')">
-                </div>
-
-                <div class="slideContent" id="line_tracking_level2">
-                    <h2>level2</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt"></p>
-                    <p> Stop above the <strong>second</strong> line!</p>
-                    <input type="image" src="/static/img/PartImage/l2.png" class="MissionImage" onclick="makeURL('line_tracking_level2')">
-                </div>
-
-                <div class="slideContent" id="line_tracking_level3">
-                    <h2>level3</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p> Stop above the <strong>8th</strong> line!</p>
-                    <input type="image" src="/static/img/PartImage/l3.png" class="MissionImage" onclick="makeURL('line_tracking_level3')">
-                </div>
-
-                <div class="slideContent" id="line_tracking_level4">
-                    <h2>level4</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>
-                    <input type="image" src="/static/img/PartImage/l4.png" class="MissionImage" onclick="makeURL('line_tracking_level4')">
-                </div>
-
-                <div class="slideContent" id="line_tracking_level5">
-                    <h2>level5</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>
-                    <input type="image" src="/static/img/PartImage/l5.png" class="MissionImage" onclick="makeURL('line_tracking_level5')">
-                </div>
-
-                <div class="slideContent" id="line_tracking_level6">
-                    <h2>level6</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>This mission is time attack.You need go through goal as fast as possible. <strong>Make good use of the markings.</strong></p>
-                    <input type="image" src="/static/img/PartImage/l6.png" class="MissionImage" onclick="makeURL('line_tracking_level6')">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="maze_stage">
-        <h2>Maze</h2>
-        <progress value="0" max="100" style="overflow: hidden;"></progress>
-        <div class="slide">
-            <div class="mission_slide">
-                <div class="slideContent" id="maze_level1">
-                    <h2>level1</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through the checkpoint. This wall will destroy your robot.</p>
-                    <input type="image" src="/static/img/PartImage/m1.png" class="MissionImage" onclick="makeURL('maze_level1')">
-                </div>
-
-                <div class="slideContent" id="maze_level2">
-                    <h2>level2</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>
-                    <input type="image" src="/static/img/PartImage/m2.png" class="MissionImage" onclick="makeURL('maze_level2')">
-                </div>
-
-                <div class="slideContent" id="maze_level3">
-                    <h2>level3</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>
-                    <input type="image" src="/static/img/PartImage/m3.png" class="MissionImage" onclick="makeURL('maze_level3')">
-                </div>
-
-                <div class="slideContent" id="maze_level4">
-                    <h2>level4</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>
-                    <input type="image" src="/static/img/PartImage/m4.png" class="MissionImage" onclick="makeURL('maze_level4')">
-                </div>
-
-                <div class="slideContent" id="maze_level5">
-                    <h2>level5</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.<strong>THIS COURSE CHANGE AT RANDOM.</strong></p>
-                    <input type="image" src="/static/img/PartImage/m5.png" class="MissionImage" onclick="makeURL('maze_level5')">
-                </div>
-
-                <div class="slideContent" id="maze_level6">
-                    <h2>level6</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.</p>
-                    <p><strong>You probably notice that you cannot use the method you use before.</strong></p>
-                    <input type="image" src="/static/img/PartImage/m6.png" class="MissionImage" onclick="makeURL('maze_level6')">
-                </div>
-
-                <div class="slideContent" id="maze_level7">
-                    <h2>level7</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/m7.png" class="MissionImage" onclick="makeURL('maze_level7')">
-                </div>
-
-                <div class="slideContent" id="maze_level8">
-                    <h2>level8</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/m8.png" class="MissionImage" onclick="makeURL('maze_level8')">
-                </div>
-
-                <div class="slideContent" id="maze_level9">
-                    <h2>level9</h2>
-                    <p id="tim">Time : 0.0</p>
-                    <p id="rlt">Not achieved</p>
-                    <p>Go through checkpoint.</p>
-                    <input type="image" src="/static/img/PartImage/m9.png" class="MissionImage" onclick="makeURL('maze_level9')">
-                </div>
-            </div>
-        </div>
+    {%endfor%}
     </div>
 
 

@@ -6,9 +6,9 @@
 
 .slide {
     border-radius: 30px;
-    background-color: #000;
+    background-color: #777;
     width: 50vw;
-    height: 50vw;
+    height: 70vh;
     box-shadow: 0px 3px 15px 1px rgba(10, 1, 1, 0.61);
 }
 

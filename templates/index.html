@@ -39,10 +39,11 @@
 
     <div class="window">
         <ul>
-
+            {%if state == "login" %}
             <li><a href="{{url_for( 'logout')}} ">logout</a></li>
-
+            {% else%}
             <li><a href="{{url_for( 'login')}} ">login</a></li>
+            {% endif %}
 
         </ul>
 

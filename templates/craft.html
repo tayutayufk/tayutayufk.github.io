@@ -28,86 +28,17 @@
     <div id="gameContainer" class="GameScreen"></div>
     <div class="GameWindow">
         <div class="tab-wrap">
-            <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">General</label>
+        {%for key in parts.keys() %}
+            <input id="{{key}}" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="{{key}}">{{key}}</label>
             <div class="tab-content">
-                <div class="partDes" onclick="PS('BB')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/BB.png">
-                    <h2 class="partNam">Basic Block</h2>
+                {% for part in parts[key] %}
+                <div class="partDes" onclick="PS('{{part[0]}}')">
+                    <img class="partimage" type="image" src="/static/img/PartImage/{{part[0]}}.png">
+                    <h2 class="partNam">{{part[1]}}</h2>
                 </div>
-
-                <div class="partDes" onclick="PS('BB1')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/BB1.png">
-                    <h2 class="partNam">Basic Block</h2>
-                </div>
-
-                <div class="partDes" onclick="PS('BB2')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/BB2.png">
-                    <h2 class="partNam">Basic Block</h2>
-                </div>
-
-                <div class="partDes" onclick="PS('BB3')">
-                    <img class="partimage" type="image" src="/static/img//PartImage/BB3.png">
-                    <h2 class="partNam">Basic Block</h2>
-                </div>
-
-                <div class="partDes" onclick="PS('BB3')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/BB3.png">
-                    <h2 class="partNam">Basic Block</h2>
-                </div>
-
-                <div class="partDes" onclick="PS('BB3')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/BB3.png">
-                    <h2 class="partNam">Basic Block</h2>
-                </div>
+                {%endfor%}
             </div>
-
-            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-02">Tire</label>
-            <div class="tab-content">
-
-                <div class="partDes" onclick="PS('TB')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/TB.png">
-                    <h2 class="partNam">Tire Big</h2>
-                </div>
-
-                <div class="partDes" onclick="PS('TM')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/TM.png">
-                    <h2 class="partNam">Tire mini</h2>
-                </div>
-
-                <div class="partDes" onclick="PS('BT')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/TM.png">
-                    <h2 class="partNam">Ball Tire</h2>
-                </div>
-
-            </div>
-
-            <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">Motor</label>
-            <div class="tab-content">
-                <div class="partDes" onclick="PS('MB')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/MB.png">
-                    <h2 class="partNam">Motor </h2>
-                </div>
-                <div class="partDes" onclick="PS('MN')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/MM.png">
-                    <h2 class="partNam">Motor</h2>
-                </div>
-                <div class="partDes" onclick="PS('MM')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/MN.png">
-                    <h2 class="partNam">Motor Mini</h2>
-                </div>
-            </div>
-
-            <input id="TAB-04" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-04">Sensor</label>
-            <div class="tab-content">
-                <div class="partDes" onclick="PS('CS')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/CS.png">
-                    <h2 class="partNam">Color Sensor</h2>
-                </div>
-                <div class="partDes" onclick="PS('RF')">
-                    <img class="partimage" type="image" src="/static/img/PartImage/RF.png">
-                    <h2 class="partNam">Range Finder</h2>
-                </div>
-            </div>
+        {%endfor%}
         </div>
     </div>
 
@@ -118,28 +49,7 @@
     </div>
 
     <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="/static/img/svg/eraser.svg" onclick="onClickButton('Remove')">
-    <!--
-    <div class="pop-box">
-        <label for="popup-on">
-            <i class="fas fa-angle-double-left fa-4x btn-open"></i>
-        </label>
-        <input type="checkbox" id="popup-on">
-        <div class="popup">
-            <label for="popup-on" class="icon-close">×</label>
-            <div class="popup-content">
-                
-                ポップアップの内容<br>画像もOK<br>
-                <img src="https://homepagenopro.com/wp-content/uploads/2018/08/d11_img_mizudori.png" alt=""
-                    class="layer-img">
-               
-            </div>
-            <label for="popup-on">
-                <div class="btn-close">閉じる</div>
-            </label>
-        </div>
-    </div>
--->
-
+    
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
         function PS(str) {
