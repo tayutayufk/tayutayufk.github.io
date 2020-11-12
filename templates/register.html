@@ -39,9 +39,6 @@
         }
     </style>
     <link rel="stylesheet" href="/static/css/generalDesign.css">
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="903173950355-lommg8dbvtbttqtelg0c6bjlcg04bt84.apps.googleusercontent.com">
 </head>
 
 <body>
@@ -49,7 +46,7 @@
 
     <div class="login-form">
         <form action="" method="post">
-            <h2 class="text-center" style="color:gray;">Log in</h2>
+            <h2 class="text-center" style="color:gray;">Register</h2>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="e-mail" required="required" name="mail">
             </div>
@@ -57,30 +54,15 @@
                 <input type="password" class="form-control" placeholder="password" required="required" name="pwd">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                <input type="password" class="form-control" placeholder="password confirm" required="required" name="pwdconf">
             </div>
-            <div style="height: 3vh;">
-                <a href="index.html" style="float: left;">Forget password</a>
-                <a href="{{url_for('register')}}" style="float: right;">Rigister</a>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Register!</button>
             </div>
-            <hr>
-            <div class="g-signin2" data-onsuccess="onSignIn" style="width: 280px;padding:10px 0px;"></div>
-
         </form>
 
 
     </div>
-
-
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-    </script>
 </body>
 
 </html>

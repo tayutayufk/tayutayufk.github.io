@@ -28,14 +28,21 @@
     <div id="gameContainer" class="GameScreen"></div>
     <div class="GameWindow">
         <div class="tab-wrap">
-        {%for key in parts.keys() %}
-            <input id="{{key}}" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="{{key}}">{{key}}</label>
+        {%for kind in parts %}
+            <input id="{{kind[0]}}" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="{{kind[0]}}">{{kind[0]}}</label>
             <div class="tab-content">
-                {% for part in parts[key] %}
+                {% for part in kind[1] %}
+                {% if part[2] == 'True' %}
                 <div class="partDes" onclick="PS('{{part[0]}}')">
                     <img class="partimage" type="image" src="/static/img/PartImage/{{part[0]}}.png">
                     <h2 class="partNam">{{part[1]}}</h2>
                 </div>
+                {%else%}
+                <div class="partDes" onclick="" style="background-color: gray;color: white;border: 2px solid;">
+                    <img class="partimage" type="image" src="/static/img/PartImage/{{part[0]}}.png">
+                    <h2 class="partNam">{{part[1]}}</h2>
+                </div>
+                {%endif%}
                 {%endfor%}
             </div>
         {%endfor%}

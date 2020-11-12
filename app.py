@@ -6,10 +6,15 @@ import wtforms
 app = Flask(__name__)
 app.secret_key = b'haissaiviavbdaivb'
 
+
+#Account 
 def check_login():
     if 'login' in session:
         if session['login'] == 'True':
             return True 
+    return False
+
+def check_premium(mail,pwd):
     return False
 
 @app.route("/login", methods=["GET", "POST"])
@@ -32,6 +37,19 @@ def logout():
     session['login'] = 'False'
     return redirect('/')
 
+@app.route('/register')
+def register():
+    if(request.method == "POST"):
+        if 'mail' in request.form and 'pwd' in request.form and 'pwdconf' in request.form:
+            session['mail'] = request.form["mail"]
+            session['pwd'] = request.form["pwd"]
+            session['login'] = 'True'
+            print(session['mail'] + " was login!")
+
+        print(session['login'])
+        return redirect('/')
+    else:
+        return render_template("register.html")
 
 #PWA
 @app.route("/manifest.json")
@@ -42,9 +60,9 @@ def manifest():
 def sw():
     return app.send_static_file('service-worker.js')
 
-@app.route('/favicon.png')
+@app.route('/favicon.ico')
 def favicon():
-   return app.send_static_file('icon.png')
+   return app.send_static_file('favicon.png')
 
 
 #main
@@ -69,22 +87,31 @@ def index():
 @app.route("/craft.html", methods=['POST', 'GET']) 
 def craft():
     if check_login():
-        parts = {}
-        Basic = [['BB','BasicBlock'],
-                    ['BB1','BasicBlock'],
-                    ['BB2','BasicBlock']]
+        if check_premium(session['mail'],session['pwd']):
+            Basic = ['Basic',[['BB','BasicBlock','True'],
+                    ['BB1','BasicBlock','True'],
+                    ['BB2','BasicBlock','True']]]
         
-        Wheel = [['TB','Wheel big'],['TM','Wheel mini'],['BT','Ball Wheel']]
+            Wheel = ['Wheel',[['TB','Wheel big','True'],['TM','Wheel mini','True'],['BT','Ball Wheel','True']]]
 
-        Motor = [['MB','Motor big'],
-                ['MN','Motor'],
-                ['MM','Motor mini']]
-        Sensor = [['CS','Color Sensor'],['RF','RangeFinder']]
+            Motor = ['Motor',[['MB','Motor big','True'],
+                        ['MN','Motor','True'],
+                        ['MM','Motor mini','True']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 
-        parts['Basic'] = Basic
-        parts['Wheel'] = Wheel
-        parts['Motor'] = Motor
-        parts['Sensor'] = Sensor
+        else:   
+            Basic = ['Basic',[['BB','BasicBlock','True'],
+                        ['BB1','BasicBlock','True'],
+                        ['BB2','BasicBlock','True']]]
+        
+            Wheel = ['Wheel',[['TB','Wheel big','True'],['TM','Wheel mini','True'],['BT','Ball Wheel','True']]]
+
+            Motor = ['Motor',[['MB','Motor big','False'],
+                        ['MN','Motor','True'],
+                        ['MM','Motor mini','False']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','False']]]
+
+        parts = [Basic,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)
     else:
         return redirect('/login')

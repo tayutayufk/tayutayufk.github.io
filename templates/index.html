@@ -6,7 +6,8 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RoPE</title>
+    <title>RoboPy
+    </title>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="apple-touch-icon" href="/static/icon.png" sizes="192x192" />
     <script>
@@ -38,16 +39,6 @@
 
 
     <div class="window">
-        <ul>
-            {%if state == "login" %}
-            <li><a href="{{url_for( 'logout')}} ">logout</a></li>
-            {% else%}
-            <li><a href="{{url_for( 'login')}} ">login</a></li>
-            {% endif %}
-
-        </ul>
-
-
 
         <!--<div class="g-signin2 " data-onsuccess="onSignIn "></div>-->
         <img src="/static/img/white.png " class="logo ">
@@ -60,6 +51,12 @@
         </div>
 
     </div>
+
+
+
+    {%if state == "login" %}
+    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
+    <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %}
 
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js "></script>

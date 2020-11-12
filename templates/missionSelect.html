@@ -34,7 +34,7 @@
                     <h2>level{{i+1}}</h2>
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
-                    {{missions[key][1][2]}}
+                    <p>{{missions[key][2][i]|safe}}</p>
                     <input type="image" src="/static/img/PartImage/{{ missions[key][0]}}level{{i+1}}.png" class="MissionImage" onclick="makeURL('{{ missions[key][0]}}level{{i+1}}')">
                 </div>
                 {%endfor%}

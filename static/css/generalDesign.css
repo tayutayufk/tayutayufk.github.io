@@ -119,3 +119,9 @@ body {
     padding: none;
     margin-top: 0.8em;
 }
+
+.login {
+    position: absolute;
+    margin-left: 90vw;
+    margin-top: 30px;
+}
