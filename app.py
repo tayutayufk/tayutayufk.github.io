@@ -1,4 +1,4 @@
-from flask import  request,session,redirect,render_template,send_from_directory,Flask
+from flask import  request,session,redirect,render_template,send_from_directory,Flask,url_for
 from flask import *
 import flask_wtf
 import wtforms
@@ -28,14 +28,14 @@ def login():
             print(session['mail'] + " was login!")
 
         print(session['login'])
-        return redirect('/')
+        return redirect(url_for('m'))
     else:
         return render_template("login.html")
 
 @app.route('/logout')
 def logout():
     session['login'] = 'False'
-    return redirect('/')
+    return redirect(url_for('m'))
 
 @app.route('/register')
 def register():
@@ -47,7 +47,7 @@ def register():
             print(session['mail'] + " was login!")
 
         print(session['login'])
-        return redirect('/')
+        return redirect(url_for('m'))
     else:
         return render_template("register.html")
 
@@ -114,14 +114,14 @@ def craft():
         parts = [Basic,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)
     else:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
 @app.route("/mission.html", methods=['POST', 'GET']) 
 def mission():
     if check_login():
         return render_template("mission.html")
     else:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
@@ -157,7 +157,7 @@ def missionSelect():
         missions.append(Maze)
         return render_template("missionSelect.html",missions = missions)
     else:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
 
 @app.route("/program.html", methods=['POST', 'GET']) 
@@ -165,7 +165,7 @@ def program():
     if check_login():
         return render_template("program.html")
     else:
-        return redirect('login')
+        return redirect(url_for('login'))
 
 
 
