@@ -2,6 +2,7 @@ from flask import  request,session,redirect,render_template,send_from_directory,
 from flask import *
 import flask_wtf
 import wtforms
+import db
 
 app = Flask(__name__)
 app.secret_key = b'haissaiviavbdaivb'
@@ -9,12 +10,16 @@ app.secret_key = b'haissaiviavbdaivb'
 
 #Account 
 def check_login():
-    if 'login' in session:
+    if 'mail' in session and 'pwd' in session and 'login' in session:
         if session['login'] == 'True':
             return True 
     return False
 
-def check_premium(mail,pwd):
+def check_premium(mail):
+    if check_login():
+        data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
+        if data[0][2] == "pro":
+            return True
     return False
 
 @app.route("/login", methods=["GET", "POST"])
@@ -22,39 +27,57 @@ def login():
     
     if(request.method == "POST"):
         if 'mail' in request.form and 'pwd' in request.form:
-            session['mail'] = request.form["mail"]
-            session['pwd'] = request.form["pwd"]
-            session['login'] = 'True'
-            print(session['mail'] + " was login!")
-
-        print(session['login'])
-        return redirect(url_for('m'))
+            data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
+            print(data[0][0])
+            if data[0][1] == request.form["pwd"]:
+                print("correct pwd")
+                session['mail'] = request.form["mail"]
+                session['pwd'] = request.form["pwd"]
+                session['login'] = 'True'
+                print(data[0][0])
+                if 'warn' in session:
+                    session['warn'] = 'null'
+                return redirect(url_for('m'))   
+            else:
+                session['warn'] = 'unmatch'
+                return redirect(url_for('login'))    
+        
     else:
+
         return render_template("login.html")
 
 @app.route('/logout')
 def logout():
     session['login'] = 'False'
-    return redirect(url_for('m'))
+    return redirect(url_for('m'))   
 
-@app.route('/register')
+@app.route('/register', methods=["GET", "POST"])
 def register():
     if(request.method == "POST"):
         if 'mail' in request.form and 'pwd' in request.form and 'pwdconf' in request.form:
-            session['mail'] = request.form["mail"]
-            session['pwd'] = request.form["pwd"]
-            session['login'] = 'True'
-            print(session['mail'] + " was login!")
+            if request.form['pwd'] == request.form['pwdconf']:#confirmの確認
+                if db.insert(request.form['mail'],request.form['pwd'],"free"):#メール重複の確認
+                    session['mail'] = request.form["mail"]
+                    session['pwd'] = request.form["pwd"]
+                    session['login'] = 'True'
+                    session['warn'] = 'null'
+                    return redirect(url_for('m'))
+                else:
+                    session['warn'] = 'overlapping'
+                    return redirect(url_for('register'))
+            else:
+                session['warn'] = 'pwdmismatch'
+                return redirect(url_for('register'))
+        else:
+            return redirect(url_for('register'))
 
-        print(session['login'])
-        return redirect(url_for('m'))
     else:
         return render_template("register.html")
 
 #PWA
 @app.route("/manifest.json")
 def manifest():
-    return send_from_directory("static","manifest.json")
+    return app.send_static_file('manifest.json')
 
 @app.route('/service-worker.js')
 def sw():
@@ -87,7 +110,7 @@ def index():
 @app.route("/craft.html", methods=['POST', 'GET']) 
 def craft():
     if check_login():
-        if check_premium(session['mail'],session['pwd']):
+        if check_premium(session['mail']):
             Basic = ['Basic',[['BB','BasicBlock','True'],
                     ['BB1','BasicBlock','True'],
                     ['BB2','BasicBlock','True']]]
@@ -114,14 +137,13 @@ def craft():
         parts = [Basic,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)
     else:
-        return redirect(url_for('login'))
-
+        return render_template("login.html")
 @app.route("/mission.html", methods=['POST', 'GET']) 
 def mission():
     if check_login():
         return render_template("mission.html")
     else:
-        return redirect(url_for('login'))
+        return render_template("login.html")
 
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
@@ -157,7 +179,7 @@ def missionSelect():
         missions.append(Maze)
         return render_template("missionSelect.html",missions = missions)
     else:
-        return redirect(url_for('login'))
+        return render_template("login.html")
 
 
 @app.route("/program.html", methods=['POST', 'GET']) 
@@ -165,7 +187,7 @@ def program():
     if check_login():
         return render_template("program.html")
     else:
-        return redirect(url_for('login'))
+        return render_template("login.html")
 
 
 

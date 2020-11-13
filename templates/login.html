@@ -50,6 +50,14 @@
     <div class="login-form">
         <form action="" method="post">
             <h2 class="text-center" style="color:gray;">Log in</h2>
+
+            {%if 'warn' in session%}
+                {%if session['warn'] == 'unmatch'%}
+                <p style="color: red;background-color:lightpink;text-align:center">Failed to log in</p>
+                {%endif%}
+            {%endif%}
+
+            
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="e-mail" required="required" name="mail">
             </div>
