@@ -41,7 +41,7 @@ def login():
                     session['warn'] = 'null'
                 
                 print(session['warn'])
-                return redirect(url_for('m'))   
+                return redirect(url_for('index'))   
             else:
                 session['warn'] = 'unmatch'
                 print(session['warn'])
@@ -54,7 +54,7 @@ def login():
 @app.route('/logout')
 def logout():
     session['login'] = 'False'
-    return redirect(url_for('m'))   
+    return redirect(url_for('index'))   
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
@@ -70,7 +70,7 @@ def register():
                     if 'warn' in session:
                         session['warn'] = 'null'
                     print(session['warn'])
-                    return redirect(url_for('m'))
+                    return redirect(url_for('index'))
                 else:
                     session['warn'] = 'overlapping'
                     print(session['warn'])
@@ -101,7 +101,7 @@ def favicon():
 
 #main
 @app.route("/",methods=["GET","POST"]) 
-def m():
+def index():
     if check_login():
         state = "login"
     else:
@@ -110,13 +110,14 @@ def m():
     return render_template("index.html",state=state)
 
 @app.route("/index.html")
-def index():
+def index_sub():
     if check_login():
         state = "login"
     else:
         state="logout"
 
     return render_template("index.html",state=state)
+
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
