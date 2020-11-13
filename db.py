@@ -3,7 +3,7 @@ def serch_fromMail(mail):
     return w
 
 def insert(mail,pwd,meta):
-    return False
+    return True
 
 def delete(mail):
     return
