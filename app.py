@@ -24,7 +24,7 @@ def check_premium():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if 'mail' not in session:
+    if 'warn' not in session:
         session['warn'] = ''
 
     if(request.method == "POST"):
@@ -58,7 +58,7 @@ def logout():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    if 'mail' not in session:
+    if 'warn' not in session:
         session['warn'] = ''
     if(request.method == "POST"):
         if 'mail' in request.form and 'pwd' in request.form and 'pwdconf' in request.form:
@@ -142,10 +142,10 @@ def craft():
         
             Wheel = ['Wheel',[['TB','Wheel big','True'],['TM','Wheel mini','True'],['BT','Ball Wheel','True']]]
 
-            Motor = ['Motor',[['MB','Motor big','False'],
+            Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
-                        ['MM','Motor mini','False']]]
-            Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','False']]]
+                        ['MM','Motor mini','True']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','True']]]
 
         parts = [Basic,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)
@@ -205,4 +205,4 @@ def program():
 
 
 if __name__ == "__main__":
-    app.run(debug=True ,threaded=True)
+    app.run(host='0.0.0.0',port=8000,debug=True ,threaded=True)
