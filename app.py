@@ -28,6 +28,9 @@ def login():
         session['warn'] = ''
 
     if(request.method == "POST"):
+        session['login'] = 'True'
+        return redirect(url_for('index'))   
+        """
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
             print(data[0][0])
@@ -43,7 +46,7 @@ def login():
                 session['warn'] = 'unmatch'
                 print(session['warn'])
                 return redirect(url_for('login'))    
-        
+        """
     else:
 
         return render_template("login.html")
