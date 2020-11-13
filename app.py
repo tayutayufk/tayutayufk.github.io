@@ -37,10 +37,7 @@ def login():
                 session['pwd'] = request.form["pwd"]
                 session['login'] = 'True'
                 print(data[0][0])
-                if 'warn' in session:
-                    session['warn'] = 'null'
-                
-                print(session['warn'])
+                session['warn'] = ''
                 return redirect(url_for('index'))   
             else:
                 session['warn'] = 'unmatch'
@@ -67,9 +64,7 @@ def register():
                     session['mail'] = request.form["mail"]
                     session['pwd'] = request.form["pwd"]
                     session['login'] = 'True'
-                    if 'warn' in session:
-                        session['warn'] = 'null'
-                    print(session['warn'])
+                    session['warn'] = ''
                     return redirect(url_for('index'))
                 else:
                     session['warn'] = 'overlapping'
