@@ -10,9 +10,8 @@ app.secret_key = b'haissaiviavbdaivb'
 session_sub = {'mail':'','pwd':'','login':'','warn':''}
 
 def check_login():
-    if 'mail' in session_sub and 'pwd' in session_sub and 'login' in session_sub:
-        if session_sub['login'] == 'True':
-            return True 
+    if session_sub['login'] == 'True':
+        return True 
     return False
 
 def check_premium():
