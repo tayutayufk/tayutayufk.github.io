@@ -4,6 +4,7 @@ import flask_wtf
 import wtforms
 import db
 import datetime
+import os
 
 app = Flask(__name__)
 app.secret_key = b'haissaiviavbdaivb'
@@ -189,4 +190,5 @@ def program():
 
 
 if __name__ == "__main__":
-    app.run(debug=True ,threaded=True)
+    app.secret_key = os.urandom(12)
+    app.run(debug=True ,threaded=True,host='0.0.0.0', port=4000)
