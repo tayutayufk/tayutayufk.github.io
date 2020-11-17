@@ -9,7 +9,6 @@ import os
 app = Flask(__name__)
 app.secret_key = b'haissaiviavbdaivb'
 
-
 def check_login():
     if 'mail' in session and 'pwd' in session and 'login' in session:
         if session['login'] == 'True':
@@ -29,6 +28,7 @@ def login():
         session['warn'] = ''
 
     if(request.method == "POST"):
+        session.permanent = True
         session['login'] = 'True'
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
@@ -191,4 +191,4 @@ def program():
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
-    app.run(debug=True ,threaded=True,host='0.0.0.0', port=4000)
+    app.run(debug=True ,threaded=True)
