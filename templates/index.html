@@ -52,11 +52,13 @@
     </div>
 
 
-
+    {%if 'login' in session%}
     {%if session['login'] == "True" %}
-    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
-    <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %}
-
+        <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a>
+    {% else%}
+        <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a>
+    {% endif %}
+    {%endif%}
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js "></script>
     <script>
