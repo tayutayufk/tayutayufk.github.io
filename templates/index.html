@@ -53,7 +53,7 @@
 
 
 
-    {%if session_sub['login'] == "True" %}
+    {%if session['login'] == "True" %}
     <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
     <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %}
 

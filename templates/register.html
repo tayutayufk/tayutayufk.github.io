@@ -47,10 +47,10 @@
     <div class="login-form">
         <form action="" method="post">
             <h2 class="text-center" style="color:gray;">Register</h2>
-            {%if 'warn' in session_sub%}
-                {%if session_sub['warn'] == 'overlapping'%}
+            {%if 'warn' in session%}
+                {%if session['warn'] == 'overlapping'%}
                 <p style="color: red;background-color:lightpink;text-align:center">This mail is already in use.</p>
-                {%elif session_sub['warn'] == 'pwdmismatch' %}
+                {%elif session['warn'] == 'pwdmismatch' %}
                 <p style="color: red;background-color:lightpink;text-align:center">Please enter password accurately.</p>
                 {%endif%}
             {%endif%}

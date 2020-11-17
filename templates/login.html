@@ -51,8 +51,8 @@
         <form action="" method="post">
             <h2 class="text-center" style="color:gray;">Log in</h2>
 
-            {%if 'warn' in session_sub%}
-                {%if session_sub['warn'] == 'unmatch'%}
+            {%if 'warn' in session%}
+                {%if session['warn'] == 'unmatch'%}
                 <p style="color: red;background-color:lightpink;text-align:center">Failed to log in</p>
                 {%endif%}
             {%endif%}
