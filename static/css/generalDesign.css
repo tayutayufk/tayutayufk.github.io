@@ -125,3 +125,9 @@ body {
     margin-left: 90vw;
     margin-top: 30px;
 }
+
+.cart {
+    position: absolute;
+    margin-left: 3vw;
+    margin-top: 30px;
+}

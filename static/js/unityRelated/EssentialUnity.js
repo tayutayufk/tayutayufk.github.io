@@ -130,3 +130,8 @@ function MissionFinish(str) {
         SaveResult(mName, params[0], params[1], params[2]);
     }
 }
+
+function UnityError(code){
+    console.log("UNITY ERROR");
+    console.log(code);
+}

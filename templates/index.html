@@ -60,6 +60,13 @@
     {% endif %}
     {%endif%}
 
+    {%if 'ver' in session%}
+    {%if session['ver'] == "free" %}
+        <input class="icon cart" type="image" src="/static/img/svg/shopping-cart.svg">
+    {% endif %}
+    {%endif%}
+
+
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js "></script>
     <script>
         function onSignIn(googleUser) {

@@ -19,7 +19,10 @@ def check_premium():
     if check_login():
         data = db.serch_fromMail(session['mail'])#SQLからデータを取得
         if data[0][2] == "pro":
+            session['ver'] = "pro"
             return True
+        else:
+            session['ver'] = "free"
     return False
 
 @app.route("/login", methods=["GET", "POST"])
@@ -40,6 +43,7 @@ def login():
                 session['login'] = 'True'
                 print(data[0][0])
                 session['warn'] = ''
+                check_premium()
                 return redirect(url_for('index'))   
             else:
                 session['warn'] = 'unmatch'
@@ -110,26 +114,53 @@ def craft():
         if check_premium():
             Basic = ['Basic',[['BB','BasicBlock','True'],
                     ['BB1','BasicBlock','True'],
-                    ['BB2','BasicBlock','True']]]
+                    ['BB2','BasicBlock','True'],
+                    ['BasicBlockHeavy','Heavy Block','True'],
+                    ['EdgeBlock1','Edge 1','True'],
+                    ['EdgeBlock2','Edge 2','True'],
+                    ['HalfBlock','Edge 3','True'],
+                    ['BasicBlock-1','Advance Block','True'],
+                    ['BasicBlock-2','Advance Block','True'],
+                    ['BasicBlock-3','Advance Block','True']]]
         
-            Wheel = ['Wheel',[['TB','Wheel big','True'],['TM','Wheel mini','True'],['BT','Ball Wheel','True']]]
+            Wheel = ['Wheel',[['TB','Wheel big','True'],
+                            ['TM','Wheel mini','True'],
+                            ['BallTire','Ball Wheel','True'],
+                            ['Axle','Axle','True']]]
 
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
-                        ['MM','Motor mini','True']]]
+                        ['MM','Motor mini','True'],
+                        ['SB','Servo large','True'],
+                        ['SM','Servo mini','True']]]
+
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 
 
         else:   
             Basic = ['Basic',[['BB','BasicBlock','True'],
-                        ['BB1','BasicBlock','True'],
-                        ['BB2','BasicBlock','True']]]
+                    ['BB1','BasicBlock','True'],
+                    ['BB2','BasicBlock','True'],
+                    ['BasicBlockHeavy','Heavy Block','True'],
+                    ['EdgeBlock1','Edge 1','True'],
+                    ['EdgeBlock2','Edge 2','True'],
+                    ['HalfBlock','Edge 3','True'],
+                    ['BasicBlock-1','Advance Block','True'],
+                    ['BasicBlock-2','Advance Block','True'],
+                    ['BasicBlock-3','Advance Block','True']]]
         
-            Wheel = ['Wheel',[['TB','Wheel big','True'],['TM','Wheel mini','True'],['BT','Ball Wheel','True']]]
+            Wheel = ['Wheel',[['TB','Wheel big','True'],
+                            ['TM','Wheel mini','True'],
+                            ['BallTire','Ball Wheel','True'],
+                            ['Axle','Axle','True'],
+                            ['Bearing','Bearing','True']]]
 
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
-                        ['MM','Motor mini','True']]]
+                        ['MM','Motor mini','True'],
+                        ['SB','Servo large','True'],
+                        ['SM','Servo mini','True']]]
+
             Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','True']]]
 
         parts = [Basic,Wheel,Motor,Sensor]
