@@ -5,9 +5,17 @@ import wtforms
 import db
 import datetime
 import os
+import stripe
 
 app = Flask(__name__)
-app.secret_key = b'haissaiviavbdaivb'
+app.secret_key = db.flask_key
+
+stripe_keys = {
+  'secret_key': db.SECRET_KEY,
+  'publishable_key': db.PUBLISHABLE_KEY
+}
+
+stripe.api_key = stripe_keys['secret_key']
 
 def check_login():
     if 'mail' in session and 'pwd' in session and 'login' in session:
@@ -84,6 +92,29 @@ def register():
     else:
         return render_template("register.html")
 
+#Stripe
+@app.route('/charge', methods=['POST'])
+def charge():
+    amount = 500
+    customer = stripe.Customer.create(
+        email=session['mail'],
+        source=request.form['stripeToken']
+    )
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=amount,
+        currency='usd',
+        description='Flask Charge'
+    )
+
+    return render_template('payed.html', amount=amount)
+
+
+@app.route('/charge')
+def payed():
+   return render_template("payed.html")
+
 #PWA
 @app.route("/manifest.json")
 def manifest():
@@ -101,11 +132,11 @@ def favicon():
 #main
 @app.route("/",methods=["GET","POST"]) 
 def index():
-    return render_template("index.html")
+    return render_template("index.html",key=stripe_keys['publishable_key'])
 
 @app.route("/index.html")
 def index_sub():
-    return render_template("index.html")
+    return render_template("index.html",key=stripe_keys['publishable_key'])
 
 
 @app.route("/craft.html", methods=['GET']) 
@@ -113,15 +144,15 @@ def craft():
     if check_login():
         if check_premium():
             Basic = ['Basic',[['BB','BasicBlock','True'],
-                    ['BB1','BasicBlock','True'],
-                    ['BB2','BasicBlock','True'],
-                    ['BasicBlockHeavy','Heavy Block','True'],
-                    ['EdgeBlock1','Edge 1','True'],
-                    ['EdgeBlock2','Edge 2','True'],
-                    ['HalfBlock','Edge 3','True'],
-                    ['BasicBlock-1','Advance Block','True'],
-                    ['BasicBlock-2','Advance Block','True'],
-                    ['BasicBlock-3','Advance Block','True']]]
+                                ['BB1','BasicBlock','True'],
+                                ['BB2','BasicBlock','True'],
+                                ['BasicBlockHeavy','Heavy Block','True'],
+                                ['EdgeBlock1','Edge 1','True'],
+                                ['EdgeBlock2','Edge 2','True'],
+                                ['HalfBlock','Edge 3','True'],
+                                ['BasicBlock-1','Advance Block','True'],
+                                ['BasicBlock-2','Advance Block','True'],
+                                ['BasicBlock-3','Advance Block','True']]]
         
             Wheel = ['Wheel',[['TB','Wheel big','True'],
                             ['TM','Wheel mini','True'],
@@ -139,15 +170,15 @@ def craft():
 
         else:   
             Basic = ['Basic',[['BB','BasicBlock','True'],
-                    ['BB1','BasicBlock','True'],
-                    ['BB2','BasicBlock','True'],
-                    ['BasicBlockHeavy','Heavy Block','True'],
-                    ['EdgeBlock1','Edge 1','True'],
-                    ['EdgeBlock2','Edge 2','True'],
-                    ['HalfBlock','Edge 3','True'],
-                    ['BasicBlock-1','Advance Block','True'],
-                    ['BasicBlock-2','Advance Block','True'],
-                    ['BasicBlock-3','Advance Block','True']]]
+                                ['BB1','BasicBlock','True'],
+                                ['BB2','BasicBlock','True'],
+                                ['BasicBlockHeavy','Heavy Block','True'],
+                                ['EdgeBlock1','Edge 1','True'],
+                                ['EdgeBlock2','Edge 2','True'],
+                                ['HalfBlock','Edge 3','True'],
+                                ['BasicBlock-1','Advance Block','True'],
+                                ['BasicBlock-2','Advance Block','True'],
+                                ['BasicBlock-3','Advance Block','True']]]
         
             Wheel = ['Wheel',[['TB','Wheel big','True'],
                             ['TM','Wheel mini','True'],

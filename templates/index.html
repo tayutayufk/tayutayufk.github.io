@@ -6,7 +6,7 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RoboPy
+    <title>RoPE
     </title>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="apple-touch-icon" href="/static/icon.png" sizes="192x192" />
@@ -49,6 +49,16 @@
             <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
         </div>
 
+
+        <form action="/charge" method="post">
+            <article>
+            <label>
+                <span>Amount is $5.00</span>
+            </label>
+            </article>
+
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}" data-description="A Flask Charge" data-amount="500" data-locale="auto"></script>
+        </form>
     </div>
 
 

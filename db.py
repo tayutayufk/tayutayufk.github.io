@@ -17,3 +17,8 @@ def search(tag,mail):
     else:
         w = ((mail,"takayasu777","free",""),)
     return w
+
+flask_key =  b'oppython3'
+stripe_key = 'oppython3'
+PUBLISHABLE_KEY = 'pk_test_51HsSwBKTMlPLG6E8Whlb3sxsje4z0CWOezFm1PtLRwMcLBnPhopCuUh1kC9vVMb1VMG7NSWg4HjC3yj0PtNSjnZE00xk7jknQp'
+SECRET_KEY = 'sk_test_51HsSwBKTMlPLG6E8ndIBNV5OjMFmwJIZZ4lGTUSOLMUoMQX8DHyMUNHI0jA7bGAEeW4SebPi4yaYqFKuYphQS04f00t4FpoZmR'
