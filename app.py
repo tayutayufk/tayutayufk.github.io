@@ -102,11 +102,12 @@ def regenerate():
         return render_template("regenerate.html")
     
     if request.method == "POST":
-        dat = request.form["mail"]
+        dat = request.form['mail']
         session['mail'] = dat
         hs = hashlib.md5(dat.encode()).hexdigest()
-        url = url_for('changepwd', h = hs)
-        url = "https://ropeproject.sakura.ne.jp" + url + "&mail=" + request.form['mail']
+        url = request.url_root + url_for('changepwd', h = hs)
+        print(url)
+        url = url + "&mail=" + dat
         #send mail
         account = "ropeproject@ropeproject.sakura.ne.jp"
         password = "oppython3"
@@ -116,7 +117,7 @@ def regenerate():
  
         subject = "Please reset your password"
         message = "This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.\r\n" + url +"\nPlease destroy this email if you do not recognize it."
-        print(url)
+        
         msg = MIMEText(message, "html")
         msg["Subject"] = subject
         msg["To"] = to_email
@@ -129,18 +130,16 @@ def regenerate():
 
         return redirect(url_for('index'))
 
-@app.route('/changepwd')
+@app.route('/changepwd', methods=["GET", "POST"])
 def changepwd():
     if request.method == "GET":
-        if 'mail' not in request.form or 'h' not in request.form:
-            return redirect(url_for('index'))
-        mail = request.form['mail']
-        if request.form["h"] == hashlib.md5(mail.encode()).hexdigest():
+        mail = request.args.get('mail')
+        if request.args.get('h') == hashlib.md5(mail.encode()).hexdigest():
             return render_template("changepwd.html")
     
-    if request.method == "POST":
+    elif request.method == "POST":
         if request.form['pwd'] == request.form['pwdconf']:
-            mail = request.form['mail']
+            mail = request.args.get('mail')
             newpwd = request.form['pwd']
             data = db.serch_fromMail(mail)#SQLからデータを取得
             version = data[0][2]
@@ -151,7 +150,10 @@ def changepwd():
 
         else:
             session['warn'] = 'pwdmismatch'
-            return redirect(url_for('changepwd'))
+            hs = request.args.get('h')
+            url = request.url_root + url_for('changepwd', h = hs)
+            url = url + "&mail=" + request.args.get('mail')
+            return redirect(url)
 
    
 #Stripe

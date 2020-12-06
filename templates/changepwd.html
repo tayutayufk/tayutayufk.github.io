@@ -41,7 +41,7 @@
 
     <div class="login-form">
         <form action="" method="post">
-            <h2 class="text-center" style="color:gray;">Register</h2>
+            <h2 class="text-center" style="color:gray;">Set your pass</h2>
             {%if 'warn' in session%}
                 {%if session['warn'] == 'pwdmismatch' %}
                 <p style="color: red;background-color:lightpink;text-align:center">Please enter password accurately.</p>
@@ -52,6 +52,10 @@
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" style="ime-mode:disabled;"placeholder="password confirm" required="required" name="pwdconf">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Change</button>
             </div>
         </form>
 
