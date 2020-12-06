@@ -136,7 +136,7 @@ def changepwd():
             return redirect(url_for('index'))
         mail = session['mail']
         if request.form["h"] == hashlib.md5(mail.encode()).hexdigest():
-            render_template("changepwd.html")
+            return render_template("changepwd.html")
     
     if request.method == "POST":
         if request.form['pwd'] == request.form['pwdconf']:
