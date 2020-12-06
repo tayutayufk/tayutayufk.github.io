@@ -105,8 +105,8 @@ def regenerate():
         dat = request.form["mail"]
         session['mail'] = dat
         hs = hashlib.md5(dat.encode()).hexdigest()
-        url = url_for('changepwd', h = hs,mail = request.form['mail'])
-        url = "https://ropeproject.sakura.ne.jp" + url
+        url = url_for('changepwd', h = hs)
+        url = "https://ropeproject.sakura.ne.jp" + url + "&mail=" + request.form['mail']
         #send mail
         account = "ropeproject@ropeproject.sakura.ne.jp"
         password = "oppython3"
@@ -116,7 +116,7 @@ def regenerate():
  
         subject = "Please reset your password"
         message = "This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.\r\n" + url +"\nPlease destroy this email if you do not recognize it."
-        print(message)
+        print(url)
         msg = MIMEText(message, "html")
         msg["Subject"] = subject
         msg["To"] = to_email
