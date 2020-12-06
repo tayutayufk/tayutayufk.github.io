@@ -7,6 +7,11 @@ import datetime
 import os
 import stripe
 
+from email.mime.text import MIMEText
+import smtplib
+
+import hashlib
+
 app = Flask(__name__)
 app.secret_key = db.flask_key
 
@@ -43,13 +48,11 @@ def login():
         session['login'] = 'True'
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
-            print(data[0][0])
             if data[0][1] == request.form["pwd"]:
                 print("correct pwd")
                 session['mail'] = request.form["mail"]
                 session['pwd'] = request.form["pwd"]
                 session['login'] = 'True'
-                print(data[0][0])
                 session['warn'] = ''
                 check_premium()
                 return redirect(url_for('index'))   
@@ -92,6 +95,64 @@ def register():
     else:
         return render_template("register.html")
 
+
+@app.route('/regenerate', methods=["GET", "POST"])
+def regenerate():
+    if request.method == "GET":
+        return render_template("regenerate.html")
+    
+    if request.method == "POST":
+        dat = request.form["mail"]
+        session['mail'] = dat
+        hs = hashlib.md5(dat.encode()).hexdigest()
+        url = url_for('changepwd', h = hs)
+        url = "https://ropeproject.sakura.ne.jp" + url
+        #send mail
+        account = "ropeproject@ropeproject.sakura.ne.jp"
+        password = "oppython3"
+    
+        to_email = request.form["mail"]
+        from_email = "ropeproject@ropeproject.sakura.ne.jp"
+ 
+        subject = "Please reset your password"
+        message = "This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.\r\n" + url +"\nPlease destroy this email if you do not recognize it."
+        print(message)
+        msg = MIMEText(message, "html")
+        msg["Subject"] = subject
+        msg["To"] = to_email
+        msg["From"] = from_email
+        server = smtplib.SMTP("ropeproject.sakura.ne.jp", 587)
+        server.starttls()
+        server.login(account, password)
+        server.send_message(msg)
+        server.quit()
+
+        return redirect(url_for('index'))
+
+@app.route('/changepwd')
+def changepwd():
+    if request.method == "GET":
+        if 'mail' not in session:
+            return redirect(url_for('index'))
+        mail = session['mail']
+        if request.form["h"] == hashlib.md5(mail.encode()).hexdigest():
+            render_template("changepwd.html")
+    
+    if request.method == "POST":
+        if request.form['pwd'] == request.form['pwdconf']:
+            newpwd = request.form['pwd']
+            data = db.serch_fromMail(session['mail'])#SQLからデータを取得
+            version = data[0][2]
+
+            db.delete(session['mail'])
+            db.insert(session['mail'],newpwd,version)
+            return redirect(url_for('login'))
+
+        else:
+            session['warn'] = 'pwdmismatch'
+            return redirect(url_for('changepwd'))
+
+   
 #Stripe
 @app.route('/charge', methods=['POST'])
 def charge():

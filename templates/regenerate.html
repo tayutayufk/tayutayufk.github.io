@@ -49,8 +49,7 @@
 
     <div class="login-form">
         <form action="" method="post">
-            <h2 class="text-center" style="color:gray;">Log in</h2>
-
+            
             {%if 'warn' in session%}
                 {%if session['warn'] == 'unmatch'%}
                 <p style="color: red;background-color:lightpink;text-align:center">Failed to log in</p>
@@ -62,17 +61,9 @@
                 <input type="email" class="form-control" style="ime-mode:disabled;" placeholder="e-mail" required="required" name="mail">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" style="ime-mode:disabled;" placeholder="password" required="required" name="pwd">
+                <button type="submit" class="btn btn-primary btn-block">Send mail</button>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Log in</button>
-            </div>
-            <div style="height: 3vh;">
-                <a href="{{url_for('regenerate')}}" style="float: left;">Forget password</a>
-                <a href="{{url_for('register')}}" style="float: right;">Rigister</a>
-            </div>
-            <hr>
-            
+        
             <!--<div class="g-signin2" data-onsuccess="onSignIn" style="width: 280px;padding:10px 0px;"></div>-->
 
         </form>
