@@ -105,8 +105,7 @@ def regenerate():
         dat = request.form['mail']
         session['mail'] = dat
         hs = hashlib.md5(dat.encode()).hexdigest()
-        url = request.url_root + url_for('changepwd', h = hs)
-        print(url)
+        url = request.host_url + url_for('changepwd', h = hs)
         url = url + "&mail=" + dat
         #send mail
         account = "ropeproject@ropeproject.sakura.ne.jp"
@@ -146,12 +145,31 @@ def changepwd():
 
             db.delete(mail)
             db.insert(mail,newpwd,version)
+
+            account = "ropeproject@ropeproject.sakura.ne.jp"
+            password = "oppython3"
+    
+            to_email = mail
+            from_email = "ropeproject@ropeproject.sakura.ne.jp"
+ 
+            subject = "Your password has been changed!"
+            message = "The password of your RoPE account has been changed. If you do not know it, please contact the management."
+        
+            msg = MIMEText(message, "html")
+            msg["Subject"] = subject
+            msg["To"] = to_email
+            msg["From"] = from_email
+            server = smtplib.SMTP("ropeproject.sakura.ne.jp", 587)
+            server.starttls()
+            server.login(account, password)
+            server.send_message(msg)
+            server.quit()
             return redirect(url_for('login'))
 
         else:
             session['warn'] = 'pwdmismatch'
             hs = request.args.get('h')
-            url = request.url_root + url_for('changepwd', h = hs)
+            url = request.host_url + url_for('changepwd', h = hs)
             url = url + "&mail=" + request.args.get('mail')
             return redirect(url)
 
@@ -184,7 +202,7 @@ def payed():
 def manifest():
     return app.send_static_file('manifest.json')
 
-@app.route('/service-worker.js')
+@app.route('/service-worker.js',methods=['GET'])
 def sw():
     return app.send_static_file('service-worker.js')
 
