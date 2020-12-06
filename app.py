@@ -105,7 +105,7 @@ def regenerate():
         dat = request.form["mail"]
         session['mail'] = dat
         hs = hashlib.md5(dat.encode()).hexdigest()
-        url = url_for('changepwd', h = hs)
+        url = url_for('changepwd', h = hs,mail = request.form['mail'])
         url = "https://ropeproject.sakura.ne.jp" + url
         #send mail
         account = "ropeproject@ropeproject.sakura.ne.jp"
@@ -132,20 +132,21 @@ def regenerate():
 @app.route('/changepwd')
 def changepwd():
     if request.method == "GET":
-        if 'mail' not in session:
+        if 'mail' not in request.form or 'h' not in request.form:
             return redirect(url_for('index'))
-        mail = session['mail']
+        mail = request.form['mail']
         if request.form["h"] == hashlib.md5(mail.encode()).hexdigest():
             return render_template("changepwd.html")
     
     if request.method == "POST":
         if request.form['pwd'] == request.form['pwdconf']:
+            mail = request.form['mail']
             newpwd = request.form['pwd']
-            data = db.serch_fromMail(session['mail'])#SQLからデータを取得
+            data = db.serch_fromMail(mail)#SQLからデータを取得
             version = data[0][2]
 
-            db.delete(session['mail'])
-            db.insert(session['mail'],newpwd,version)
+            db.delete(mail)
+            db.insert(mail,newpwd,version)
             return redirect(url_for('login'))
 
         else:
