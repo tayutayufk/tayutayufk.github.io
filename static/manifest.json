@@ -1,6 +1,6 @@
 {
-    "short_name": "RoboPy",
-    "name": "RoboPy",
+    "short_name": "RoPE",
+    "name": "RoPE",
     "icons": [{
         "src": "/static/icon.png",
         "type": "image/png",
