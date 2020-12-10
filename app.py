@@ -54,6 +54,8 @@ def login():
                 session['pwd'] = request.form["pwd"]
                 session['login'] = 'True'
                 session['warn'] = ''
+                session['robot'] = ''
+                session['program'] = ''
                 check_premium()
                 return redirect(url_for('index'))   
             else:
@@ -228,8 +230,9 @@ def craft():
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
                                 ['BB2','BasicBlock','True'],
-                                ['BasicBlockHeavy','Heavy Block','True'],
-                                ['EdgeBlock1','Edge 1','True'],
+                                ['BasicBlockHeavy','Heavy Block','True']]]
+            
+            Advance = ['Advance',[['EdgeBlock1','Edge 1','True'],
                                 ['EdgeBlock2','Edge 2','True'],
                                 ['HalfBlock','Edge 3','True'],
                                 ['BasicBlock-1','Advance Block','True'],
@@ -254,8 +257,9 @@ def craft():
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
                                 ['BB2','BasicBlock','True'],
-                                ['BasicBlockHeavy','Heavy Block','True'],
-                                ['EdgeBlock1','Edge 1','True'],
+                                ['BasicBlockHeavy','Heavy Block','True']]]
+            
+            Advance = ['Advance',[['EdgeBlock1','Edge 1','True'],
                                 ['EdgeBlock2','Edge 2','True'],
                                 ['HalfBlock','Edge 3','True'],
                                 ['BasicBlock-1','Advance Block','True'],
@@ -265,8 +269,7 @@ def craft():
             Wheel = ['Wheel',[['TB','Wheel big','True'],
                             ['TM','Wheel mini','True'],
                             ['BallTire','Ball Wheel','True'],
-                            ['Axle','Axle','True'],
-                            ['Bearing','Bearing','True']]]
+                            ['Axle','Axle','True']]]
 
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
@@ -274,9 +277,9 @@ def craft():
                         ['SB','Servo large','True'],
                         ['SM','Servo mini','True']]]
 
-            Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','True']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 
-        parts = [Basic,Wheel,Motor,Sensor]
+        parts = [Basic,Advance,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)
     else:
         return redirect(url_for('login'))    

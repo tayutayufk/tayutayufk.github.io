@@ -17,7 +17,7 @@ body {
 
 .logo {
     border-radius: 30px;
-    background: #000000;
+    background: #ddd;
     padding: 10px;
     height: 30vh;
     margin-top: 10vh;
@@ -126,8 +126,82 @@ body {
     margin-top: 30px;
 }
 
-.cart {
+.selectWindow {
     position: absolute;
-    margin-left: 3vw;
-    margin-top: 30px;
+    margin-top: 10vh;
+    margin-left: 35vw;
+    height: 80vh;
+    width: 30vw;
+    border-radius: 10px;
+    background-color: rgb(65, 65, 65);
+    z-index: 100;
+    display: none;
+}
+
+.close {
+    float: right;
+    height: 60%;
+    margin: 3% 5px;
+    padding: 10px;
+    font-size: 2vh;
+    color: gray;
+    border-radius: 20px;
+    border: 2px solid;
+}
+
+.close:hover {
+    color: white;
+}
+
+.selectContent {
+    width: 96%;
+    height: 88%;
+    margin-left: 2%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.selectContent::-webkit-scrollbar {
+    display: none;
+}
+
+.selectTab {
+    margin-left: 2%;
+    height: 10%;
+    width: 96%;
+}
+
+.selectbtn {
+    border-radius: 2vh;
+    font-size: 3vh;
+    height: 7vh;
+    margin: 10px 10px;
+    padding: 1vh;
+    background-color: azure;
+}
+
+.selectbtn:hover {
+    background-color: #333;
+    color: red;
+}
+
+.robotName {
+    position: absolute;
+    margin-top: 2vh;
+    margin-left: 30vw;
+    height: 5vh;
+    width: 20vw;
+    font-size: 3vh;
+    background-color: #000000;
+    border: none;
+    color: white;
+    z-index: 100;
+}
+
+.robotName:hover {
+    border: 1px solid;
 }
