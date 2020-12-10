@@ -1,5 +1,5 @@
 def serch_fromMail(mail):
-    w = ((mail,"takayasu777","free",""),)
+    w = ((mail,"takayasu777","pro",""),)
     return w
 
 def insert(mail,pwd,meta):

@@ -131,7 +131,6 @@ function MissionFinish(str) {
     }
 }
 
-function UnityError(code){
-    console.log("UNITY ERROR");
-    console.log(code);
+function unityError(code) {
+    alert(code)
 }

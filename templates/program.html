@@ -29,8 +29,13 @@
         <div id="container" class="monaco"></div>
         <div class="LTicons">
             <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
-            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript('script');Hopup('Save');">
+            {%if session['ver'] == "free"%}
+            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="localStorage.setItem('script', editor.getValue());Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
+            {% elif session['ver'] == "pro"%}
+            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript();Hopup('Save');">
+            <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
+            {%endif%}
         </div>
     </div>
 
@@ -92,6 +97,20 @@
             </ul>
         </div>
     </div>
+    {%if session['ver'] == "pro"%}
+    <div class="selectWindow">
+        <div class="selectTab">
+            <a class="close" onclick='$(".selectContent").empty();$(".selectWindow").hide();'>close</a>
+            <a class="close" style="float : left;"onclick='newRobot();'>new</a>
+            <a class="close" id="remove" style="float : left;"onclick='ToRemove()'>remove</a>
+        </div>
+        
+        <div class="selectContent">
+
+        </div>
+    </div>
+    <input type="text" class="scriptName" value="script">
+    {%endif%}
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
         var url = location.href;
@@ -162,6 +181,67 @@
             $('.actHopup').fadeIn(300, function() {
                 $('.actHopup').fadeOut(300);
             });
+        }
+
+
+        function newRobot() {
+            editor.setValue(initText);
+            closeSelect();
+            localStorage.setItem("script", "");
+            $(".scriptName").val("script");
+        }
+
+        function openSelect() {
+            $(".selectWindow").fadeIn("slow");
+            $(".selectContent").empty();
+            for (key in localStorage) {
+                if (key.indexOf("S_") === 0) {
+                    rn = key.substr(2);
+                    $(".selectContent").append(`<a onclick="attachScript('` + key + `')" class="selectbtn">` + rn + `</a>`)
+                }
+            }
+        }
+
+        function closeSelect() {
+            $(".selectContent").empty();
+            $(".selectWindow").fadeOut("slow");
+        }
+
+        function attachScript(key) {
+            rd = localStorage.getItem(key);
+            localStorage.setItem('script', rd);
+            editor.setValue(rd);
+            rn = key.substr(2);
+            $(".scriptName").val(rn);
+            closeSelect();
+        }
+
+        function ToRemove() {
+            $(".selectContent").empty();
+            $("#remove").css('color', 'red');
+            for (key in localStorage) {
+                if (key.indexOf("S_") === 0) {
+                    rn = key.substr(2);
+                    $(".selectContent").append(`<a onclick="removeScript('` + key + `')" class="selectbtn">` + rn + `</a>`);
+                }
+            }
+        }
+
+        function removeScript(key) {
+            localStorage.removeItem(key);
+            $("#remove").css('color', 'gray');
+            $(".selectContent").empty();
+            for (key in localStorage) {
+                if (key.indexOf("S_") === 0) {
+                    rn = key.substr(2);
+                    $(".selectContent").append(`<a onclick="attachScript('` + key + `')" class="selectbtn">` + rn + `</a>`);
+                }
+            }
+        }
+        function SaveScript() {
+            key = $('.scriptName').val();
+            key = "S_" + key
+            localStorage.setItem(key, editor.getValue());
         }
     </script>
     <script src="/static/js/generalJS.js"></script>

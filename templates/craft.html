@@ -50,31 +50,34 @@
 
     <div class="LTicons">
         <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="Back();">
-        <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
+        
         {%if session['ver'] == "free"%}
+        <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
-        <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="openSelect()">
         {%elif session['ver'] == "pro"%}
+        <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="SaveRobot();Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="openSelect()">
         {%endif%}
         <input class="icon" type="image" src="/static/img/svg/eye.svg" onclick="gameInstance.SendMessage('GameDirector','ModuleVisualizer');">
     </div>
     <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="/static/img/svg/eraser.svg" onclick="onClickButton('Remove')">
     
-
+    {%if session['ver'] == "pro"%}
     <div class="selectWindow">
         <div class="selectTab">
             <a class="close" onclick='$(".selectContent").empty();$(".selectWindow").hide();'>close</a>
-            <a class="close" style="float : left;"onclick='$(".selectContent").empty();$(".selectWindow").hide();'>new</a>
-            <a class="close" style="float : left;"onclick='$(".selectContent").empty();$(".selectWindow").hide();'>remove</a>
+            <a class="close" style="float : left;"onclick='newRobot();'>new</a>
+            <a class="close" id="remove" style="float : left;"onclick='ToRemove()'>remove</a>
         </div>
         
         <div class="selectContent">
 
         </div>
     </div>
-
     <input type="text" class="robotName" value="Robot">
+    {%endif%}
+
+    
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
@@ -94,9 +97,7 @@
         }
 
         $(document).ready(function() {
-
             $(window).keydown(function(event) {
-
                 var code = (event.keyCode ? event.keyCode : event.which);
                 if (!(code == 83 && event.ctrlKey)) return true;
                 event.preventDefault();
@@ -105,34 +106,68 @@
             });
         });
 
-
         function SaveRobot(){
             onClickButton('SaveJson');
-            rn=$(".robotName").value;
-            rnd = localStorage.getItem("robo3")
+            rn = "R_" + $(".robotName").val();
+            rnd = localStorage.getItem("robo3");
             localStorage.setItem(rn,rnd);
             Hopup('Save');
         }
-
+        function newRobot(){
+            onClickButton("ReLoad");
+            closeSelect();
+            localStorage.setItem("robo3","");
+            $(".robotName").val("Robot");
+        }
         function openSelect(){
             $(".selectWindow").fadeIn("slow");
             $(".selectContent").empty();
             for(key in localStorage){
                 if(key.indexOf("R_") === 0){
-                    $(".selectContent").append(`<a onclick="attachRobot('`+key+`')" class="selectbtn">` + key +`</a>`)
+                    rn = key.substr(2);
+                    $(".selectContent").append(`<a onclick="attachRobot('`+key+`')" class="selectbtn">` + rn +`</a>`)
                 }
             }
         }
-        function attachRobot(key){
-            robotData = localStorage.getItem("robo3");
-            console.log(robotData);
-            localStorage.setItem('robo3',robotData);
-            onClickButton('LoadJson');
+        function closeSelect(){
             $(".selectContent").empty();
             $(".selectWindow").fadeOut("slow");
-
         }
-        console.log(localStorage[0])
+        function attachRobot(key){
+            rd = localStorage.getItem(key);
+            localStorage.setItem('robo3',rd);
+            rn = key.substr(2);
+            $(".robotName").val(rn);
+            closeSelect();
+            setTimeout(function(){
+                onClickButton('ReLoad');
+            },100); 
+
+            setTimeout(function(){
+                onClickButton('LoadJson');
+            },200);
+        }
+        function ToRemove(){
+            $(".selectContent").empty();
+            $("#remove").css('color','red');
+            for(key in localStorage){
+                if(key.indexOf("R_") === 0){
+                    rn = key.substr(2);
+                    $(".selectContent").append(`<a onclick="removeRobot('`+key+`')" class="selectbtn">` + rn +`</a>`);
+                }
+            }
+        }
+        function removeRobot(key){
+            localStorage.removeItem(key);
+            $("#remove").css('color','gray');
+            $(".selectContent").empty();
+            for(key in localStorage){
+                if(key.indexOf("R_") === 0){
+                    rn = key.substr(2);
+                    $(".selectContent").append(`<a onclick="attachRobot('`+key+`')" class="selectbtn">` + rn +`</a>`);
+                }
+            }
+        }
     </script>
     <script src="/static/js/generalJS.js"></script>
 </body>

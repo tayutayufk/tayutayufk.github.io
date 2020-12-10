@@ -242,13 +242,16 @@ def craft():
             Wheel = ['Wheel',[['TB','Wheel big','True'],
                             ['TM','Wheel mini','True'],
                             ['BallTire','Ball Wheel','True'],
-                            ['Axle','Axle','True']]]
+                            ['Axle','Axle','True'],
+                            ['Bearing','Bearing','True'],
+                            ['Bearing_Locked','Fixed axle','True']]]
 
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
                         ['SB','Servo large','True'],
-                        ['SM','Servo mini','True']]]
+                        ['SM','Servo mini','True'],
+                        ['Solenoid_mini','Solenoid mini','True']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 
@@ -269,13 +272,16 @@ def craft():
             Wheel = ['Wheel',[['TB','Wheel big','True'],
                             ['TM','Wheel mini','True'],
                             ['BallTire','Ball Wheel','True'],
-                            ['Axle','Axle','True']]]
+                            ['Axle','Axle','True'],
+                            ['Bearing','Bearing','True'],
+                            ['Bearing_Locked','Fixed axle','True']]]
 
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
                         ['SB','Servo large','True'],
-                        ['SM','Servo mini','True']]]
+                        ['SM','Servo mini','True'],
+                        ['Solenoid_mini','Solenoid mini','True']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 

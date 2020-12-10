@@ -12,9 +12,7 @@ require(['vs/editor/editor.main'], function() {
     });
 });
 
-function SaveScript(pName) {
-    localStorage.setItem(pName, editor.getValue());
-}
+
 
 function LoadScript(pName) {
     editor.getModel().setValue(localStorage.getItem(pName));
