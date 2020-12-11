@@ -73,7 +73,7 @@
             </div>
             <hr>
             
-            <!--<div class="g-signin2" data-onsuccess="onSignIn" style="width: 280px;padding:10px 0px;"></div>-->
+            <div class="g-signin2" data-onsuccess="onSignIn" style="width: 280px;padding:10px 0px;">
 
         </form>
 
@@ -88,6 +88,8 @@
             console.log('Name: ' + profile.getName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+            $.post('/login',{mail:profile.getEmail,pwd:profile.getId})
         }
     </script>
 </body>
