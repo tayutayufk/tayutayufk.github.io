@@ -81,11 +81,9 @@ def register():
                     return redirect(url_for('index'))
                 else:
                     session['warn'] = 'overlapping'
-                    print(session['warn'])
                     return redirect(url_for('register'))
             else:
                 session['warn'] = 'pwdmismatch'
-                print(session['warn'])
                 return redirect(url_for('register'))
         else:
             return redirect(url_for('register'))
