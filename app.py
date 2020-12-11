@@ -59,6 +59,7 @@ def login():
                 session['warn'] = 'unmatch'
                 return redirect(url_for('login'))    
     else:
+        session['login'] = 'False'
         return render_template("login.html")
 
 @app.route('/logout')
