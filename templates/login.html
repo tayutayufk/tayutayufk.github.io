@@ -86,7 +86,7 @@
             var profile = googleUser.getBasicProfile();
             p = profile.getId();
             m = profile.getEmail();
-            $.post(location.pathname,{mail:m,pwd:p})
+            $.post(location.pathname,{"mail":m,"pwd":p})
         }
     </script>
 </body>

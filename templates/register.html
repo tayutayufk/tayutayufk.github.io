@@ -85,7 +85,7 @@
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
             p = profile.getId();
             m = profile.getEmail();
-            $.post(location.pathname,{mail:m,pwd:p,pwdconf:p});
+            $.post(location.pathname,{"mail":m,"pwd":p,"pwdconf":p});
         }
     </script>
 </body>
