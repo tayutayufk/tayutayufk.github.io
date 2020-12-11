@@ -43,9 +43,7 @@ def login():
     if 'warn' not in session:
         session['warn'] = ''
 
-    if(request.method == "POST"):
-        session.permanent = True
-        session['login'] = 'True'
+    if request.method == "POST":
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
             if data[0][1] == request.form["pwd"]:
