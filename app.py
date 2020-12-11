@@ -46,6 +46,9 @@ def login():
     if request.method == "POST":
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
+            if len(data) == 0:
+                session['warn'] = 'unmatch'
+                return redirect(url_for('login'))    
             if data[0][1] == request.form["pwd"]:
                 session['mail'] = request.form["mail"]
                 session['pwd'] = request.form["pwd"]
