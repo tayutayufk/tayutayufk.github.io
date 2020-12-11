@@ -89,7 +89,7 @@
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-            $.post('/login',{mail:profile.getEmail,pwd:profile.getId})
+            $.post(location.pathname,{mail:profile.getEmail,pwd:profile.getId})
         }
     </script>
 </body>
