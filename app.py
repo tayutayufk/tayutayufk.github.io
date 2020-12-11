@@ -47,7 +47,6 @@ def login():
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
             if data[0][1] == request.form["pwd"]:
-                print("correct pwd")
                 session['mail'] = request.form["mail"]
                 session['pwd'] = request.form["pwd"]
                 session['login'] = 'True'
@@ -58,7 +57,6 @@ def login():
                 return redirect(url_for('index'))   
             else:
                 session['warn'] = 'unmatch'
-                print(session['warn'])
                 return redirect(url_for('login'))    
     else:
         return render_template("login.html")
@@ -76,8 +74,8 @@ def register():
         if 'mail' in request.form and 'pwd' in request.form and 'pwdconf' in request.form:
             if request.form['pwd'] == request.form['pwdconf']:#confirmの確認
                 if db.insert(request.form['mail'],request.form['pwd'],"free"):#メール重複の確認
-                    session['mail'] = request.form["mail"]
-                    session['pwd'] = request.form["pwd"]
+                    session['mail'] = request.form['mail']
+                    session['pwd'] = request.form['pwd']
                     session['login'] = 'True'
                     session['warn'] = ''
                     return redirect(url_for('index'))
