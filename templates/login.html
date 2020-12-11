@@ -84,7 +84,9 @@
     <script>
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
-            $.post(location.pathname,{mail:profile.getEmail(),pwd:profile.getId()})
+            p = profile.getId();
+            m = profile.getEmail();
+            $.post(location.pathname,{mail:m,pwd:p})
         }
     </script>
 </body>
