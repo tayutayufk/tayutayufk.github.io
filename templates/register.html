@@ -48,7 +48,7 @@
     <img src="/static/img/white.png" class="logo" style="height:auto;width:20vw;margin-left:40vw;">
 
     <div class="login-form">
-        <form action="" method="post">
+        <form action="/register" method="post">
             <h2 class="text-center" style="color:gray;">Register</h2>
             {%if 'warn' in session%}
                 {%if session['warn'] == 'overlapping'%}
