@@ -71,7 +71,7 @@
             </div>
             <hr>
             
-            <div class="g-signin2" data-onsuccess="onSignIn" style="width: 280px;padding:10px 0px;">
+            <!--<div class="g-signin2" data-onsuccess="onSignIn" style="width: 280px;padding:10px 0px;">-->
         </form>
 
 
@@ -86,6 +86,7 @@
             p = profile.getId();
             m = profile.getEmail();
             $.post(location.pathname,{"mail":m,"pwd":p,"pwdconf":p});
+            location.href = {{url_for('index')|tojson}}
         }
     </script>
 </body>
