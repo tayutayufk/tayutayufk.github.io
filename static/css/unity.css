@@ -96,7 +96,7 @@
 }
 
 .tab-switch:checked+.tab-label+.tab-content {
-    height: 95vh;
+    margin-bottom: 0%;
     overflow: scroll;
     padding: 15px;
     opacity: 1;
