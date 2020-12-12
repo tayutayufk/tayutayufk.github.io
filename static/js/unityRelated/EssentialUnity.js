@@ -66,16 +66,7 @@ function FetchSceneData() {
     if (loc.indexOf("mission") != -1) {
         SceneName = "Mission";
         gameInstance.SendMessage('GameDirector', 'MoveScene', 'Mission');
-
-        var url = location.href;
-        var params = url.split("?");
-        params = params[1].split("&");
-
-        mName = params[0];
-        rName = params[1];
-        pName = params[2];
-        //mName = "basic_level4";
-        //pName = "script";
+        mName = getParam("m");
     }
     if (loc.indexOf("craft") != -1) {
         SceneName = "Craft";
@@ -105,7 +96,7 @@ function MissionStart() {
         var outputdisplay = document.getElementById("output");
         outputdisplay.style.display = "block";
         gameInstance.SendMessage('GameDirector', 'Move');
-        runit(pName);
+        runit();
     }
 }
 
@@ -133,4 +124,14 @@ function MissionFinish(str) {
 
 function unityError(code) {
     alert(code)
+}
+
+function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

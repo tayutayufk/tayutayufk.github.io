@@ -27,16 +27,12 @@
 
     <script src="/static/js/RunPython.js"></script>
     <script src="/static/js/mission.js"></script>
-
-
-
 </head>
 
 <body>
     <div class="MissionStart" id="shade" style="display: none;">
         <a type="button" class="btn06" style="margin-top: 50vh;font-size: 70;color: white;" onclick="MissionStart()">Start!</a>
     </div>
-
     <div class="window">
         <div id="gameContainer" class="GameScreen MissionScreen"></div>
         <div class="LTicons">
@@ -49,20 +45,29 @@
 
     <div class="ScoreWindow">
         <div class="Score">
+            <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="Move('craft.html');" style="float:right;">
+            <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="Move('program.html');"style="float:left;">
             <p class="result">Clear!</p>
             <p class="RltTime">00:00:00</p>
             <p class="RltDes"></p>
             <a href="missionSelect.html" class="btn06 next">Next</a>
+            
         </div>
+        
     </div>
 
     <script>
         function Move(html) {
-            var params = location.href.split("?");
-            location.href = html + "?" + params[1];
+            location.href = html;
         }
-        window.onload = function() {
 
+        rnd = localStorage.getItem("robo3");
+        if (!rnd) {
+            location.href = {{url_for("craft")|tojson}};
+        }
+        sn = localStorage.getItem("lastScript");
+        if(!sn){
+            location.href = {{url_for("program")|tojson}};
         }
     </script>
     <script src="/static/js/generalJS.js"></script>

@@ -49,12 +49,14 @@
     </div>
 
     <div class="LTicons">
-        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="Back();">
+        
         
         {%if session['ver'] == "free"%}
+        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="location.href = '/'">
         <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
         {%elif session['ver'] == "pro"%}
+        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="Back();">
         <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="SaveRobot();Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="openSelect()">
         {%endif%}
@@ -84,16 +86,12 @@
         function PS(str) {
             gameInstance.SendMessage('GameDirector', 'PS', str);
         }
-        var url = location.href;
-        var params = url.split("?");
-        if (params.length > 1) {
-            url = "mission.html?" + params[1];
-        } else {
-            url = "index.html";
-        }
-
+        
         function Back() {
-            location.href = url;
+            rn = $(".robotName").val();
+            localStorage.setItem("lastRobot",rn);
+            onClickButton("SaveJson");
+            location.href = {{url_for('index')|tojson}};
         }
 
         $(document).ready(function() {

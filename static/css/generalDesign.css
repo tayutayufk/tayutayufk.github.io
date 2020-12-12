@@ -17,10 +17,10 @@ body {
 
 .logo {
     border-radius: 30px;
-    background: #ddd;
+    background: #fff;
     padding: 10px;
     height: 30vh;
-    margin-top: 10vh;
+    margin: 5vh 10vh;
 }
 
 .mainbtn {

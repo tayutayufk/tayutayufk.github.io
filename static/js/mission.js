@@ -27,9 +27,7 @@ function SaveResult(mname, result, time, meta) {
                         missionData[i].m = meta;
                     }
                 }
-
             }
-
             MDSave();
             return;
         }

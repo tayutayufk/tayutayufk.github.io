@@ -51,8 +51,8 @@
         <form action="" method="post">
             
             {%if 'warn' in session%}
-                {%if session['warn'] == 'unmatch'%}
-                <p style="color: red;background-color:lightpink;text-align:center">Failed to log in</p>
+                {%if session['warn'] == 'noexist'%}
+                <p style="color: red;background-color:lightpink;text-align:center">This mail is invalid</p>
                 {%endif%}
             {%endif%}
 

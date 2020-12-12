@@ -113,45 +113,12 @@
     {%endif%}
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
-        var url = location.href;
-        var params = url.split("?");
-        if (params.length > 1) {
-            url = "mission.html?" + params[1];
-            params = params[1].split("&");
-            pName = params[2];
-            setText(localStorage.getItem(pName));
-        } else {
-            url = "index.html";
-            //setText(localStorage.getItem("script"));
-        }
-        //読み込んだjsonからリストを作成
-        var rjson = JSON.parse(localStorage.getItem("robo3"));
-
-        if (rjson != null) {
-            for (var module in rjson.modules) {
-                for (var part in rjson.modules[module].objs) {
-                    var meta = rjson.modules[module].objs[part].MetaData;
-                    var name = rjson.modules[module].objs[part].name;
-
-                    var addhtml = '<a onclick=\"cp(\'' + meta + '\'); \" class=\"RefPart\">' + meta + '</a>';
-
-                    if (meta.indexOf("motor_") > -1 && name.indexOf("Motor_") > -1) {
-                        $('.RobotRef').append(addhtml);
-
-                    }
-                    if (meta.indexOf("RF_") > -1) {
-                        $('.RobotRef').append(addhtml);
-                    }
-                    if (meta.indexOf("CS_") > -1) {
-                        $('.RobotRef').append(addhtml);
-                    }
-                }
-            }
-        }
-
+        
 
         function Back() {
-            location.href = url;
+            sn = $(".scriptName").val();
+            localStorage.setItem("lastScript",sn);
+            location.href = {{url_for('index')|tojson}};
         }
 
         $(document).ready(function() {
@@ -242,6 +209,12 @@
             key = $('.scriptName').val();
             key = "S_" + key
             localStorage.setItem(key, editor.getValue());
+        }
+
+        if(localStorage.getItem("lastScript")){
+            sn = localStorage.getItem("lastScript");
+            editor.setValue(localStorage.getItem(sn));
+            $(".scriptName").val(sn);
         }
     </script>
     <script src="/static/js/generalJS.js"></script>

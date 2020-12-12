@@ -1,5 +1,5 @@
 window.onload = function() {
-    if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+    if (navigator.userAgent.match(/iPad|iPhone|Android.+Mobile/)) {
         $(".icon").css({ 'width': '5vw', 'height': '5vw' });
     }
     return;

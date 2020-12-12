@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/unity.css">
 
     <script src="/static/js/mission.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                     <p id="tim">Time : 0.0</p>
                     <p id="rlt">Not achieved</p>
                     <p>{{missions[key][2][i]|safe}}</p>
-                    <input type="image" src="/static/img/PartImage/{{ missions[key][0]}}level{{i+1}}.png" class="MissionImage" onclick="makeURL('{{ missions[key][0]}}level{{i+1}}')">
+                    <input type="image" src="/static/img/PartImage/{{ missions[key][0]}}level{{i+1}}.png" class="MissionImage lazyload" onclick="makeURL('{{ missions[key][0]}}level{{i+1}}')" alt="CLUSTER SEO">
                 </div>
                 {%endfor%}
             </div>
@@ -51,6 +51,8 @@
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/static/css/slick/slick.min.js"></script>
     <script>
+        lazyload();
+
         let basic_clear = 0;
         let line_clear = 0;
         let maze_clear = 0;
@@ -92,22 +94,19 @@
             centerMode: true,
             dots: true,
         });
-        var url = "mission.html";
-
+    
         function makeURL(missionName) {
             if (missionName.indexOf("line_tracking") > -1) {
                 if ((basic_clear / 4 * 100) <= 60) {
                     return;
                 }
             }
-            line_clear = 6
             if (missionName.indexOf("maze_") > -1) {
                 if ((line_clear / 6 * 100) <= 60) {
                     return;
                 }
             }
-            url += "?" + missionName + "&robo3&script";
-            location.href = url;
+            location.href = "/mission.html?m="+missionName;
         }
         function Back() {
             location.href = "index.html";

@@ -22,14 +22,15 @@ stripe_keys = {
 
 stripe.api_key = stripe_keys['secret_key']
 
-def check_login():
-    if 'mail' in session and 'pwd' in session and 'login' in session:
-        if session['login'] == 'True':
-            return True 
-    return False
+def init_session():
+    session['login'] = 'False'
+    session['mail'] = ''
+    session['pwd'] = ''
+    session['ver'] = 'free'
+    session['warn'] = ''
 
 def check_premium():
-    if check_login():
+    if session['login'] == 'True':
         data = db.serch_fromMail(session['mail'])#SQLからデータを取得
         if data[0][2] == "pro":
             session['ver'] = "pro"
@@ -38,11 +39,27 @@ def check_premium():
             session['ver'] = "free"
     return False
 
+def send_mail(to_email,subject,message):
+    #send mail
+    account = "ropeproject@ropeproject.sakura.ne.jp"
+    password = db.mail_pass
+    from_email = "ropeproject@ropeproject.sakura.ne.jp"
+         
+    msg = MIMEText(message, "html")
+    msg["Subject"] = subject
+    msg["To"] = to_email
+    msg["From"] = from_email
+    server = smtplib.SMTP("ropeproject.sakura.ne.jp", 587)
+    server.starttls()
+    server.login(account, password)
+    server.send_message(msg)
+    server.quit()
+
+
+    return
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if 'warn' not in session:
-        session['warn'] = ''
-
     if request.method == "POST":
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
@@ -50,12 +67,10 @@ def login():
                 session['warn'] = 'unmatch'
                 return redirect(url_for('login'))    
             if data[0][1] == request.form["pwd"]:
+                init_session()
                 session['mail'] = request.form["mail"]
                 session['pwd'] = request.form["pwd"]
                 session['login'] = 'True'
-                session['warn'] = ''
-                session['robot'] = ''
-                session['program'] = ''
                 check_premium()
                 return redirect(url_for('index'))   
             else:
@@ -67,21 +82,19 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session['login'] = 'False'
+    init_session()
     return redirect(url_for('index'))   
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    if 'warn' not in session:
-        session['warn'] = ''
     if(request.method == "POST"):
         if 'mail' in request.form and 'pwd' in request.form and 'pwdconf' in request.form:
             if request.form['pwd'] == request.form['pwdconf']:#confirmの確認
                 if db.insert(request.form['mail'],request.form['pwd'],"free"):#メール重複の確認
+                    init_session()
                     session['mail'] = request.form['mail']
                     session['pwd'] = request.form['pwd']
                     session['login'] = 'True'
-                    session['warn'] = ''
                     return redirect(url_for('index'))
                 else:
                     session['warn'] = 'overlapping'
@@ -102,6 +115,11 @@ def regenerate():
         return render_template("regenerate.html")
     
     if request.method == "POST":
+        if len(db.serch_fromMail(request.form['mail'])) == 0:
+            session['warn'] = 'noexist'
+            return redirect(url_for('regenerate'))
+        
+        session['warn'] = ''
         dat = request.form['mail']
         session['mail'] = dat
         hs = hashlib.md5(dat.encode()).hexdigest()
@@ -109,23 +127,14 @@ def regenerate():
         url = url + "&mail=" + dat
         #send mail
         account = "ropeproject@ropeproject.sakura.ne.jp"
-        password = "oppython3"
+        password = db.mail_pass
     
         to_email = request.form["mail"]
         from_email = "ropeproject@ropeproject.sakura.ne.jp"
  
         subject = "Please reset your password"
         message = "This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.\r\n" + url +"\nPlease destroy this email if you do not recognize it."
-        
-        msg = MIMEText(message, "html")
-        msg["Subject"] = subject
-        msg["To"] = to_email
-        msg["From"] = from_email
-        server = smtplib.SMTP("ropeproject.sakura.ne.jp", 587)
-        server.starttls()
-        server.login(account, password)
-        server.send_message(msg)
-        server.quit()
+        send_mail(request.form["mail"],subject,message)
 
         return redirect(url_for('index'))
 
@@ -214,16 +223,20 @@ def favicon():
 #main
 @app.route("/",methods=["GET","POST"]) 
 def index():
+    if 'login' not in session:
+        init_session()
     return render_template("index.html",key=stripe_keys['publishable_key'])
 
 @app.route("/index.html")
 def index_sub():
+    if 'login' not in session:
+        init_session()
     return render_template("index.html",key=stripe_keys['publishable_key'])
 
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
-    if check_login():
+    if session['login']:
         if check_premium():
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
@@ -289,14 +302,14 @@ def craft():
         return redirect(url_for('login'))    
 @app.route("/mission.html", methods=['POST', 'GET']) 
 def mission():
-    if check_login():
+    if session['login'] == 'True':
         return render_template("mission.html")
     else:
         return redirect(url_for('login'))    
 
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
-    if check_login():
+    if session['login'] == 'True':
         missions = []
         Basic = ['basic_','Basic',[
             '<p>Go through the checkpoint.</p>',
@@ -333,7 +346,7 @@ def missionSelect():
 
 @app.route("/program.html", methods=['POST', 'GET']) 
 def program():
-    if check_login():
+    if session['login'] == 'True':
         return render_template("program.html")
     else:
         return redirect(url_for('login'))    
