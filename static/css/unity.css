@@ -96,11 +96,15 @@
 }
 
 .tab-switch:checked+.tab-label+.tab-content {
-    height: auto;
-    overflow: auto;
+    height: 95vh;
+    overflow: scroll;
     padding: 15px;
     opacity: 1;
     transition: .5s opacity;
+}
+
+.tab-switch:checked+.tab-label+.tab-content::-webkit-scrollbar {
+    display: none;
 }
 
 
