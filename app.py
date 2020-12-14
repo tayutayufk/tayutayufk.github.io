@@ -13,6 +13,8 @@ import smtplib
 import hashlib
 from email.mime.text import MIMEText
 
+import urllib.parse
+
 app = Flask(__name__)
 app.secret_key = db.flask_key
 
@@ -61,7 +63,7 @@ def send_mail(to_email,subject,message):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     state = "asd"
-    return flask.redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({
+    return redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({
         'client_id': db.google_id,
         'scope': 'email',
         'redirect_uri': url_for('check'),
@@ -90,6 +92,7 @@ def login():
         session['login'] = 'False'
         return render_template("login.html")
     """
+
 @app.route('/login/check')
 def check():
     if flask.request.args.get('state') != "asd":
@@ -106,7 +109,7 @@ def check():
     dat = json.loads(dat.decode('ascii'))
 
     id_token = dat['id_token'].split('.')[1]  # 署名はとりあえず無視する
-    id_token = id_token + '=' * (4 - len(id_token)%%4)  # パディングが足りなかったりするっぽいので補う
+    id_token = id_token + '=' * (4 - len(id_token)%4)  # パディングが足りなかったりするっぽいので補う
     id_token = base64.b64decode(id_token, '-_')
     id_token = json.loads(id_token.decode('ascii'))
 
