@@ -72,7 +72,7 @@ def login():
         'scope': 'email',
         'redirect_uri': redirect_url,
         'state': state,
-        'openid.realm': 'http://localhost:5000',
+        'openid.realm': request.host_url,
         'response_type': 'code'
     })))
     
