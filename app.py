@@ -63,8 +63,7 @@ def send_mail(to_email,subject,message):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     state = "asd"
-    redirect_url = request.url_root[:-1] + url_for('check')
-    print(redirect_url)
+    redirect_url = request.host_url[:-1] + url_for('check')
     return redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({
         'client_id': db.google_id,
         'scope': 'email',
@@ -100,11 +99,11 @@ def login():
 def check():
     if flask.request.args.get('state') != "asd":
         return 'invalid state'
-
+    redirect_url = request.host_url[:-1] + url_for('check')
     dat = urllib.request.urlopen('https://www.googleapis.com/oauth2/v4/token', urllib.parse.urlencode({
         'code': flask.request.args.get('code'),
-        'client_id': client_id,
-        'client_secret': client_secret,
+        'client_id': db.google_id,
+        'client_secret': db.google_sec,
         'redirect_uri': redirect_uri,
         'grant_type': 'authorization_code'
     }).encode('ascii')).read()
