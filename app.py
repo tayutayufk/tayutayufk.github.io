@@ -118,18 +118,28 @@ def check():
     id_token = base64.b64decode(id_token, '-_')
     id_token = json.loads(id_token.decode('ascii'))
 
-    init_session()
-    session['mail'] = id_token['email']
-    session['pwd'] = "google"
-    session['login'] = 'True'
-    check_premium()
+    data = db.serch_fromMail(id_token['email'])
+    if len(data) == 0:#DBになかった時
+        pwd = hashlib.md5(db.google_id.encode()).hexdigest()
+        if db.insert(request.form['mail'],pwd,"free"):#メール重複の確認
+            init_session()
+            session['mail'] = id_token['email']
+            session['pwd'] = pwd
+            session['login'] = 'True'
+    else:#DBにある時
+        init_session()
+        session['mail'] = id_token['email']
+        session['pwd'] = data[0][1]
+        session['login'] = 'True'
+        session['ver'] = data[0][2]
+
     return redirect(url_for('index'))   
 
 @app.route('/logout')
 def logout():
     init_session()
     return redirect(url_for('index'))   
-
+"""
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if(request.method == "POST"):
@@ -178,17 +188,7 @@ def regenerate():
         from_email = "ropeproject@ropeproject.sakura.ne.jp"
  
         subject = "Please reset your password"
-        body = """\
-            <html>
-                <head></head>
-                <body>
-                    <p>This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.</p>
-                    <p>Please destroy this email if you do not recognize it</p>
-                    """ + url +"""
-                    <br>
-                </body>
-            </html>
-        """
+        
         message = MIMEText(body,'html')
         send_mail(request.form["mail"],subject,message.as_string())
 
@@ -238,7 +238,7 @@ def changepwd():
             url = url + "&mail=" + request.args.get('mail')
             return redirect(url)
 
-   
+"""
 #Stripe
 @app.route('/charge', methods=['POST'])
 def charge():
