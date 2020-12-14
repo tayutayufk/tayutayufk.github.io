@@ -100,14 +100,14 @@ def login():
 
 @app.route('/login/check')
 def check():
-    if flask.request.args.get('state') != "asd":
+    if request.args.get('state') != "asd":
         return 'invalid state'
     redirect_url = request.host_url[:-1] + url_for('check')
     dat = urllib.request.urlopen('https://www.googleapis.com/oauth2/v4/token', urllib.parse.urlencode({
         'code': request.args.get('code'),
         'client_id': db.google_id,
         'client_secret': db.google_sec,
-        'redirect_uri': redirect_uri,
+        'redirect_uri': redirect_url,
         'grant_type': 'authorization_code'
     }).encode('ascii')).read()
 
@@ -118,7 +118,12 @@ def check():
     id_token = base64.b64decode(id_token, '-_')
     id_token = json.loads(id_token.decode('ascii'))
 
-    return 'success!<br>hello, {}.'.format(id_token['email'])
+    init_session()
+    session['mail'] = id_token['email']
+    session['pwd'] = "google"
+    session['login'] = 'True'
+    check_premium()
+    return redirect(url_for('index'))   
 
 @app.route('/logout')
 def logout():
