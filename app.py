@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 import smtplib
 
 import hashlib
+from email.mime.text import MIMEText
 
 app = Flask(__name__)
 app.secret_key = db.flask_key
@@ -28,6 +29,7 @@ def init_session():
     session['pwd'] = ''
     session['ver'] = 'free'
     session['warn'] = ''
+    session['stage'] = 'basic'
 
 def check_premium():
     if session['login'] == 'True':
@@ -54,12 +56,20 @@ def send_mail(to_email,subject,message):
     server.login(account, password)
     server.send_message(msg)
     server.quit()
-
-
     return
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    state = "asd"
+    return flask.redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({
+        'client_id': db.google_id,
+        'scope': 'email',
+        'redirect_uri': url_for('check'),
+        'state': url_for('check'),
+        'openid.realm': 'http://localhost:5000',
+        'response_type': 'code'
+    })))
+    """
     if request.method == "POST":
         if 'mail' in request.form and 'pwd' in request.form:
             data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
@@ -79,6 +89,28 @@ def login():
     else:
         session['login'] = 'False'
         return render_template("login.html")
+    """
+@app.route('/login/check')
+def check():
+    if flask.request.args.get('state') != "asd":
+        return 'invalid state'
+
+    dat = urllib.request.urlopen('https://www.googleapis.com/oauth2/v4/token', urllib.parse.urlencode({
+        'code': flask.request.args.get('code'),
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'redirect_uri': redirect_uri,
+        'grant_type': 'authorization_code'
+    }).encode('ascii')).read()
+
+    dat = json.loads(dat.decode('ascii'))
+
+    id_token = dat['id_token'].split('.')[1]  # 署名はとりあえず無視する
+    id_token = id_token + '=' * (4 - len(id_token)%%4)  # パディングが足りなかったりするっぽいので補う
+    id_token = base64.b64decode(id_token, '-_')
+    id_token = json.loads(id_token.decode('ascii'))
+
+    return 'success!<br>hello, {}.'.format(id_token['email'])
 
 @app.route('/logout')
 def logout():
@@ -133,8 +165,19 @@ def regenerate():
         from_email = "ropeproject@ropeproject.sakura.ne.jp"
  
         subject = "Please reset your password"
-        message = "This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.\r\n" + url +"\nPlease destroy this email if you do not recognize it."
-        send_mail(request.form["mail"],subject,message)
+        body = """\
+            <html>
+                <head></head>
+                <body>
+                    <p>This email is sent to the person who will be reissuing the RoPE password. Please follow the link below to reissue it.</p>
+                    <p>Please destroy this email if you do not recognize it</p>
+                    """ + url +"""
+                    <br>
+                </body>
+            </html>
+        """
+        message = MIMEText(body,'html')
+        send_mail(request.form["mail"],subject,message.as_string())
 
         return redirect(url_for('index'))
 
@@ -236,8 +279,67 @@ def index_sub():
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
+    session['stage'] = 'maze'
     if session['login']:
-        if check_premium():
+        if session['stage'] == 'basic':
+            Basic = ['Basic',[['BB','BasicBlock','True'],
+                                ['BB1','BasicBlock','True'],
+                                ['BB2','BasicBlock','True'],
+                                ['BasicBlockHeavy','Heavy Block','False']]]
+            
+            Advance = ['Advance',[['EdgeBlock1','Edge 1','False'],
+                                ['EdgeBlock2','Edge 2','False'],
+                                ['HalfBlock','Edge 3','False'],
+                                ['BasicBlock-1','Advance Block','False'],
+                                ['BasicBlock-2','Advance Block','False'],
+                                ['BasicBlock-3','Advance Block','False']]]
+        
+            Wheel = ['Wheel',[['TB','Wheel big','True'],
+                            ['TM','Wheel mini','True'],
+                            ['BallTire','Ball Wheel','True'],
+                            ['Axle','Axle','False'],
+                            ['Bearing','Bearing','False'],
+                            ['Bearing_Locked','Fixed axle','False']]]
+
+            Motor = ['Motor',[['MB','Motor big','True'],
+                        ['MN','Motor','True'],
+                        ['MM','Motor mini','True'],
+                        ['SB','Servo large','False'],
+                        ['SM','Servo mini','False'],
+                        ['Solenoid_mini','Solenoid mini','False']]]
+
+            Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','False']]]
+
+        elif session['stage'] == "line_trace":
+            Basic = ['Basic',[['BB','BasicBlock','True'],
+                                ['BB1','BasicBlock','True'],
+                                ['BB2','BasicBlock','True'],
+                                ['BasicBlockHeavy','Heavy Block','False']]]
+            
+            Advance = ['Advance',[['EdgeBlock1','Edge 1','True'],
+                                ['EdgeBlock2','Edge 2','True'],
+                                ['HalfBlock','Edge 3','True'],
+                                ['BasicBlock-1','Advance Block','False'],
+                                ['BasicBlock-2','Advance Block','False'],
+                                ['BasicBlock-3','Advance Block','False']]]
+        
+            Wheel = ['Wheel',[['TB','Wheel big','True'],
+                            ['TM','Wheel mini','True'],
+                            ['BallTire','Ball Wheel','True'],
+                            ['Axle','Axle','True'],
+                            ['Bearing','Bearing','False'],
+                            ['Bearing_Locked','Fixed axle','False']]]
+
+            Motor = ['Motor',[['MB','Motor big','True'],
+                        ['MN','Motor','True'],
+                        ['MM','Motor mini','True'],
+                        ['SB','Servo large','True'],
+                        ['SM','Servo mini','True'],
+                        ['Solenoid_mini','Solenoid mini','False']]]
+
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','False']]]
+
+        elif session['stage'] == "maze":
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
                                 ['BB2','BasicBlock','True'],
@@ -262,10 +364,9 @@ def craft():
                         ['MM','Motor mini','True'],
                         ['SB','Servo large','True'],
                         ['SM','Servo mini','True'],
-                        ['Solenoid_mini','Solenoid mini','True']]]
+                        ['Solenoid_mini','Solenoid mini','False']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
-
 
         else:   
             Basic = ['Basic',[['BB','BasicBlock','True'],
@@ -302,11 +403,22 @@ def craft():
         return redirect(url_for('login'))    
 @app.route("/mission.html", methods=['POST', 'GET']) 
 def mission():
-    if session['login'] == 'True':
-        return render_template("mission.html")
+    if request.method == "GET":
+        if session['login'] == 'True':
+            return render_template("mission.html")
+        else:
+            return redirect(url_for('login'))    
     else:
-        return redirect(url_for('login'))    
+        if 'clear' in request.form:
+            if request.form['clear'] == 'basic':
+                session['stage'] = request.form['clear']
+            elif request.form['clear'] == 'line_trace' and session['stage'] == 'basic':
+                session['stage'] = request.form['clear']
+            elif request.form['clear'] == 'maze' and session['stage'] == 'line_trace':
+                session['stage'] = request.form['clear']
 
+        return redirect(url_for('index'))
+            
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
     if session['login'] == 'True':
