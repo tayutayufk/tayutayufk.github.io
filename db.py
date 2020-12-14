@@ -1,4 +1,4 @@
-def serch_fromMail(mail):
+def search_fromMail(mail):
     if mail == "takayasu1j202h19@gmail.com":
         w = ((mail,"takayasu777","free",""),)
     elif mail == "takayasu.y.aa@m.titech.ac.jp":

@@ -38,7 +38,7 @@ def init_session():
 
 def check_premium():
     if session['login'] == 'True':
-        data = db.serch_fromMail(session['mail'])#SQLからデータを取得
+        data = db.search_fromMail(session['mail'])#SQLからデータを取得
         if data[0][2] == "pro":
             session['ver'] = "pro"
             return True
@@ -113,14 +113,15 @@ def check():
 
     dat = json.loads(dat.decode('ascii'))
 
-    id_token = dat['id_token'].split('.')[1]  # 署名はとりあえず無視する
-    id_token = id_token + '=' * (4 - len(id_token)%4)  # パディングが足りなかったりするっぽいので補う
+    id_token = dat['id_token'].split('.')[1]
+    id_token = id_token + '=' * (4 - len(id_token)%4)
     id_token = base64.b64decode(id_token, '-_')
     id_token = json.loads(id_token.decode('ascii'))
 
-    data = db.serch_fromMail(id_token['email'])
+    data = db.search_fromMail(id_token['email'])
     if len(data) == 0:#DBになかった時
-        pwd = hashlib.md5(db.google_id.encode()).hexdigest()
+        seed = db.google_id + id_token['email']
+        pwd = hashlib.md5(seed.encode()).hexdigest()
         if db.insert(request.form['mail'],pwd,"free"):#メール重複の確認
             init_session()
             session['mail'] = id_token['email']
@@ -170,7 +171,7 @@ def regenerate():
         return render_template("regenerate.html")
     
     if request.method == "POST":
-        if len(db.serch_fromMail(request.form['mail'])) == 0:
+        if len(db.search_fromMail(request.form['mail'])) == 0:
             session['warn'] = 'noexist'
             return redirect(url_for('regenerate'))
         
@@ -205,7 +206,7 @@ def changepwd():
         if request.form['pwd'] == request.form['pwdconf']:
             mail = request.args.get('mail')
             newpwd = request.form['pwd']
-            data = db.serch_fromMail(mail)#SQLからデータを取得
+            data = db.search_fromMail(mail)#SQLからデータを取得
             version = data[0][2]
 
             db.delete(mail)
@@ -292,8 +293,7 @@ def index_sub():
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
-    session['stage'] = 'maze'
-    if session['login']:
+    if session['login'] == 'True':
         if session['stage'] == 'basic':
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
