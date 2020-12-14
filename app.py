@@ -14,6 +14,9 @@ import hashlib
 from email.mime.text import MIMEText
 
 import urllib.parse
+import json
+import base64
+
 
 app = Flask(__name__)
 app.secret_key = db.flask_key
@@ -101,7 +104,7 @@ def check():
         return 'invalid state'
     redirect_url = request.host_url[:-1] + url_for('check')
     dat = urllib.request.urlopen('https://www.googleapis.com/oauth2/v4/token', urllib.parse.urlencode({
-        'code': flask.request.args.get('code'),
+        'code': request.args.get('code'),
         'client_id': db.google_id,
         'client_secret': db.google_sec,
         'redirect_uri': redirect_uri,
