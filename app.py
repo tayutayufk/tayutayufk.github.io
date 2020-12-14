@@ -119,15 +119,15 @@ def check():
     id_token = json.loads(id_token.decode('ascii'))
 
     data = db.search_fromMail(id_token['email'])
-    if len(data) == 0:#DBになかった時
+    if len(data) == 0:
         seed = db.google_id + id_token['email']
         pwd = hashlib.md5(seed.encode()).hexdigest()
-        if db.insert(request.form['mail'],pwd,"free"):#メール重複の確認
+        if db.insert(request.form['mail'],pwd,"free"):
             init_session()
             session['mail'] = id_token['email']
             session['pwd'] = pwd
             session['login'] = 'True'
-    else:#DBにある時
+    else:
         init_session()
         session['mail'] = id_token['email']
         session['pwd'] = data[0][1]
