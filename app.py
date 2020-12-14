@@ -63,14 +63,17 @@ def send_mail(to_email,subject,message):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     state = "asd"
+    redirect_url = request.url_root[:-1] + url_for('check')
+    print(redirect_url)
     return redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({
         'client_id': db.google_id,
         'scope': 'email',
-        'redirect_uri': url_for('check'),
-        'state': url_for('check'),
+        'redirect_uri': redirect_url,
+        'state': state,
         'openid.realm': 'http://localhost:5000',
         'response_type': 'code'
     })))
+    
     """
     if request.method == "POST":
         if 'mail' in request.form and 'pwd' in request.form:
