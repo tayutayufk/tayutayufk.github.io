@@ -49,7 +49,13 @@
             <a href="{{url_for( 'missionSelect')}} " class="btn06 " style="font-size: 5vh; ">Mission</a>
             <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
         </div>
-        <button id="checkout-button">Checkout</button>
+        {%if 'login' in session%}
+        {%if session['ver'] == "free" %}
+        <div class="product">
+            <input class="icon cart" type="image" src="/static/img/svg/shopping-cart.svg" id="checkout-button">
+        </div>
+        {% endif %}
+        {%endif%}
     </div>
 
 
@@ -61,11 +67,7 @@
     {% endif %}
     {%endif%}
 
-    {%if 'ver' in session%}
-    {%if session['ver'] == "free" %}
-        <input class="icon cart" type="image" src="/static/img/svg/shopping-cart.svg">
-    {% endif %}
-    {%endif%}
+    
 
     
 

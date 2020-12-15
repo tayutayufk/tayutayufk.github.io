@@ -243,6 +243,7 @@ def changepwd():
 #Stripe
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+    print(request.host_url[:-1] + url_for('index'))
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -251,6 +252,7 @@ def create_checkout_session():
                     'price_data': {
                         'currency': 'usd',
                         'unit_amount': 500,
+                        'receipt_email': session['mail'],
                         'product_data': {
                             'name': 'RoPE',
                             'images': [request.host_url[:-1] + '/static/img/white.png'],
