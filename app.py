@@ -188,13 +188,13 @@ def favicon():
 def index():
     if 'login' not in session:
         init_session()
-    return render_template("index.html",key=stripe_keys['publishable_key'])
+    return render_template("index.html")
 
 @app.route("/index.html")
 def index_sub():
     if 'login' not in session:
         init_session()
-    return render_template("index.html",key=stripe_keys['publishable_key'])
+    return render_template("index.html")
 
 
 @app.route("/craft.html", methods=['GET']) 
