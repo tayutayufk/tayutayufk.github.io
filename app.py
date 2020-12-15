@@ -253,15 +253,15 @@ def create_checkout_session():
                         'unit_amount': 500,
                         'product_data': {
                             'name': 'RoPE',
-                            'images': [request.host_url + '/static/img/white.png'],
+                            'images': [request.host_url[:-1] + '/static/img/white.png'],
                         },
                     },
                     'quantity': 1,
                 },
             ],
             mode='payment',
-            success_url=request.host_url + url_for('payed'),
-            cancel_url=request.host_url + url_for('index'),
+            success_url=request.host_url[:-1] + url_for('index'),
+            cancel_url=request.host_url[:-1] + url_for('index'),
         )
         return jsonify({'id': checkout_session.id})
     except Exception as e:
