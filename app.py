@@ -122,7 +122,7 @@ def check():
     if len(data) == 0:
         seed = db.google_id + id_token['email']
         pwd = hashlib.md5(seed.encode()).hexdigest()
-        if db.insert(request.form['mail'],pwd,"free"):
+        if db.insert(id_token['email'],pwd,"free"):
             init_session()
             session['mail'] = id_token['email']
             session['pwd'] = pwd
