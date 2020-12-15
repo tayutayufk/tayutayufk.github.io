@@ -77,14 +77,14 @@
     var stripe = Stripe("pk_test_51HsSwBKTMlPLG6E8Whlb3sxsje4z0CWOezFm1PtLRwMcLBnPhopCuUh1kC9vVMb1VMG7NSWg4HjC3yj0PtNSjnZE00xk7jknQp");
     var checkoutButton = document.getElementById("checkout-button");
     checkoutButton.addEventListener("click", function () {
-      fetch("/create-checkout-session", {
+      fetch({{url_for('create_checkout_session')|tojson}}, {
         method: "POST",
       })
         .then(function (response) {
           return response.json();
         })
         .then(function (session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
+          return stripe.redirectToCheckout({ sessionId: session['mail'] });
         })
         .then(function (result) {
           // If redirectToCheckout fails due to a browser or network
