@@ -1,4 +1,4 @@
-from flask import  request,session,redirect,render_template,send_from_directory,Flask,url_for,make_response
+from flask import  request,session,redirect,render_template,send_from_directory,Flask,url_for,make_response,jsonify
 from flask import *
 import flask_wtf
 import wtforms
@@ -21,12 +21,8 @@ import base64
 app = Flask(__name__)
 app.secret_key = db.flask_key
 
-stripe_keys = {
-  'secret_key': db.SECRET_KEY,
-  'publishable_key': db.PUBLISHABLE_KEY
-}
 
-stripe.api_key = stripe_keys['secret_key']
+stripe.api_key = db.SECRET_KEY
 
 def init_session():
     session['login'] = 'False'
