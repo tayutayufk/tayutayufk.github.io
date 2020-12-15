@@ -241,25 +241,33 @@ def changepwd():
 
 """
 #Stripe
-@app.route('/charge', methods=['POST'])
-def charge():
-    amount = 500
-    customer = stripe.Customer.create(
-        email=session['mail'],
-        source=request.form['stripeToken']
-    )
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=amount,
-        currency='usd',
-        description='Flask Charge'
-    )
-
-    return render_template('payed.html', amount=amount)
-
-
-@app.route('/charge')
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': 500,
+                        'product_data': {
+                            'name': 'RoPE',
+                            'images': [request.host_url + '/static/img/white.png'],
+                        },
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=request.host_url + url_for('payed'),
+            cancel_url=request.host_url + url_for('index'),
+        )
+        return jsonify({'id': checkout_session.id})
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+    
+@app.route('/payed')
 def payed():
    return render_template("payed.html")
 
