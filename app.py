@@ -73,28 +73,6 @@ def login():
         'response_type': 'code'
     })))
     
-    """
-    if request.method == "POST":
-        if 'mail' in request.form and 'pwd' in request.form:
-            data = db.serch_fromMail(request.form["mail"])#SQLからデータを取得
-            if len(data) == 0:
-                session['warn'] = 'unmatch'
-                return redirect(url_for('login'))    
-            if data[0][1] == request.form["pwd"]:
-                init_session()
-                session['mail'] = request.form["mail"]
-                session['pwd'] = request.form["pwd"]
-                session['login'] = 'True'
-                check_premium()
-                return redirect(url_for('index'))   
-            else:
-                session['warn'] = 'unmatch'
-                return redirect(url_for('login'))    
-    else:
-        session['login'] = 'False'
-        return render_template("login.html")
-    """
-
 @app.route('/login/check')
 def check():
     if request.args.get('state') != "asd":
@@ -151,6 +129,7 @@ def payment():
         success_url= url_for('payed',_external=True) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url = url_for('index',_external=True),
     )
+    session['StripeID'] = checkout_session['id']
     return render_template(
         "payment.html",
         checkout_session_id = checkout_session['id'],
@@ -159,7 +138,12 @@ def payment():
 
 @app.route('/payed')
 def payed():
-    return render_template("payed.html")
+    pay_id = request.args.get('session_id')
+    if 'StripeID' in session:
+        if session['StripeID'] == pay_id:
+            db.upgrade(session['mail'])
+            return render_template("payed.html")
+    return redirect(url_for('index'))
 
 #PWA
 @app.route("/manifest.json")

@@ -40,18 +40,13 @@
             <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
         </div>
 
-        <input class="icon cart" type="image" src="/static/img/svg/shopping-cart.svg">
-
-
-
         <script src="https://js.stripe.com/v3/"></script>
-
-
     </div>
 
 
     {%if 'login' in session%} {%if session['login'] == "True" %}
-    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
+    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a>
+    <input class="icon cart" id="payment" type="image" src="/static/img/svg/shopping-cart.svg"> {% else%}
     <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %} {%endif%}
 
 
@@ -71,6 +66,11 @@
                     console.error('Unable to register service worker.', err);
                 });
         }
+
+        var buybtn = document.getElementById('payment');
+        buybtn.addEventListener('click', function() {
+            location.href = '{{url_for("payment")}}'
+        });
     </script>
     <script src="/static/js/generalJS.js "></script>
 
