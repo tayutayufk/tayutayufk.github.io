@@ -144,32 +144,29 @@ def logout():
     return redirect(url_for('index'))   
 
 #Stripe
-@app.route('/create-checkout-session', methods=['POST'])
+@app.route('/create_checkout_session', methods=['POST'])
 def create_checkout_session():
-    try:
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': 500,
-                        #'receipt_email': session['mail'],
-                        'product_data': {
-                            'name': 'RoPE',
-                            'images': [request.host_url[:-1] + '/static/img/white.png'],
-                        },
+    checkout_session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[
+            {
+                'price_data': {
+                'currency': 'usd',
+                'unit_amount': 500,
+                #'receipt_email': session['mail'],
+                'product_data': {
+                    'name': 'RoPE',
+                    'images': [request.host_url[:-1] + '/static/img/white.png'],
                     },
-                    'quantity': 1,
                 },
-            ],
-            mode='payment',
-            success_url=request.host_url[:-1] + url_for('index'),
-            cancel_url=request.host_url[:-1] + url_for('index'),
-        )
-        return jsonify(id = checkout_session.id)
-    except Exception as e:
-        return jsonify(error=str(e)), 403
+                'quantity': 1,
+            },
+        ],
+        mode='payment',
+        success_url=request.host_url[:-1] + url_for('index'),
+        cancel_url=request.host_url[:-1] + url_for('index'),
+    )
+    return jsonify(id=checkout_session.id)
     
 @app.route('/payed')
 def payed():
