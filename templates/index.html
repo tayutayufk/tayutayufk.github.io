@@ -22,26 +22,16 @@
         var gameInstance = UnityLoader.instantiate("gameContainer", "/static/js/unityRelated/Build/WebGLRoPE.json");
     </script>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
-
-    <!--Google Acount-->
-    <!--
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="903173950355-lommg8dbvtbttqtelg0c6bjlcg04bt84.apps.googleusercontent.com">
-        -->
 </head>
 
-<body  style="-webkit-user-select: none; -khtml-user-select: none; -ms-user-select: none; -moz-user-select: none; user-select: none;"
-      onselectstart="return false;">
+<body style="-webkit-user-select: none; -khtml-user-select: none; -ms-user-select: none; -moz-user-select: none; user-select: none;" onselectstart="return false;">
 
 
     <div class="window">
-        <!--<div class="g-signin2 " data-onsuccess="onSignIn "></div>-->
-        <img src="/static/img/white.png " class="logo ">
+
+        <img src="/static/img/white.png " class="logo">
 
         <div class="mainbtn ">
             <a href="{{url_for( 'craft')}} " class="btn06 " style="font-size: 5vh; ">Craft</a>
@@ -49,71 +39,38 @@
             <a href="{{url_for( 'missionSelect')}} " class="btn06 " style="font-size: 5vh; ">Mission</a>
             <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
         </div>
-        {%if 'login' in session%}
-        {%if session['ver'] == "free" %}
-        <div class="product">
-            <input class="icon cart" type="image" src="/static/img/svg/shopping-cart.svg" id="checkout-button">
-        </div>
-        {% endif %}
-        {%endif%}
+
+        <input class="icon cart" type="image" src="/static/img/svg/shopping-cart.svg">
+
+
+
+        <script src="https://js.stripe.com/v3/"></script>
+
+
     </div>
 
 
-    {%if 'login' in session%}
-    {%if session['login'] == "True" %}
-        <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a>
-    {% else%}
-        <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a>
-    {% endif %}
-    {%endif%}
+    {%if 'login' in session%} {%if session['login'] == "True" %}
+    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
+    <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %} {%endif%}
 
-    
 
-    
+
+
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js "></script>
     <script>
-
-    var stripe = Stripe("pk_test_51HsSwBKTMlPLG6E8Whlb3sxsje4z0CWOezFm1PtLRwMcLBnPhopCuUh1kC9vVMb1VMG7NSWg4HjC3yj0PtNSjnZE00xk7jknQp");
-    var checkoutButton = document.getElementById("checkout-button");
-    checkoutButton.addEventListener("click", function () {
-      fetch({{url_for('create_checkout_session')|tojson}}, {
-        method: 'post'
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (checkout_session) {
-
-          return stripe.redirectToCheckout({ sessionId: checkout_session.id });
-        })
-        .then(function (result) {
-          // If redirectToCheckout fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using error.message.
-          if (result.error) {
-            alert(result.error.message);
-          }
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-    });
-
-        
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
-            .register('./service-worker.js')
-            .then(function(registration) {
-                console.log('Service Worker Registered!');
-                return registration;
-            })
-            .catch(function(err) {
-                console.error('Unable to register service worker.', err);
-            });
+                .register('./service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker Registered!');
+                    return registration;
+                })
+                .catch(function(err) {
+                    console.error('Unable to register service worker.', err);
+                });
         }
-
-        
     </script>
     <script src="/static/js/generalJS.js "></script>
 

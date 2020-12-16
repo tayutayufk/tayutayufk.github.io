@@ -23,6 +23,8 @@ app.secret_key = db.flask_key
 
 stripe.api_key = db.SECRET_KEY
 
+
+
 def init_session():
     session['login'] = 'False'
     session['mail'] = ''
@@ -144,33 +146,27 @@ def logout():
     return redirect(url_for('index'))   
 
 #Stripe
-@app.route('/create_checkout_session', methods=['POST'])
-def create_checkout_session():
+@app.route('/payment')
+def payment():
     checkout_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
-        line_items=[
-            {
-                'price_data': {
-                'currency': 'usd',
-                'unit_amount': 500,
-                #'receipt_email': session['mail'],
-                'product_data': {
-                    'name': 'RoPE',
-                    'images': [request.host_url[:-1] + '/static/img/white.png'],
-                    },
-                },
-                'quantity': 1,
-            },
-        ],
+        line_items=[{
+            'price':'price_1HyzxCKTMlPLG6E8jslrh1hc',
+            'quantity':1,
+        }],
         mode='payment',
-        success_url=request.host_url[:-1] + url_for('index'),
-        cancel_url=request.host_url[:-1] + url_for('index'),
+        success_url= url_for('payed',_external=True) + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url = url_for('index',_external=True),
     )
-    return jsonify(id=checkout_session.id)
-    
+    return render_template(
+        "payment.html",
+        checkout_session_id = checkout_session['id'],
+        checkout_public_key = db.PUBLISHABLE_KEY
+        )
+
 @app.route('/payed')
 def payed():
-   return render_template("payed.html")
+    return render_template("payed.html")
 
 #PWA
 @app.route("/manifest.json")
@@ -191,6 +187,9 @@ def favicon():
 def index():
     if 'login' not in session:
         init_session()
+
+    
+    
     return render_template("index.html")
 
 @app.route("/index.html")
