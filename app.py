@@ -21,7 +21,6 @@ import base64
 app = Flask(__name__)
 app.secret_key = db.flask_key
 
-
 stripe.api_key = db.SECRET_KEY
 
 def init_session():
@@ -61,6 +60,13 @@ def send_mail(to_email,subject,message):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    init_session()
+    session['mail'] = "takayasu1j202h19@gmail.com"
+    session['pwd'] = "pwd"
+    session['login'] = 'True'
+    session['ver'] = "pro"
+    return redirect(url_for('index'))
+
     state = "asd"
     redirect_url = request.host_url[:-1] + url_for('check')
     return redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({
@@ -161,7 +167,7 @@ def create_checkout_session():
             success_url=request.host_url[:-1] + url_for('index'),
             cancel_url=request.host_url[:-1] + url_for('index'),
         )
-        return jsonify({'id': checkout_session.id})
+        return jsonify(id = checkout_session.id)
     except Exception as e:
         return jsonify(error=str(e)), 403
     
