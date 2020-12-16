@@ -62,6 +62,7 @@ def send_mail(to_email,subject,message):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     state = "asd"
     redirect_url = request.host_url[:-1] + url_for('check')
     return redirect('https://accounts.google.com/o/oauth2/auth?{}'.format(urllib.parse.urlencode({

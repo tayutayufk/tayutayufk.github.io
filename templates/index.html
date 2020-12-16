@@ -38,6 +38,7 @@
             <a href="{{url_for( 'program')}} " class="btn06 " style="font-size: 5vh; ">Program</a>
             <a href="{{url_for( 'missionSelect')}} " class="btn06 " style="font-size: 5vh; ">Mission</a>
             <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
+            <a class="cart" id="payment" style="z-index: 100" href="{{url_for('payment')}}">Upgrade</a>
         </div>
 
         <script src="https://js.stripe.com/v3/"></script>
@@ -45,8 +46,7 @@
 
 
     {%if 'login' in session%} {%if session['login'] == "True" %}
-    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a>
-    <input class="icon cart" id="payment" type="image" src="/static/img/svg/shopping-cart.svg"> {% else%}
+    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
     <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %} {%endif%}
 
 
