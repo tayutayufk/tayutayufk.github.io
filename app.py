@@ -137,8 +137,11 @@ def payment():
         checkout_public_key = db.PUBLISHABLE_KEY
         )
 
+
 @app.route('/payed')
 def payed():
+    if 'session_id' not in request.form:
+        return redirect(url_for('index'))
     pay_id = request.args.get('session_id')
     if 'StripeID' in session:
         if session['StripeID'] == pay_id:
@@ -165,7 +168,6 @@ def favicon():
 def index():
     if 'login' not in session:
         init_session()
-
     
     
     return render_template("index.html")

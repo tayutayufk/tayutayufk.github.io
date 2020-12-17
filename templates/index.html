@@ -37,17 +37,25 @@
             <a href="{{url_for( 'craft')}} " class="btn06 " style="font-size: 5vh; ">Craft</a>
             <a href="{{url_for( 'program')}} " class="btn06 " style="font-size: 5vh; ">Program</a>
             <a href="{{url_for( 'missionSelect')}} " class="btn06 " style="font-size: 5vh; ">Mission</a>
-            <a href="https://ropeproject.net/docs/doc.html " target="_blank " rel="noopener noreferrer " class="btn06 " style="font-size: 5vh; ">Learn</a>
-            <a class="cart" id="payment" style="z-index: 100" href="{{url_for('payment')}}">Upgrade</a>
+            <a class="btn06 " style="font-size: 5vh; " onclick="alert('Coming Soon')">Learn</a>
         </div>
 
         <script src="https://js.stripe.com/v3/"></script>
     </div>
 
 
-    {%if 'login' in session%} {%if session['login'] == "True" %}
-    <a href="{{url_for( 'logout')}}" class="btn06 login">Log out</a> {% else%}
-    <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> {% endif %} {%endif%}
+    {%if 'login' in session%}
+        {%if session['login'] == "True" %}
+            <a href="{{url_for('logout')}}" class="btn06 login">Log out</a>
+            {%if session['ver'] == "free"%}
+            <div class="LTicons">
+                <input class="icon" type="image" src="/static/img/svg/shopping-cart.svg" id="payment" onclick="location.href='/payment'">
+            </div>
+            {%endif%}
+        {% else%}
+            <a href="{{url_for( 'login')}} " class="btn06 login">Log in</a> 
+        {% endif %} 
+    {%endif%}
 
 
 
@@ -67,10 +75,7 @@
                 });
         }
 
-        var buybtn = document.getElementById('payment');
-        buybtn.addEventListener('click', function() {
-            location.href = '{{url_for("payment")}}'
-        });
+        
     </script>
     <script src="/static/js/generalJS.js "></script>
 
