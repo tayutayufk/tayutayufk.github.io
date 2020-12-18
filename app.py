@@ -146,6 +146,7 @@ def payed():
     if 'StripeID' in session:
         if session['StripeID'] == pay_id:
             db.upgrade(session['mail'])
+            session['ver'] = "pro"
             return render_template("payed.html")
     return redirect(url_for('index'))
 
