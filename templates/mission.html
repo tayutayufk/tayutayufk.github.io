@@ -59,7 +59,7 @@
 
     <script>
         function Move(html) {
-            location.href = html;
+            location.href = html + "?re=" + location.href;
         }
 
         rnd = localStorage.getItem("robo3");

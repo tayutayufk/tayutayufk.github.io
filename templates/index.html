@@ -46,7 +46,7 @@
 
     {%if 'login' in session%}
         {%if session['login'] == "True" %}
-            <a href="{{url_for('logout')}}" class="btn06 login">Log out</a>
+            <a href="{{url_for('logout')}}" class="btn06 login" style="width:10vw;">Log out</a>
             {%if session['ver'] == "free"%}
             <div class="LTicons">
                 <input class="icon" type="image" src="/static/img/svg/shopping-cart.svg" id="payment" onclick="location.href='/payment'">

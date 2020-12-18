@@ -31,7 +31,7 @@ def init_session():
     session['pwd'] = ''
     session['ver'] = 'free'
     session['warn'] = ''
-    session['stage'] = 'basic'
+    session['stage'] = 'maze'
 
 def check_premium():
     if session['login'] == 'True':
@@ -140,7 +140,7 @@ def payment():
 
 @app.route('/payed')
 def payed():
-    if 'session_id' not in request.form:
+    if 'session_id' not in request.args:
         return redirect(url_for('index'))
     pay_id = request.args.get('session_id')
     if 'StripeID' in session:
@@ -169,7 +169,6 @@ def index():
     if 'login' not in session:
         init_session()
     
-    
     return render_template("index.html")
 
 @app.route("/index.html")
@@ -186,59 +185,61 @@ def craft():
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
                                 ['BB2','BasicBlock','True'],
-                                ['BasicBlockHeavy','Heavy Block','False']]]
-            
-            Advance = ['Advance',[['EdgeBlock1','Edge 1','False'],
-                                ['EdgeBlock2','Edge 2','False'],
-                                ['HalfBlock','Edge 3','False'],
-                                ['BasicBlock-1','Advance Block','False'],
-                                ['BasicBlock-2','Advance Block','False'],
-                                ['BasicBlock-3','Advance Block','False']]]
-        
-            Wheel = ['Wheel',[['TB','Wheel big','True'],
-                            ['TM','Wheel mini','True'],
-                            ['BallTire','Ball Wheel','True'],
-                            ['Axle','Axle','False'],
-                            ['Bearing','Bearing','False'],
-                            ['Bearing_Locked','Fixed axle','False']]]
-
-            Motor = ['Motor',[['MB','Motor big','True'],
-                        ['MN','Motor','True'],
-                        ['MM','Motor mini','True'],
-                        ['SB','Servo large','False'],
-                        ['SM','Servo mini','False'],
-                        ['Solenoid_mini','Solenoid mini','False']]]
-
-            Sensor = ['Sensor',[['CS','Color Sensor','False'],['RF','RangeFinder','False']]]
-
-        elif session['stage'] == "line_trace":
-            Basic = ['Basic',[['BB','BasicBlock','True'],
-                                ['BB1','BasicBlock','True'],
-                                ['BB2','BasicBlock','True'],
-                                ['BasicBlockHeavy','Heavy Block','False']]]
+                                ['BasicBlockHeavy','Heavy Block','True']]]
             
             Advance = ['Advance',[['EdgeBlock1','Edge 1','True'],
                                 ['EdgeBlock2','Edge 2','True'],
                                 ['HalfBlock','Edge 3','True'],
-                                ['BasicBlock-1','Advance Block','False'],
-                                ['BasicBlock-2','Advance Block','False'],
-                                ['BasicBlock-3','Advance Block','False']]]
+                                ['BasicBlock-1','Advance Block','True'],
+                                ['BasicBlock-2','Advance Block','True'],
+                                ['BasicBlock-3','Advance Block','True']]]
         
-            Wheel = ['Wheel',[['TB','Wheel big','True'],
-                            ['TM','Wheel mini','True'],
+            Wheel = ['Wheel',[['Tire_big2','Wheel L','True'],
+                            ['TB','Wheel M','True'],
+                            ['TM','Wheel S','True'],
                             ['BallTire','Ball Wheel','True'],
                             ['Axle','Axle','True'],
-                            ['Bearing','Bearing','False'],
-                            ['Bearing_Locked','Fixed axle','False']]]
+                            ['Bearing','Bearing','True'],
+                            ['Bearing_Locked','Fixed axle','True']]]
 
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
                         ['SB','Servo large','True'],
                         ['SM','Servo mini','True'],
-                        ['Solenoid_mini','Solenoid mini','False']]]
+                        ['Solenoid_mini','Solenoid mini','True']]]
 
-            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','False']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
+
+        elif session['stage'] == "line_trace":
+            Basic = ['Basic',[['BB','BasicBlock','True'],
+                                ['BB1','BasicBlock','True'],
+                                ['BB2','BasicBlock','True'],
+                                ['BasicBlockHeavy','Heavy Block','True']]]
+            
+            Advance = ['Advance',[['EdgeBlock1','Edge 1','True'],
+                                ['EdgeBlock2','Edge 2','True'],
+                                ['HalfBlock','Edge 3','True'],
+                                ['BasicBlock-1','Advance Block','True'],
+                                ['BasicBlock-2','Advance Block','True'],
+                                ['BasicBlock-3','Advance Block','True']]]
+        
+            Wheel = ['Wheel',[['Tire_big2','Wheel L','True'],
+                            ['TB','Wheel M','True'],
+                            ['TM','Wheel S','True'],
+                            ['BallTire','Ball Wheel','True'],
+                            ['Axle','Axle','True'],
+                            ['Bearing','Bearing','True'],
+                            ['Bearing_Locked','Fixed axle','True']]]
+
+            Motor = ['Motor',[['MB','Motor big','True'],
+                        ['MN','Motor','True'],
+                        ['MM','Motor mini','True'],
+                        ['SB','Servo large','True'],
+                        ['SM','Servo mini','True'],
+                        ['Solenoid_mini','Solenoid mini','True']]]
+
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 
         elif session['stage'] == "maze":
             Basic = ['Basic',[['BB','BasicBlock','True'],
@@ -253,8 +254,9 @@ def craft():
                                 ['BasicBlock-2','Advance Block','True'],
                                 ['BasicBlock-3','Advance Block','True']]]
         
-            Wheel = ['Wheel',[['TB','Wheel big','True'],
-                            ['TM','Wheel mini','True'],
+            Wheel = ['Wheel',[['Tire_big2','Wheel L','True'],
+                            ['TB','Wheel M','True'],
+                            ['TM','Wheel S','True'],
                             ['BallTire','Ball Wheel','True'],
                             ['Axle','Axle','True'],
                             ['Bearing','Bearing','True'],
@@ -265,7 +267,7 @@ def craft():
                         ['MM','Motor mini','True'],
                         ['SB','Servo large','True'],
                         ['SM','Servo mini','True'],
-                        ['Solenoid_mini','Solenoid mini','False']]]
+                        ['Solenoid_mini','Solenoid mini','True']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
 
@@ -367,4 +369,4 @@ def program():
 
 
 if __name__ == "__main__":
-    app.run(debug=True ,threaded=True)
+    app.run(debug=False ,threaded=True)
