@@ -176,11 +176,15 @@ def index():
 def index_sub():
     if 'login' not in session:
         init_session()
+
     return render_template("index.html")
 
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
+    if 'login' not in session:
+        init_session()
+        return redirect(url_for('login'))
     if session['login'] == 'True':
         if session['stage'] == 'basic':
             Basic = ['Basic',[['BB','BasicBlock','True'],
@@ -307,6 +311,10 @@ def craft():
         return redirect(url_for('login'))    
 @app.route("/mission.html", methods=['POST', 'GET']) 
 def mission():
+    if 'login' not in session:
+        init_session()
+        return redirect(url_for('login'))
+
     if request.method == "GET":
         if session['login'] == 'True':
             return render_template("mission.html")
@@ -325,6 +333,9 @@ def mission():
             
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
+    if 'login' not in session:
+        init_session()
+        return redirect(url_for('login'))
     if session['login'] == 'True':
         missions = []
         Basic = ['basic_','Basic',[
@@ -370,4 +381,4 @@ def program():
 
 
 if __name__ == "__main__":
-    app.run(debug=False ,threaded=True)
+    app.run(debug=True ,threaded=True)

@@ -104,6 +104,7 @@ function MissionFinish(str) {
     if (MissionState) {
         MissionState = false;
         var params = str.split("|");
+        alert(str)
         if (params[0] == "clear") {
             $('.result').text("Clear!");
         } else {

@@ -62,8 +62,8 @@
             location.href = html + "?re=" + location.href;
         }
 
-        rnd = localStorage.getItem("robo3");
-        if (!rnd) {
+        rn = localStorage.getItem("lastRobot");
+        if (!rn) {
             location.href = {{url_for("craft")|tojson}};
         }
         sn = localStorage.getItem("lastScript");

@@ -54,7 +54,7 @@
         
         
         {%if session['ver'] == "free"%}
-        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="location.href = '/'">
+        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="history.back();">
         <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
         {%elif session['ver'] == "pro"%}
@@ -94,7 +94,7 @@
             rn = $(".robotName").val();
             localStorage.setItem("lastRobot",rn);
             onClickButton("SaveJson");
-            location.href = {{url_for('index')|tojson}};
+            history.back();
         }
 
         $(document).ready(function() {

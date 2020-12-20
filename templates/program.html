@@ -17,6 +17,14 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+</head>
+
+<body>
+</body>
+</html>
+
 </head>
 
 <body>
@@ -28,11 +36,13 @@
     <div class="window">
         <div id="container" class="monaco"></div>
         <div class="LTicons">
-            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
+            
             {%if session['ver'] == "free"%}
+            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="localStorage.setItem('script', editor.getValue());Back();">
             <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="localStorage.setItem('script', editor.getValue());Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
             {% elif session['ver'] == "pro"%}
+            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="SaveScript();Back();">
             <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript();Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
             {%endif%}
@@ -73,6 +83,15 @@
         </div>
 
         <div class="func">
+            <a onclick="cp('Robot.Solenoid(,)');" class="funcbtn">Robot.Solenoid(name,switch)</a>
+            <p>Function to operate a Solenoid. You can set a Solenod status</p>
+            <ul>
+                <li>name (string) :Motor Name</li>
+                <li>status (bool) :True or False</li>
+            </ul>
+        </div>
+
+        <div class="func">
             <a onclick="cp('Robot.CSRead()');" class="funcbtn">Robot.CSRead(name)</a>
             <p>Function to read a Color Sensor. Color Sensor measures the blightness.</p>
             <ul>
@@ -96,6 +115,8 @@
                 <li>value (int) : time to sleep (second) </li>
             </ul>
         </div>
+
+        
     </div>
     {%if session['ver'] == "pro"%}
     <div class="selectWindow">
@@ -113,14 +134,11 @@
     {%endif%}
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
-        
-
-        function Back() {
+        function Back(){
             sn = $(".scriptName").val();
             localStorage.setItem("lastScript",sn);
-            location.href = {{url_for('index')|tojson}};
+            history.back();
         }
-
         $(document).ready(function() {
 
             $(window).keydown(function(event) {

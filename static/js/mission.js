@@ -1,10 +1,14 @@
-var missionData = [];
+let missionData = [];
 
-for (key in localStorage) {
-    if (key == "MissionDataContainer") {
-        var json = localStorage.getItem(key);
-        missionData = JSON.parse(json);
-    }
+var j = localStorage.getItem("MissionDataContainer");
+if (j) {
+    missionData = JSON.parse(j);
+}
+
+
+function MDLoad() {
+    var json = localStorage.getItem("MissionDataContainer");
+    missionData = JSON.parse(json);
 }
 
 function MDSave() {
@@ -13,19 +17,17 @@ function MDSave() {
 }
 
 function SaveResult(mname, result, time, meta) {
+    MDLoad();
     for (i = 0; i < missionData.length; i++) {
         if (missionData[i].name == mname) {
             if (missionData[i].rlt == "faild") {
                 missionData[i].rlt = result;
                 missionData[i].time = time;
                 missionData[i].m = meta;
-            } else {
-                if (result == "clear") {
-                    if (Number(missionData[i].time) < Number(time)) {
-                        missionData[i].rlt = result;
-                        missionData[i].time = time;
-                        missionData[i].m = meta;
-                    }
+            } else if (result == "clear") {
+                if (Number(missionData[i].time) < Number(time)) {
+                    missionData[i].time = time;
+                    missionData[i].m = meta;
                 }
             }
             MDSave();
