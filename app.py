@@ -120,22 +120,25 @@ def logout():
 #Stripe
 @app.route('/payment')
 def payment():
-    checkout_session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
-        line_items=[{
-            'price':'price_1HyzxCKTMlPLG6E8jslrh1hc',
-            'quantity':1,
-        }],
-        mode='payment',
-        success_url= url_for('payed',_external=True) + '?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url = url_for('index',_external=True),
-    )
-    session['StripeID'] = checkout_session['id']
-    return render_template(
-        "payment.html",
-        checkout_session_id = checkout_session['id'],
-        checkout_public_key = db.PUBLISHABLE_KEY
+    if 'login' in session and session['login'] == 'True' and session['ver'] == "free":
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price':'price_1HyzxCKTMlPLG6E8jslrh1hc',
+                'quantity':1,
+            }],
+            mode='payment',
+            success_url= url_for('payed',_external=True) + '?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url = url_for('index',_external=True),
         )
+        session['StripeID'] = checkout_session['id']
+        return render_template(
+            "payment.html",
+            checkout_session_id = checkout_session['id'],
+            checkout_public_key = db.PUBLISHABLE_KEY
+            )
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/payed')
