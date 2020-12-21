@@ -227,6 +227,7 @@
             key = $('.scriptName').val();
             key = "S_" + key
             localStorage.setItem(key, editor.getValue());
+            localStorage.setItem("lastScript",key);
         }
 
         if(localStorage.getItem("lastScript")){
