@@ -70,6 +70,12 @@
         if(!sn){
             location.href = {{url_for("program")|tojson}};
         }
+
+        window.onpageshow = function(event) {
+	        if (event.persisted) {
+		        window.location.reload();
+	        }
+        };
     </script>
     <script src="/static/js/generalJS.js"></script>
 </body>

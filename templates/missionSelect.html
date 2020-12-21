@@ -18,8 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
 </head>
 
-<body  style="-webkit-user-select: none; -khtml-user-select: none; -ms-user-select: none; -moz-user-select: none; user-select: none;"
-      onselectstart="return false;">
+<body style="-webkit-user-select: none; -khtml-user-select: none; -ms-user-select: none; -moz-user-select: none; user-select: none;" onselectstart="return false;">
     <div class="LTicons">
         <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
     </div>
@@ -55,23 +54,24 @@
         let line_clear = 0;
         let maze_clear = 0;
         var mjson = JSON.parse(localStorage.getItem("MissionDataContainer"));
-        for (var m in mjson) {
 
-            $("#" + mjson[m].name).find('#tim').text("time : " + mjson[m].time);
-            $("#" + mjson[m].name).find('#rlt').text(mjson[m].rlt);
+        for (var key in mjson) {
+            m = mjson[key];
+            $("#" + key).find('#tim').text("time : " + m["time"]);
+            $("#" + key).find('#rlt').text(m["rlt"]);
 
-            if (mjson[m].rlt == "clear") {
-                $("#" + mjson[m].name).find('.MissionImage').css('background', 'lightgreen');
-                $("#" + mjson[m].name).find('#rlt').css("color", "green");
+            if (m["rlt"] == "clear") {
+                $("#" + key).find('.MissionImage').css('background', 'lightgreen');
+                $("#" + key).find('#rlt').css("color", "green");
 
-                if (mjson[m].name.indexOf("basic") > -1) basic_clear++;
-                if (mjson[m].name.indexOf("line") > -1) line_clear++;
-                if (mjson[m].name.indexOf("maze") > -1) maze_clear++;
+                if (key.indexOf("basic") > -1) basic_clear++;
+                if (key.indexOf("line") > -1) line_clear++;
+                if (key.indexOf("maze") > -1) maze_clear++;
 
             }
-            if (mjson[m].rlt == "failed") {
-                $("#" + mjson[m].name).find('.MissionImage').css('background', 'red');
-                $("#" + mjson[m].name).find('#rlt').css("color", "red");
+            if (m["rlt"] == "failed") {
+                $("#" + key).find('.MissionImage').css('background', 'red');
+                $("#" + key).find('#rlt').css("color", "red");
             }
         }
         $(".basic_stage").find("progress").val((basic_clear / 4 * 100).toString());
@@ -92,7 +92,7 @@
             centerMode: true,
             dots: true,
         });
-    
+
         function makeURL(missionName) {
             if (missionName.indexOf("line_tracking") > -1) {
                 if ((basic_clear / 4 * 100) <= 60) {
@@ -104,8 +104,9 @@
                     return;
                 }
             }
-            location.href = "/mission.html?m="+missionName;
+            location.href = "/mission.html?m=" + missionName;
         }
+
         function Back() {
             location.href = "index.html";
         }

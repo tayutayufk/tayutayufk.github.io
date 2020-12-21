@@ -1,4 +1,4 @@
-let missionData = [];
+let missionData = {};
 
 var j = localStorage.getItem("MissionDataContainer");
 if (j) {
@@ -8,7 +8,7 @@ if (j) {
 
 function MDLoad() {
     var json = localStorage.getItem("MissionDataContainer");
-    missionData = JSON.parse(json);
+    if (json) { missionData = JSON.parse(json); }
 }
 
 function MDSave() {
@@ -18,25 +18,36 @@ function MDSave() {
 
 function SaveResult(mname, result, time, meta) {
     MDLoad();
-    for (i = 0; i < missionData.length; i++) {
-        if (missionData[i].name == mname) {
-            if (missionData[i].rlt == "faild") {
-                missionData[i].rlt = result;
-                missionData[i].time = time;
-                missionData[i].m = meta;
-            } else if (result == "clear") {
-                if (Number(missionData[i].time) < Number(time)) {
-                    missionData[i].time = time;
-                    missionData[i].m = meta;
+    if (missionData) {
+        if (mname in missionData) {
+            m = missionData[mname];
+
+            if (result == "clear") {
+                if (m["rlt"] == "clear" && Number(m["time"]) < Number(time)) {
+                    m["time"] = time
+                    m["m"] = meta
+                    missionData[mname] = m
+                    MDSave();
+                    return;
+                } else {
+                    m["rlt"] = result;
+                    m["time"] = time
+                    m["m"] = meta
+                    missionData[mname] = m
+                    MDSave();
+                    return;
                 }
             }
+        } else {
+            missionData[mname] = { "rlt": result, "time": time, "m": meta };
             MDSave();
             return;
         }
+    } else {
+        missionData[mname] = { "rlt": result, "time": time, "m": meta };
+        MDSave();
+        return;
     }
-    m = { "name": mname, "rlt": result, "time": time, "m": meta };
-    missionData.push(m);
-    MDSave();
     return;
 }
 

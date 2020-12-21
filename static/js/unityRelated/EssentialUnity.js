@@ -98,13 +98,13 @@ function MissionStart() {
         gameInstance.SendMessage('GameDirector', 'Move');
         runit();
     }
+
 }
 
 function MissionFinish(str) {
     if (MissionState) {
         MissionState = false;
         var params = str.split("|");
-        alert(str)
         if (params[0] == "clear") {
             $('.result').text("Clear!");
         } else {
@@ -112,7 +112,7 @@ function MissionFinish(str) {
             $('.result').css({ 'color': 'red' })
         }
 
-        if (params.length > 1) {
+        if (params) {
             $('.RltTime').text("Time : " + params[1]);
             $('.RltDes').text(params[3] + "!!!");
 
@@ -125,14 +125,4 @@ function MissionFinish(str) {
 
 function unityError(code) {
     alert(code)
-}
-
-function getParam(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
