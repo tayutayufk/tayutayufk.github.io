@@ -10,7 +10,8 @@ function builtinRead(x) {
 }
 
 function runit() {
-    var prog = localStorage.getItem("script");
+    sn = localStorage.getItem("lastScript");
+    var prog = localStorage.getItem("S_" + sn);
     var mypre = document.getElementById("output");
     mypre.innerHTML = '';
     Sk.pre = "output";

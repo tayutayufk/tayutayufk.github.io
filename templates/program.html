@@ -142,14 +142,12 @@
         $(document).ready(function() {
             sn = localStorage.getItem("lastScript");
             if(sn){
-                snd = localStorage.getItem(sn);
+                snd = localStorage.getItem("S_" + sn);
                 setText(snd);
-                alert(snd);
                 $(".scriptName").val(sn);
             }
 
             $(window).keydown(function(event) {
-
                 var code = (event.keyCode ? event.keyCode : event.which);
                 if (!(code == 83 && event.ctrlKey)) return true;
                 event.preventDefault();
@@ -234,6 +232,7 @@
             key = $('.scriptName').val();
             key = "S_" + key
             localStorage.setItem(key, editor.getValue());
+            key = $('.scriptName').val();
             localStorage.setItem("lastScript",key);
         }
 
