@@ -20,19 +20,27 @@ function getValue(name) {
     Sensorflag = false;
     SensorName = name;
 
-    if (name.indexOf("CS") != -1) {
+    if (name.indexOf("CS_") != -1) {
+        name = name.slice(3);
+        SensorName = name;
         gameInstance.SendMessage('GameDirector', 'ReadCS', name);
-    }
-    if (name.indexOf("RF") != -1) {
+    } else if (name.indexOf("RF_") != -1) {
+        name = name.slice(3);
+        SensorName = name;
         gameInstance.SendMessage('GameDirector', 'ReadRF', name);
+    } else if (name.indexOf("M_") != -1) {
+        name = name.slice(2);
+        SensorName = name;
+        gameInstance.SendMessage('GameDirector', 'ReadM', name);
     }
 
 
     let to = setTimeout(function() {
         Sensorflag = true;
     }, 500);
-    while (!Sensorflag)
+    while (!Sensorflag) {
         clearTimeout(to);
+    }
     //console.log(SensorData);
     return SensorData;
 }
@@ -40,7 +48,7 @@ function getValue(name) {
 function ReturnValueJS(data) {
 
     let strings = data.split('|');
-    //console.log(data);
+    console.log(strings);
     if (strings[0] == SensorName) {
         Sensorflag = true;
         SensorData = Number(strings[1]);

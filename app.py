@@ -172,7 +172,7 @@ def favicon():
 def index():
     if 'login' not in session:
         init_session()
-    
+    session['login'] = 'True'
     return render_template("index.html")
 
 @app.route("/index.html")
