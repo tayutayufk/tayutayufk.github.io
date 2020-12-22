@@ -140,6 +140,12 @@
             history.back();
         }
         $(document).ready(function() {
+            sn = localStorage.getItem("lastScript");
+            if(sn){
+                snd = localStorage.getItem(sn);
+                setText(snd);
+                $(".scriptName").val(sn);
+            }
 
             $(window).keydown(function(event) {
 
