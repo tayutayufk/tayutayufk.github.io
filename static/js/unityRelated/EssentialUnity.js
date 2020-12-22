@@ -48,6 +48,7 @@ function getValue(name) {
 function ReturnValueJS(data) {
 
     let strings = data.split('|');
+    console.log(strings);
     if (strings[0] == SensorName) {
         Sensorflag = true;
         SensorData = Number(strings[1]);
