@@ -94,7 +94,12 @@
         
         function Back() {
             rn = $(".robotName").val();
-            localStorage.setItem("lastRobot",rn);
+            if(rn){
+                localStorage.setItem("lastRobot",rn);
+            }else{
+                localStorage.setItem("lastRobot","robo3");
+            }
+            
             onClickButton("SaveJson");
             history.back();
         }
@@ -114,6 +119,7 @@
             rn = "R_" + $(".robotName").val();
             rnd = localStorage.getItem("robo3");
             localStorage.setItem(rn,rnd);
+            localStorage.setItem("lastRobot",$(".robotName").val());
             Hopup('Save');
         }
         function newRobot(){
@@ -137,8 +143,8 @@
             $(".selectWindow").fadeOut("slow");
         }
         function attachRobot(key){
-            rd = localStorage.getItem(key);
-            localStorage.setItem('robo3',rd);
+            rnd = localStorage.getItem(key);
+            localStorage.setItem('robo3',rnd);
             rn = key.substr(2);
             $(".robotName").val(rn);
             closeSelect();

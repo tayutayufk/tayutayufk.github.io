@@ -15,7 +15,7 @@ require(['vs/editor/editor.main'], function() {
 
 
 function LoadScript(pName) {
-    editor.getModel().setValue(localStorage.getItem(pName));
+    editor.getModel().setValue(localStorage.getItem("S_" + pName));
 }
 
 function setText(code) {

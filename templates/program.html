@@ -38,11 +38,11 @@
         <div class="LTicons">
             
             {%if session['ver'] == "free"%}
-            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="localStorage.setItem('script', editor.getValue());Back();">
-            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="localStorage.setItem('script', editor.getValue());Hopup('Save');">
+            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick=";Back();">
+            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="localStorage.setItem('S_script', editor.getValue());localStorage.setItem('lastScript','script');Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
             {% elif session['ver'] == "pro"%}
-            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="SaveScript();Back();">
+            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
             <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript();Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
             {%endif%}
@@ -122,7 +122,7 @@
     <div class="selectWindow">
         <div class="selectTab">
             <a class="close" onclick='$(".selectContent").empty();$(".selectWindow").hide();'>close</a>
-            <a class="close" style="float : left;"onclick='newRobot();'>new</a>
+            <a class="close" style="float : left;"onclick='newScript();'>new</a>
             <a class="close" id="remove" style="float : left;"onclick='ToRemove()'>remove</a>
         </div>
         
@@ -136,7 +136,12 @@
     <script>
         function Back(){
             sn = $(".scriptName").val();
-            localStorage.setItem("lastScript",sn);
+            if(sn){
+                localStorage.setItem("lastScript",sn);
+            }else{
+                localStorage.setItem("lastScript","script");
+            }
+            
             history.back();
         }
         $(document).ready(function() {
@@ -174,7 +179,7 @@
         }
 
 
-        function newRobot() {
+        function newScript() {
             editor.setValue(initText);
             closeSelect();
             localStorage.setItem("script", "");

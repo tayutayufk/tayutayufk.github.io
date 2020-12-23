@@ -79,6 +79,21 @@ function FetchSceneData() {
     if (loc.indexOf("craft") != -1) {
         SceneName = "Craft";
         gameInstance.SendMessage('GameDirector', 'MoveScene', 'Craft');
+
+        rn = localStorage.getItem("lastRobot");
+        rnd = localStorage.getItem("R_" + rn);
+        setTimeout(function() {
+            localStorage.setItem("robo3", rnd);
+            $(".robotName").val(rn);
+        }, 100);
+
+        setTimeout(function() {
+            onClickButton('ReLoad');
+        }, 200);
+
+        setTimeout(function() {
+            onClickButton('LoadJson');
+        }, 300);
     }
     return SceneName;
 
