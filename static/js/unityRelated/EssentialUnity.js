@@ -82,9 +82,10 @@ function FetchSceneData() {
 
         rn = localStorage.getItem("lastRobot");
         rnd = localStorage.getItem("R_" + rn);
+        //alert(rnd);
         setTimeout(function() {
             localStorage.setItem("robo3", rnd);
-            $(".robotName").val(rn);
+            //$(".robotName").val(rn);
         }, 100);
 
         setTimeout(function() {
@@ -116,8 +117,7 @@ function MissionStart() {
         MissionState = true;
         var StartShade = document.getElementById("shade");
         StartShade.style.display = "none";
-        var outputdisplay = document.getElementById("output");
-        outputdisplay.style.display = "block";
+        displayBtn();
         gameInstance.SendMessage('GameDirector', 'Move');
         runit();
     }

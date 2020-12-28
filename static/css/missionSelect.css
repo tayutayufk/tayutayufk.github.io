@@ -30,3 +30,9 @@
     margin-left: 25vw;
     margin-top: 10vw;
 }
+
+.back {
+    position: absolute;
+    margin-top: -10vh;
+    position: fixed;
+}

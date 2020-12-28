@@ -11,7 +11,6 @@ from email.mime.text import MIMEText
 import smtplib
 
 import hashlib
-from email.mime.text import MIMEText
 
 import urllib.parse
 import json
@@ -172,7 +171,8 @@ def favicon():
 def index():
     if 'login' not in session:
         init_session()
-
+    #session['login'] = 'True'
+    #session['ver'] = 'free'
     return render_template("index.html")
 
 @app.route("/index.html")

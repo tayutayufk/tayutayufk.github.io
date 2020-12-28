@@ -36,13 +36,22 @@
     </div>
     <div class="window">
         <div id="gameContainer" class="GameScreen MissionScreen"></div>
-        <div class="LTicons">
+        <div class="LTicons" style="display:none;">
             <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" style="fill: rgb(200,200, 200);" onclick="location.href='./missionSelect.html'">
             <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="Move('craft.html');">
             <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="Move('program.html');">
         </div>
     </div>
-    <textarea class="PyConsole" id="output" style="display: none;"></textarea>
+    <div class="tools">
+        <div class="timer" style="display:row;">
+            <p class="time" style="float:left">00:00</p>
+            <input type="button" value="reset" onclick="closeConsole();" style="float:right">
+            <input type="button" value="stop" onclick="closeConsole();" style="float:right">
+        </div>
+        
+        <textarea class="PyConsole" id="output"></textarea>
+    </div>
+    
 
     <div class="ScoreWindow">
         <div class="Score">
@@ -58,6 +67,16 @@
     </div>
 
     <script>
+        function displayBtn(){
+            $('.tools').fadeIn(50);
+            $('.LTicons').fadeIn(50);
+        }
+        function displayConsole(){
+            $('.tools').fadeIn(50);
+        }
+        function closeConsole(){
+            $('.PyConsole').fadeOut(50);
+        }
         function Move(html) {
             location.href = html + "?re=" + location.href;
         }
@@ -76,6 +95,7 @@
 		        window.location.reload();
 	        }
         };
+
     </script>
     <script src="/static/js/generalJS.js"></script>
 </body>

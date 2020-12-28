@@ -14,20 +14,41 @@
     z-index: 15;
 }
 
-.PyConsole {
+.tools {
     position: absolute;
     margin-top: 60vh;
     margin-left: 75vw;
     width: 25vw;
-    height: 40vh;
-    border: solid 10px rgb(83, 82, 82);
-    background-color: rgb(134, 133, 133);
+    height: 45vh;
+    background-color: gray;
+    z-index: 13;
+    display: none;
+}
+
+.PyConsole {
+    height: 100%;
+    width: 100%;
+    border: solid 4px gray;
+    background-color: black;
+    color: greenyellow;
     font-size: 20;
     z-index: 13;
 }
 
 .PyConsole::-webkit-scrollbar {
     display: none;
+}
+
+.timer {
+    width: 100%;
+    height: 20%;
+}
+
+.timerbtn {
+    height: 100%;
+    color: white;
+    border-radius: 5px;
+    border: solid 2px;
 }
 
 .ScoreWindow {
