@@ -56,13 +56,13 @@
         
         
         {%if session['ver'] == "free"%}
-        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="history.back();">
-        <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
-        <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
+        <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="history.back();">
+        <input class="icon" type="image" src="/static/img/svg/save.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
+        <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
         {%elif session['ver'] == "pro"%}
-        <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" onclick="Back();">
-        <input class="icon" type="image" src="/static/img/svg/save_white.svg" name="save" onclick="SaveRobot();Hopup('Save');">
-        <input class="icon" type="image" src="/static/img/svg/load_white.svg" onclick="openSelect()">
+        <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
+        <input class="icon" type="image" src="/static/img/svg/save.svg" name="save" onclick="SaveRobot();Hopup('Save');">
+        <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
         {%endif%}
         <input class="icon" type="image" src="/static/img/svg/eye.svg" onclick="gameInstance.SendMessage('GameDirector','ModuleVisualizer');">
     </div>

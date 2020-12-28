@@ -5,6 +5,10 @@ body {
     background-color: whitesmoke;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .window {
     padding: none;
     position: absolute;
@@ -87,6 +91,13 @@ body {
     padding: 5px;
     width: 3vw;
     height: 3vw;
+    z-index: 11;
+}
+
+.miniicon {
+    padding: 2.5px;
+    width: 2vw;
+    height: 2vw;
     z-index: 11;
 }
 

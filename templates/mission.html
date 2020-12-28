@@ -6,7 +6,6 @@
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
 
     <!--CSS-->
-    
     <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
     <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
     <link rel="stylesheet" type="text/css" href="/static/css/unity.css">
@@ -37,18 +36,19 @@
     <div class="window">
         <div id="gameContainer" class="GameScreen MissionScreen"></div>
         <div class="LTicons" style="display:none;">
-            <input class="icon" type="image" src="/static/img/svg/arrow_white.svg" style="fill: rgb(200,200, 200);" onclick="location.href='./missionSelect.html'">
+            <input class="icon" type="image" src="/static/img/svg/arrow.svg" style="fill: rgb(200,200, 200);" onclick="location.href='./missionSelect.html'">
             <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="Move('craft.html');">
             <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="Move('program.html');">
+            <input class="icon" type="image" src="/static/img/svg/console.svg" onclick="displayConsole();">
         </div>
     </div>
+
+
+
     <div class="tools">
         <div class="timer" style="display:row;">
-            <p class="time" style="float:left">00:00</p>
-            <input type="button" value="reset" onclick="closeConsole();" style="float:right">
-            <input type="button" value="stop" onclick="closeConsole();" style="float:right">
+            <input class="miniicon" type="image" src="/static/img/svg/close.svg" style="float:right" onclick="closeConsole();">
         </div>
-        
         <textarea class="PyConsole" id="output"></textarea>
     </div>
     
@@ -61,7 +61,6 @@
             <p class="RltTime">00:00:00</p>
             <p class="RltDes"></p>
             <a href="missionSelect.html" class="btn06 next">Next</a>
-            
         </div>
         
     </div>
@@ -75,7 +74,7 @@
             $('.tools').fadeIn(50);
         }
         function closeConsole(){
-            $('.PyConsole').fadeOut(50);
+            $('.tools').fadeOut(50);
         }
         function Move(html) {
             location.href = html + "?re=" + location.href;
