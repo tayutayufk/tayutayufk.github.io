@@ -85,7 +85,7 @@ function FetchSceneData() {
         //alert(rnd);
         setTimeout(function() {
             localStorage.setItem("robo3", rnd);
-            //$(".robotName").val(rn);
+            $(".robotName").val(rn);
         }, 100);
 
         setTimeout(function() {
@@ -130,14 +130,17 @@ function MissionFinish(str) {
         var params = str.split("|");
         if (params[0] == "clear") {
             $('.result').text("Clear!");
+            $('.RltDes').text("Congratulations!");
+
         } else {
             $('.result').text("Faild");
+            $('.RltDes').text("Fall out.");
             $('.result').css({ 'color': 'red' })
         }
 
         if (params) {
             $('.RltTime').text("Time : " + params[1]);
-            $('.RltDes').text(params[3] + "!!!");
+            $('.RltDes').text("Fall out!");
 
         }
         $('.ScoreWindow').show();

@@ -47,6 +47,7 @@
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
             {%endif%}
             <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
+            <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="toCraft();">
         </div>
     </div>
 
@@ -157,6 +158,15 @@
                 localStorage.setItem("lastScript","script");
             }
             location.href = {{url_for('missionSelect')|tojson}}
+        }
+        function toCraft(){
+            sn = $(".scriptName").val();
+            if(sn){
+                localStorage.setItem("lastScript",sn);
+            }else{
+                localStorage.setItem("lastScript","script");
+            }
+            location.href = {{url_for('craft')|tojson}}
         }
         $(document).ready(function() {
             sn = localStorage.getItem("lastScript");
