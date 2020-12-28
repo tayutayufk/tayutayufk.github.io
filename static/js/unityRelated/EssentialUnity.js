@@ -31,7 +31,7 @@ function getValue(name) {
     } else if (name.indexOf("M_") != -1) {
         name = name.slice(2);
         SensorName = name;
-        gameInstance.SendMessage('GameDirector', 'ReadM', name);
+        gameInstance.SendMessage('GameDirector', 'RotaryEncoder', name);
     }
 
 

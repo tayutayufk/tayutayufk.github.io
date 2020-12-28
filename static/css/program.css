@@ -28,7 +28,7 @@
     margin-top: 1vh;
     margin-left: 76vw;
     width: 23vw;
-    height: 73vh;
+    height: 98vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -73,24 +73,6 @@
     border-radius: 5px;
     background-color: whitesmoke;
     transition-duration: 0.2s;
-}
-
-.RobotRef {
-    background-color: #fff;
-    padding: 12px;
-    position: absolute;
-    margin-top: 76vh;
-    margin-left: 76vw;
-    width: 23vw;
-    height: 23vh;
-    border-radius: 10px;
-    box-shadow: 2px 3px 12px 1px rgba(10, 1, 1, 0.61) inset;
-    overflow-y: scroll;
-}
-
-.RobotRef::-webkit-scrollbar {
-    display: none;
-    padding: 5px;
 }
 
 .RefPart {

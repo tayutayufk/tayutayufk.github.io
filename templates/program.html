@@ -51,10 +51,6 @@
         </div>
     </div>
 
-    <div class="RobotRef" style="display: flex;flex-direction:column">
-
-    </div>
-
     <div class="document" id="editorVue">
 
         <div class="func">
@@ -206,8 +202,8 @@
         function newScript() {
             editor.setValue(initText);
             closeSelect();
-            localStorage.setItem("script", "");
             $(".scriptName").val("script");
+            Reflesh();
         }
 
         function openSelect() {

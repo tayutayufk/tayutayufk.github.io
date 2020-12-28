@@ -28,7 +28,7 @@ def init_session():
     session['login'] = 'False'
     session['mail'] = ''
     session['pwd'] = ''
-    session['ver'] = 'free'
+    session['ver'] = 'pro'
     session['warn'] = ''
     session['stage'] = 'maze'
 
@@ -95,9 +95,10 @@ def check():
 
     data = db.search_fromMail(id_token['email'])
     if len(data) == 0:
+        init_session()
         seed = db.google_id + id_token['email']
         pwd = hashlib.md5(seed.encode()).hexdigest()
-        if db.insert(id_token['email'],pwd,"free"):
+        if db.insert(id_token['email'],pwd,session['ver']):
             init_session()
             session['mail'] = id_token['email']
             session['pwd'] = pwd

@@ -21,10 +21,10 @@ body::-webkit-scrollbar {
 
 .logo {
     border-radius: 30px;
-    background: #fff;
     padding: 10px;
     height: 30vh;
     margin: 5vh 10vh;
+    visibility: hidden;
 }
 
 .mainbtn {

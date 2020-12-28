@@ -22,6 +22,14 @@ function setText(code) {
     initText = code;
 }
 
+function Reflesh() {
+    var code = [
+        'import Robot',
+        'from time import sleep'
+    ].join('\n');
+    editor.getModel().setValue(code);
+}
+
 function cp(string) {
     var tmp = document.createElement("div");
     var pre = document.createElement('pre');
