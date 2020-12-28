@@ -39,7 +39,7 @@
             <input class="icon" type="image" src="/static/img/svg/arrow.svg" style="fill: rgb(200,200, 200);" onclick="location.href='./missionSelect.html'">
             <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="Move('craft.html');">
             <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="Move('program.html');">
-            <input class="icon" type="image" src="/static/img/svg/console.svg" onclick="displayConsole();">
+            <input class="icon" type="image" src="/static/img/svg/console.svg" onclick="displayConsole();" id="conTog">
         </div>
     </div>
 
@@ -72,14 +72,17 @@
         }
         function displayConsole(){
             $('.tools').fadeIn(50);
+            $("#conTog").hide();
         }
         function closeConsole(){
             $('.tools').fadeOut(50);
+            $("#conTog").fadeIn(50);
         }
         function Move(html) {
             location.href = html + "?re=" + location.href;
         }
 
+        $("#conTog").hide();
         rn = localStorage.getItem("lastRobot");
         if (!rn) {
             location.href = {{url_for("craft")|tojson}};
@@ -95,6 +98,12 @@
 	        }
         };
 
+        const scr =  function(){
+            $(".PyConsole").scrollTop($(".PyConsole")[0].scrollHeight );   
+        }
+        setInterval(scr, 100);
+        
+        
     </script>
     <script src="/static/js/generalJS.js"></script>
 </body>

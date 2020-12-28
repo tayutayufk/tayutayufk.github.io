@@ -46,6 +46,7 @@
             <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript();Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
             {%endif%}
+            <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
         </div>
     </div>
 
@@ -134,6 +135,10 @@
     {%endif%}
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
+        be_url = document.referrer;
+        if(be_url.indexOf("mission") > -1){
+            $("#run").hide();
+        }
         function Back(){
             sn = $(".scriptName").val();
             if(sn){
@@ -143,6 +148,15 @@
             }
             
             history.back();
+        }
+        function toMission(){
+            sn = $(".scriptName").val();
+            if(sn){
+                localStorage.setItem("lastScript",sn);
+            }else{
+                localStorage.setItem("lastScript","script");
+            }
+            location.href = {{url_for('missionSelect')|tojson}}
         }
         $(document).ready(function() {
             sn = localStorage.getItem("lastScript");

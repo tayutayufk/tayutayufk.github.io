@@ -63,8 +63,10 @@
         <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
         <input class="icon" type="image" src="/static/img/svg/save.svg" name="save" onclick="SaveRobot();Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
+        
         {%endif%}
         <input class="icon" type="image" src="/static/img/svg/eye.svg" onclick="gameInstance.SendMessage('GameDirector','ModuleVisualizer');">
+        <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
     </div>
     <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="/static/img/svg/eraser.svg" onclick="onClickButton('Remove')">
     
@@ -87,6 +89,11 @@
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
+        be_url = document.referrer;
+        if(be_url.indexOf("mission") > -1){
+            $("#run").hide();
+        }
+
         lazyload();
         function PS(str) {
             gameInstance.SendMessage('GameDirector', 'PS', str);
@@ -102,6 +109,17 @@
             
             onClickButton("SaveJson");
             history.back();
+        }
+        function toMission(){
+            rn = $(".robotName").val();
+            if(rn){
+                localStorage.setItem("lastRobot",rn);
+            }else{
+                localStorage.setItem("lastRobot","robo3");
+            }
+            
+            onClickButton("SaveJson");
+            location.href = {{url_for('missionSelect')|tojson}}
         }
 
         $(document).ready(function() {
