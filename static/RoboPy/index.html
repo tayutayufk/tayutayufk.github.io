@@ -1,0 +1,135 @@
+<!DOCTYPE html><html>
+    <head><title>RoPE</title>
+    <style>header{width:100%;position:fixed;top:0;left:0;font-size:20px;background:rgba(0, 0, 0 ,0.6);float:hidden;height:75px;z-index:10}
+    .bac{background:rgba(0,0,0,0.6);margin:0px;box-shadow: 0 0 8px #A0A0A0}
+    .bac:hover{background:silver}
+    .br1{line-height:10px}
+    .bgc1{background:#ffe2cb;margin:0px;text-align:center}
+    .bcg2{background:#bffd84;margin:0px;text-align:center}
+    .dp{display:inline-block}
+    .bu{display:inline-block;background:rgba(0,0,0,1);height:40px;width:200px;font-size:25px;box-shadow: 0 0 8px}
+    .bu:hover{background: silver}
+    .tb{width:80%;float:left}
+    .bold{font-weight: bold;color:red}
+    .fh{float:hidden;width:50%}
+    .fl{float:left;margin-top:30px}
+    .mt1{margin-top:-60px}
+    .exp1{margin-top:10px}
+    a:link,a:visited,a:hover,a:active{color:#FFFBF8}
+    .bar1{height:55px;visibility: hidden}
+    .bar{height:55px}
+    .ss1{height:160px;width:282px}
+    .ss2{height:350px;width:564px;}
+    .scr{overflow:scroll}
+    ::-webkit-scrollbar{width:0px;background:transparent}
+    .table1{width: 8%;height:10px}
+    .center{text-align:center}
+    .lb1{background:rgba(0, 0, 0 ,0.2);color:White;bottom:0;margin:0;padding:0;font-size:1.5rem;box-shadow: 0 0 8px #A0A0A0}
+    .lb1:hover{background: silver}
+    .lb2{background:rgba(0, 0, 0 ,0.2);color:White;bottom:0;margin:0;padding:0;font-size:1.5rem;box-shadow: 0 0 8px #A0A0A0}
+    body{font-family:"IPAexゴシック";width:75%;margin-left:auto;margin-right:auto}
+    .slideBox{overflow:hidden;position:relative}
+    .item1{opacity:0;width:100%;height:100%;object-fit:cover;position:absolute;left:0;top:0;-webkit-animation: anime 28s 0s infinite;animation: anime 28s 0s infinite}
+    .item1:nth-of-type(2) {-webkit-animation-delay:7s;animation-delay:7s}
+    .item1:nth-of-type(3) {-webkit-animation-delay:14s;animation-delay:14s}
+    .item1:nth-of-type(4) {-webkit-animation-delay:21s;animation-delay:21s}
+    @keyframes anime{0%{opacity:0}30%{opacity:1}35%{opacity:1}50%{opacity:0;z-index:9}100%{opacity:0;}}
+    @-webkit-keyframes anime {0%{opacity:0}30%{opacity:1}35%{opacity:1}50%{opacity:0;z-index:9}100%{opacity:0}}
+    .slideBox2{overflow:hidden;position:relative}
+    .item2{opacity:0;width:100%;height:100%;object-fit:cover;position:absolute;left:0;top:0;-webkit-animation: anime 20s 0s infinite;animation: anime 20s 0s infinite}
+    .item2:nth-of-type(2) {-webkit-animation-delay:5s;animation-delay:5s}
+    .item2:nth-of-type(3) {-webkit-animation-delay:10s;animation-delay:10s}
+    .item2:nth-of-type(4) {-webkit-animation-delay:15s;animation-delay:15s}
+    @keyframes anime{0%{opacity:0}30%{opacity:1}35%{opacity:1}50%{opacity:0;z-index:9}100%{opacity:0;}}
+    @-webkit-keyframes anime {0%{opacity:0}30%{opacity:1}35%{opacity:1}50%{opacity:0;z-index:9}100%{opacity:0}}
+
+.afm{background:#000;color:#FFF;z-index:10;box-shadow: 0 0 8px #A0A0A0;margin-left:auto;margin-right:auto}
+
+    </style>
+    </head>
+    <body class="scr" scroll="no">
+    <header>
+        <table class="tb" align="left" frame="void"><tr>
+            <td class="table1 mainback br1" valign="top"><center><a href="https://tayutayufk.github.io/"><img class="exp1" src="RoPE_W.png" alt="RoPE" width="160"　height="30"></a></center></td>
+            <td class="table1"><h1 class="br1"></h1><center><h1 class="lb1"><a href="#movie" style="text-decoration:none">PAGE TOP</a></h1></center></td>
+            <td class="table1"><h1 class="br1"></h1><center><h1 class="lb1"><a href="#explain" style="text-decoration:none">Overview</a></h1></center></td>
+            <td class="table1"><h1 class="br1"></h1><center><h1 class="lb1"><a href="" style="text-decoration:none">Tutorial</a></h1></center></td>
+            <td class="table1"><h1 class="br1"></h1><center><h1 class="lb1"><a href="" style="text-decoration:none"> Manual </a></h1></center></td>
+        </tr></table>
+        <h1 class="fl"><center><h2 class="lb2" width="100px"><div onclick="obj=document.getElementById('menu1').style; obj.display=(obj.display=='none')?'block':'none';">
+            <a style="cursor:pointer;">&emsp;Install&emsp;▼</a></div><div id="menu1" style="display:none;clear:both;">
+                <h3 class="bac"><a href="" style="text-decoration:none">PC&emsp;▶</a></h3>
+                <h3 class="bac"><a href="" style="text-decoration:none">iOS&emsp;▶</a></h3>
+                <h3 class="bac"><a href="" style="text-decoration:none">android&emsp;▶</a></h3>
+            </div></h2></center></h1>
+    </header>
+    <h1 class="bar1" id="movie"><hr></h1>
+    <h1 class="center afm" width=90% height="564px"><br><br><br><br><br>under construction<br><br><br><br><br><br><br></h1>
+    <h1 class="center"><br><iframe width=90% height="0" src="https://www.youtube.com/embed/2mcb3w-Ejjo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br></h1>
+    <h1 class="bar" id="explain"><hr></h1>
+    <h1 class="bcg2" id="explain"><br>What is RoPE?</h1><section class="bcg2">
+        <center><div class="slideBox ss2">
+            <img class="item1" src="sc89.png" alt="">
+            <img class="item1" src="sc88.png" alt="">
+            <img class="item1" src="sc90.png" alt="">
+            <img class="item1" src="sc91.png" alt="">
+          </div></center>
+          <h3>RoPE is a project launched to help people become more familiar with the program.<br>
+            This project is designed to enhance the understanding of programming by assembling robots and programs in a virtual space and actually running them.
+          </h3><br></section>
+          <h1 class="bgc1"><br>Function</h1>
+    <section class="bgc1">
+          <div class="dp"><h2>・Save and road</h2><h3>
+              You can save your robots and programs, saving you from having&emsp;&emsp;&emsp;&emsp;<br>
+               to recreate them over and over again.<br>
+              (We use cookie for this system.)<br><br>
+          </h3></div><div class="ss1 slideBox2 dp" width>
+            <img class="item2" src="./sc118.png" alt="">
+            <img class="item2" src="sc142.png" alt="">
+            <img class="item2" src="sc127.png" alt="">
+            <img class="item2" src="sc128.png" alt="">
+          </div><br><br>
+        </section>
+        <section class="bgc1">
+          <div class="ss1 slideBox2 dp" width>
+            <img class="item2" src="/sc135.png" alt="">
+            <img class="item2" src="/sc136.png" alt="">
+            <img class="item2" src="/sc137.png" alt="">
+            <img class="item2" src=".sc138.png" alt="">
+          </div>
+          <div class="dp"><br><br><h2>・Pointing out</h2><h3>
+              The block preview makes it easy to see where it will be placed.<br>
+              The color change of the block indicates the part that is not <br>
+              connected to the main unit.The error message will show you the <br>
+              error part of the program.
+          </h3></div><br><br><br><br>
+        </section>
+        <section class="bgc1">
+          <div class="dp"><h2>・Missions</h2><h3>
+              We have prepared a variety of missions. They will help you improve&emsp;&emsp;<br>
+               your skills.<br>
+              We are also developing new missions.<br><br></h3></div>
+              <div class="ss1 slideBox2 dp" width>
+                <img class="item2" src="sc130.png" alt="">
+                <img class="item2" src="sc131.png" alt="">
+                <img class="item2" src="sc132.png" alt="">
+                <img class="item2" src="sc133.png" alt="">
+              </div><br><br></section>
+          <h1 class="bgc1">There is more support available<br>
+             in addition to what is listed here.<br>
+            Please try it for yourself!<br><br>
+            <b class="bold">↓　Let's check here!!　↓</b><br><br>
+        </h1>
+    <h1 class="bar" id="install"><hr></h1>
+    <h1>Install</h1>
+    <h2>By installing the app, you can access it more easily. Please choose the one that best suits your environment.</h2>
+    <h1 class="mt1"><center>
+        <h2 class="bu"><a href="" style="text-decoration:none">Android</a></h2>
+        <h2 class="dp">&emsp;&emsp;</h2>
+        <h2 class="bu"><a href="" style="text-decoration:none">iOS</a></h2>
+        <br>
+        <h2 class="bu"><a href="" style="text-decoration:none">PC</a></h2>
+    </center></h1>
+    <footer><br><br></footer>
+</body>
+</html>
