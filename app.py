@@ -60,7 +60,7 @@ def send_mail(to_email,subject,message):
     return
 
 
-@app.route("/RoboPy")
+@application.route('/', host="ropeproject.net")
 def top():
     return app.send_static_file('RoboPy/index.html')
 
