@@ -140,7 +140,7 @@ function MissionFinish(str) {
 
         if (params) {
             $('.RltTime').text("Time : " + params[1]);
-            $('.RltDes').text("Fall out!");
+            
 
         }
         $('.ScoreWindow').show();
