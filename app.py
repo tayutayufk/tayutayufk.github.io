@@ -173,7 +173,7 @@ def favicon():
 def index():
     if 'login' not in session:
         init_session()
-    #session['login'] = 'True'
+    session['login'] = 'True'
     #session['ver'] = 'pro'
     return render_template("index.html")
 
@@ -245,8 +245,8 @@ def craft():
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
-                        ['SB','Servo large','True'],
-                        ['SM','Servo mini','True'],
+                        ['Servomotor_big','Servo large','True'],
+                        ['Servomotor_mini','Servo mini','True'],
                         ['Solenoid_mini','Solenoid mini','True']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
@@ -275,8 +275,8 @@ def craft():
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
-                        ['SB','Servo large','True'],
-                        ['SM','Servo mini','True'],
+                        ['Servomotor_big','Servo large','True'],
+                        ['Servomotor_mini','Servo mini','True'],
                         ['Solenoid_mini','Solenoid mini','True']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
