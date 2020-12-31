@@ -80,6 +80,7 @@ function FetchSceneData() {
         SceneName = "Craft";
         gameInstance.SendMessage('GameDirector', 'MoveScene', 'Craft');
 
+        /*
         rn = localStorage.getItem("lastRobot");
         rnd = localStorage.getItem("R_" + rn);
         //alert(rnd);
@@ -95,6 +96,7 @@ function FetchSceneData() {
         setTimeout(function() {
             onClickButton('LoadJson');
         }, 300);
+        */
     }
     return SceneName;
 
@@ -140,7 +142,7 @@ function MissionFinish(str) {
 
         if (params) {
             $('.RltTime').text("Time : " + params[1]);
-            
+
 
         }
         $('.ScoreWindow').show();
