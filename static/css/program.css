@@ -27,8 +27,8 @@
     position: absolute;
     margin-top: 1vh;
     margin-left: 76vw;
-    width: 23vw;
-    height: 98vh;
+    width: 22vw;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;

@@ -211,20 +211,22 @@ body::-webkit-scrollbar {
     background-color: #000000;
     border: none;
     color: white;
+    text-align: center;
     z-index: 100;
 }
 
 .scriptName {
     position: absolute;
-    margin-top: 2vh;
+    margin-top: -1vh;
     margin-left: 30vw;
     height: 5vh;
     width: 20vw;
     font-size: 3vh;
-    background-color: #000000;
-    border: none;
-    color: white;
+    background-color: white;
+    color: black;
     z-index: 100;
+    text-align: center;
+    box-shadow: 2px 3px 12px 1px rgba(10, 1, 1, 0.61);
 }
 
 .robotName:hover {

@@ -34,15 +34,16 @@
 }
 
 .partimage {
-    border-radius: 20px;
-    padding: 10px;
-    height: 12vh;
-    width: 12vh;
+    border-radius: 2vh;
+    padding: 1vh;
+    height: 13vh;
+    width: 13vh;
 }
 
 .partNam {
+    text-align: center;
     margin-top: 4vh;
-    width: 12vw;
+    width: 10vh;
     font-size: 2vh;
 }
 
