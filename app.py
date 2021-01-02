@@ -167,7 +167,7 @@ def sw():
 def favicon():
    return app.send_static_file('favicon.png')
 
-@app.route("/well-known/assetlinks.json")
+@app.route("/.well-known/assetlinks.json")
 def assetlinks():
     return app.send_static_file('assetlinks.json')
 
