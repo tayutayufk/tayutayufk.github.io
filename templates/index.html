@@ -6,8 +6,12 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RoPE
-    </title>
+    <title>RoPE</title>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+
+    <!--PWA-->
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="apple-touch-icon" href="/static/icon.png" sizes="192x192" />
     <script>
@@ -17,22 +21,8 @@
             });
         }
     </script>
-
-    <script style="display: none;">
-        var gameInstance = UnityLoader.instantiate("gameContainer", "/static/js/unityRelated/Build/WebGLRoPE.json");
-    </script>
-    <style>
-
-    body{
-        background-image:url(./static/img/background.png);
-        background-repeat: no-repeat;
-        background-size: 100% auto;
-        background-position: bottom 0px left 0px;
-    }
-    </style>
     <meta name="google-site-verification" content="LBPmHEexeDWSy8Foo-vfnD_VbelNUkJWWXmq0ZTxJVg" />
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
+    
 </head>
 
 <body style="-webkit-user-select: none; -khtml-user-select: none; -ms-user-select: none; -moz-user-select: none; user-select: none;" onselectstart="return false;">
@@ -51,6 +41,24 @@
     </div>
 
 
+    <div class="selectBack">
+            <div class="selectWindow" style="background-color:rgba(0,0,0,0);">
+                <div class="selectTab">
+                    <a class="close" onclick='$(".selectContent").empty();$(".selectBack").hide();'>close</a>
+                </div>
+                
+                <div class="selectContent" style="display: flex;justify-content: center;align-items: center;font-family:sans-serif;">
+                    <img src="/static/img/white.png " style="width:75%;height:auto;">
+                    <h1>Thank you for visiting RoPE!</h1>
+                    <p>Before starting the game, it is recommended to do the tutorial from the link below.</p>
+                    <a class="btn06 " style="font-size: 3vh;" onclick="window.open('https://roperope.sakura.ne.jp/tutorial/DocTop.html', '_blank')">Tutorial</a>
+                    <p>If you want to know more about the game, please visit the website.</p>
+                    <a class="btn06 " style="font-size: 3vh;" onclick="window.open('https://roperope.sakura.ne.jp', '_blank')">Official site</a>
+
+                </div>
+            </div>
+    </div>
+
     {%if 'login' in session%}
         {%if session['login'] == "True" %}
             <a href="{{url_for('logout')}}" class="btn06 login" style="width:10vw;">LogOut</a>
@@ -63,6 +71,8 @@
             <a href="{{url_for('login')}}" class="btn06 login">LogIn</a>
         {% endif %} 
     {%endif%}
+
+    
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js "></script>
     <script>
@@ -80,10 +90,13 @@
 
         $(".logo").css('visibility','visible').hide().fadeIn(500);
         $(".mainbtn").css('visibility','visible').hide().fadeIn(500);
+
+
+        if (localStorage.length == 0){
+            $(".selectBack").show();
+        }
     </script>
     <script src="/static/js/generalJS.js "></script>
-
-
 </body>
 
 </html>

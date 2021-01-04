@@ -1,8 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
     background-color: whitesmoke;
+    font-family: 'Impact';
+}
+
+p {
+    font-family: sans-serif
 }
 
 body::-webkit-scrollbar {
@@ -41,7 +45,6 @@ body::-webkit-scrollbar {
     display: inline-block;
     color: #000000;
     text-decoration: none;
-    font-family: sans-serif;
     font-size: 2em;
     font-weight: 100;
     padding: 5px;
@@ -58,7 +61,6 @@ body::-webkit-scrollbar {
     display: inline-block;
     color: #000000;
     text-decoration: none;
-    font-family: sans-serif;
     font-size: 2em;
     font-weight: 100;
     -webkit-transition: .2s;
@@ -138,26 +140,35 @@ body::-webkit-scrollbar {
     margin-top: 30px;
 }
 
-.selectWindow {
+.selectBack {
+    display: none;
+    z-index: 100;
     position: absolute;
-    margin-top: 10vh;
-    margin-left: 35vw;
+    margin: 0, 0;
+    padding: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.6);
+}
+
+.selectWindow {
+    margin: 10vh auto;
     height: 80vh;
-    width: 30vw;
+    width: 60vh;
+    max-width: 30vw;
     border-radius: 10px;
     background-color: rgb(65, 65, 65);
-    z-index: 100;
-    display: none;
+    padding: 1vh;
 }
 
 .close {
     float: right;
-    height: 60%;
-    margin: 3% 5px;
-    padding: 10px;
+    height: 80%;
+    padding: 1vh;
     font-size: 2vh;
+    margin: 0 0.5vh;
     color: gray;
-    border-radius: 20px;
+    border-radius: 2vh;
     border: 2px solid;
 }
 
@@ -166,9 +177,9 @@ body::-webkit-scrollbar {
 }
 
 .selectContent {
-    width: 96%;
-    height: 88%;
-    margin-left: 2%;
+    padding: 2vh;
+    width: 100%;
+    height: 93%;
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;
@@ -182,9 +193,8 @@ body::-webkit-scrollbar {
 }
 
 .selectTab {
-    margin-left: 2%;
-    height: 10%;
-    width: 96%;
+    height: 7%;
+    width: 100%;
 }
 
 .selectbtn {
@@ -212,20 +222,20 @@ body::-webkit-scrollbar {
     border: none;
     color: white;
     text-align: center;
-    z-index: 100;
+    z-index: 99;
 }
 
 .scriptName {
     position: absolute;
-    margin-top: -1vh;
+    margin-top: 2vh;
     margin-left: 30vw;
     height: 5vh;
     width: 20vw;
     font-size: 3vh;
     background-color: white;
-    color: black;
-    z-index: 100;
+    border: none;
     text-align: center;
+    z-index: 99;
     box-shadow: 2px 3px 12px 1px rgba(10, 1, 1, 0.61);
 }
 

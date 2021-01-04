@@ -1,0 +1,16 @@
+body {
+    background-image: url(../../static/img/background.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom 0px left 0px;
+}
+
+.Content {
+    margin: 10vh auto;
+    height: 80vh;
+    width: 60vh;
+    max-width: 30vw;
+    border-radius: 10px;
+    background-color: white;
+    padding: 1vh;
+}

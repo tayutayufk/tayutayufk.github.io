@@ -176,15 +176,20 @@ def assetlinks():
 def index():
     if 'login' not in session:
         init_session()
-    #session['login'] = 'True'
+        session['warn'] = 'FirstVisit'
+
+
+    session['login'] = 'True'
     #session['ver'] = 'pro'
+    session['warn'] = ''
     return render_template("index.html")
 
 @app.route("/index.html")
 def index_sub():
     if 'login' not in session:
         init_session()
-
+        session['warn'] = 'FirstVisit'
+    session['warn'] = ''
     return render_template("index.html")
 
 
@@ -390,4 +395,4 @@ def program():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0' ,debug=False ,threaded=True)
+    app.run(host='0.0.0.0' ,debug=True ,threaded=True)
