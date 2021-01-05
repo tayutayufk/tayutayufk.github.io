@@ -228,7 +228,7 @@ def index_sub():
 
             tdatetime = dt.now()
             tstr = tdatetime.strftime('%Y/%m/%d')
-            usname = tstr + 'itch'
+            usname = tstr + 'itch' + str(random.randint(1,10000000))
             pwd = ser_hash = hashlib.sha256(usname.encode()).hexdigest()
             db.insert(usname,pwd,session['ver'])
             return render_template("index.html")
