@@ -30,15 +30,9 @@
         <div id="container" class="monaco"></div>
         <div class="LTicons">
             
-            {%if session['ver'] == "free"%}
-            <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick=";Back();">
-            <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="localStorage.setItem('S_script', editor.getValue());localStorage.setItem('lastScript','script');Hopup('Save');">
-            <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="LoadScript('script');Hopup('Load');">
-            {% elif session['ver'] == "pro"%}
             <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
             <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript();Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
-            {%endif%}
             <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
             <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="toCraft();">
         </div>
@@ -109,7 +103,6 @@
 
         
     </div>
-    {%if session['ver'] == "pro"%}
     <div class="selectBack">
     <div class="selectWindow">
         <div class="selectTab">
@@ -124,7 +117,6 @@
     </div>
     </div>
     <input type="text" class="scriptName" value="script">
-    {%endif%}
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script>
         be_url = document.referrer;

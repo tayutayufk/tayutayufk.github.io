@@ -55,23 +55,15 @@
     <div class="LTicons">
         
         
-        {%if session['ver'] == "free"%}
-        <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="history.back();">
-        <input class="icon" type="image" src="/static/img/svg/save.svg" name="save" onclick="onClickButton('SaveJson');Hopup('Save');">
-        <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="onClickButton('LoadJson');Hopup('Load');">
-        {%elif session['ver'] == "pro"%}
         <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
         <input class="icon" type="image" src="/static/img/svg/save.svg" name="save" onclick="SaveRobot();Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
-        
-        {%endif%}
         <input class="icon" type="image" src="/static/img/svg/eye.svg" onclick="gameInstance.SendMessage('GameDirector','ModuleVisualizer');">
         <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
         <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="toProgram();">
     </div>
     <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="/static/img/svg/eraser.svg" onclick="onClickButton('Remove')">
     
-    {%if session['ver'] == "pro"%}
     <div class="selectBack">
     <div class="selectWindow">
         <div class="selectTab">
@@ -86,7 +78,6 @@
     </div>
     </div>
     <input type="text" class="robotName" value="Robot">
-    {%endif%}
 
     
 

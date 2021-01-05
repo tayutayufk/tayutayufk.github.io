@@ -15,7 +15,7 @@ import hashlib
 import urllib.parse
 import json
 import base64
-
+from datetime import datetime as dt
 
 app = Flask(__name__)
 app.secret_key = db.flask_key
@@ -31,6 +31,7 @@ def init_session():
     session['ver'] = 'pro'
     session['warn'] = ''
     session['stage'] = 'maze'
+    return
 
 def check_premium():
     if session['login'] == 'True':
@@ -41,6 +42,23 @@ def check_premium():
         else:
             session['ver'] = "free"
     return False
+
+def check_hash(hash):
+    tdatetime = dt.now()
+    tstr = tdatetime.strftime('%Y/%m/%d')
+    seed =  tstr[:-3] + 'RoPE'
+    ser_hash = hashlib.sha256(seed.encode()).hexdigest()
+    if ser_hash == hash:
+        init_session()
+        session['login'] = 'True'
+        session['ver'] = 'pro'
+        ##server side 
+
+
+        ##
+        return True
+    else:
+        return False
 
 def send_mail(to_email,subject,message):
     #send mail
@@ -177,6 +195,21 @@ def index():
     if 'login' not in session:
         init_session()
 
+    
+    if 'from' in request.args:
+        fromsite = request.args.get('from')
+        #from itch
+        if fromsite == 'itch':
+            session['login'] = 'True'
+
+            tdatetime = dt.now()
+            tstr = tdatetime.strftime('%Y/%m/%d')
+            usname = tstr + 'itch'
+            pwd = 'itch'
+            db.insert(usname,pwd,session['ver'])
+            return render_template("index.html")
+    
+
     #session['login'] = 'True'
     #session['ver'] = 'pro'
     return render_template("index.html")
@@ -185,8 +218,25 @@ def index():
 def index_sub():
     if 'login' not in session:
         init_session()
-    return render_template("index.html")
 
+    
+    if 'from' in request.args:
+        fromsite = request.args.get('from')
+        #from itch
+        if fromsite == 'itch':
+            session['login'] = 'True'
+
+            tdatetime = dt.now()
+            tstr = tdatetime.strftime('%Y/%m/%d')
+            usname = tstr + 'itch'
+            pwd = 'itch'
+            db.insert(usname,pwd,session['ver'])
+            return render_template("index.html")
+    
+
+    #session['login'] = 'True'
+    #session['ver'] = 'pro'
+    return render_template("index.html")
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
