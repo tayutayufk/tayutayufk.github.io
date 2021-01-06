@@ -21,7 +21,7 @@
 
 <body style="-webkit-user-select: none; -khtml-user-select: none; -ms-user-select: none; -moz-user-select: none; user-select: none;" onselectstart="return false;">
     <div class="LTicons">
-        <input class="icon back" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
+        <input class="icon back" type="image" src="/static/img/svg/arrow.svg" onclick="location.href = '/'">
     </div>
 
     {%for key in range(missions|count)%}
@@ -108,9 +108,6 @@
             location.href = "/mission.html?m=" + missionName;
         }
 
-        function Back() {
-            history.back();
-        }
     </script>
     <script src="/static/js/generalJS.js"></script>
 </body>

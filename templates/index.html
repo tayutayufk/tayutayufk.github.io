@@ -35,10 +35,13 @@
             <a href="{{url_for( 'program')}} " class="btn06 " style="font-size: 5vh; ">Program</a>
             <a href="{{url_for( 'missionSelect')}} " class="btn06 " style="font-size: 5vh; ">Mission</a>
             <a class="btn06 " style="font-size: 5vh; " onclick="window.open('https://roperope.sakura.ne.jp/tutorial/DocTop.html', '_blank')">Learn</a>
+            
         </div>
-
+        <a  class="btn06 " style="font-size: 3vh;position:absolute;bottom:1vh;right:1vh; "onclick="pwaInstall()">Add to HOME</a>
         <script src="https://js.stripe.com/v3/"></script>
     </div>
+
+    <p style="position:absolute;bottom:1vh;right:49vw;">{{session['ver']}}</p>
 
 
     <div class="selectBack">
@@ -61,14 +64,14 @@
 
     {%if 'login' in session%}
         {%if session['login'] == "True" %}
-            <a href="{{url_for('logout')}}" class="btn06 login" style="width:10vw;">LogOut</a>
+            <a href="{{url_for('logout')}}" class="btn06" style="font-size: 3vh;position:absolute;top:1vh;right:1vh; ">LogOut</a>
             {%if session['ver'] == "free"%}
             <div class="LTicons">
                 <input class="icon" type="image" src="/static/img/svg/shopping-cart.svg" id="payment" onclick="location.href='/payment'">
             </div>
             {%endif%}
         {% else%}
-            <a href="{{url_for('login')}}" class="btn06 login">LogIn</a>
+            <a href="{{url_for('login')}}" class="btn06" style="font-size: 3vh;position:absolute;top:1vh;right:1vh; ">LogIn</a>
         {% endif %} 
     {%endif%}
 
@@ -94,6 +97,25 @@
 
         if (localStorage.length == 0){
             $(".selectBack").show();
+        }
+        window.addEventListener('beforeinstallprompt', function(event) {
+            event.preventDefault();
+            defferedPrompt = event;
+            return false;
+        })
+        function pwaInstall() {
+            console.log('pwaInstall Click.');
+            if (defferedPrompt) {
+                defferedPrompt.prompt();
+                defferedPrompt.userChoice.then(function(choiceResult) {
+                    if (choiceResult.outcome === 'dismissed') {
+                        console.log('pwaInstall Click.');
+                    } else {
+                        window.alert('Thank You!');
+                    }
+                });
+                defferedPrompt = null;
+            }
         }
     </script>
     <script src="/static/js/generalJS.js "></script>

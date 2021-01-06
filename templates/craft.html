@@ -67,9 +67,11 @@
     <div class="selectBack">
     <div class="selectWindow">
         <div class="selectTab">
-            <a class="close" onclick='$(".selectContent").empty();$(".selectBack").hide();'>close</a>
-            <a class="close" style="float : left;"onclick='newRobot();'>new</a>
+            {%if session['ver'] == 'pro'%}
             <a class="close" id="remove" style="float : left;"onclick='ToRemove()'>remove</a>
+            <a class="close" style="float : left;"onclick='newRobot();'>new</a>
+            {%endif%}
+            <a class="close" onclick='$(".selectContent").empty();$(".selectBack").hide();'>close</a>
         </div>
         
         <div class="selectContent">
@@ -77,8 +79,11 @@
         </div>
     </div>
     </div>
+    {%if session['ver'] == 'pro'%}
     <input type="text" class="robotName" value="Robot">
-
+    {%else%}
+    <input type="text" class="robotName" value="Robot" readonly>
+    {%endif%}
     
 
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
