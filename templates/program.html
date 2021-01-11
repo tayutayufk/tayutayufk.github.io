@@ -39,8 +39,15 @@
     </div>
 
     <div class="document" id="editorVue">
-
         <div class="func">
+            <a onclick="cp('sleep()');" class="funcbtn">sleep(value)</a>
+            <p>Function to sleep. You can indicate by the second</p>
+            <ul>
+                <li>value (int) : time to sleep (second) </li>
+            </ul>
+        </div>
+        <div class="func">
+        
             <a onclick="cp('Robot.LED(,)');" class="funcbtn">Robot.LED(name,mode)</a>
             <p>Function to operate LEDs. You have three LEDs.</p>
             <ul>
@@ -92,14 +99,16 @@
                 <li>return (value) : 0～100</li>
             </ul>
         </div>
-
         <div class="func">
-            <a onclick="cp('sleep()');" class="funcbtn">sleep(value)</a>
-            <p>Function to sleep. You can indicate by the second</p>
+            <a onclick="cp('Robot.Gyro()');" class="funcbtn">Robot.Gyro(name)</a>
+            <p>Function to read a Gyro Sensor. Gyro Sensor measures position, anguler, velocity and anguler velocity.</p>
             <ul>
-                <li>value (int) : time to sleep (second) </li>
+                <li>name (string) : Sensor Name</li>
+                <li>return (dictionary) : Data</li>
             </ul>
         </div>
+
+        
 
         
     </div>

@@ -32,6 +32,14 @@ function getValue(name) {
         name = name.slice(2);
         SensorName = name;
         gameInstance.SendMessage('GameDirector', 'RotaryEncoder', name);
+    } else if (name.indexOf("GP_") != -1) {
+        name = name.slice(3);
+        SensorName = name;
+        gameInstance.SendMessage('GameDirector', 'GyroSensor', name);
+    } else if (name.indexOf("GV_") != -1) {
+        name = name.slice(3);
+        SensorName = name;
+        gameInstance.SendMessage('GameDirector', 'GyroSensor', name);
     }
 
 
@@ -42,16 +50,40 @@ function getValue(name) {
         clearTimeout(to);
     }
     //console.log(SensorData);
+    if (name.indexOf("GP_") != -1) {
+        return
+    } else if (name.indexOf("GV_") != -1) {
+        name = name.slice(3);
+        SensorName = name;
+        gameInstance.SendMessage('GameDirector', 'GyroSensor', name);
+    }
     return SensorData;
 }
 
 function ReturnValueJS(data) {
 
     let strings = data.split('|');
-    console.log(strings);
+
     if (strings[0] == SensorName) {
         Sensorflag = true;
-        SensorData = Number(strings[1]);
+        if (strings.length > 2) {
+            SensorData = {
+                'x': parseFloat(strings[1]),
+                'y': parseFloat(strings[2]),
+                'z': parseFloat(strings[3]),
+                'ax': parseFloat(strings[4]),
+                'ay': parseFloat(strings[5]),
+                'az': parseFloat(strings[6]),
+                'vx': parseFloat(strings[7]),
+                'vy': parseFloat(strings[8]),
+                'vz': parseFloat(strings[9]),
+                'avx': parseFloat(strings[10]),
+                'avy': parseFloat(strings[11]),
+                'avz': parseFloat(strings[12])
+            }
+        } else {
+            SensorData = Number(strings[1]);
+        }
     } else {
         //console.log(strings, SensorName);
         Sensorflag = true;

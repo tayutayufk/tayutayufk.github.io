@@ -16,6 +16,7 @@ import urllib.parse
 import json
 import base64
 from datetime import datetime as dt
+import random
 
 app = Flask(__name__)
 app.secret_key = db.flask_key
@@ -43,17 +44,21 @@ def check_premium():
             session['ver'] = "free"
     return False
 
-def check_hash(hash):
+def check_hash(h):
     tdatetime = dt.now()
     tstr = tdatetime.strftime('%Y/%m/%d')
     seed =  tstr[:-3] + 'RoPE'
     ser_hash = hashlib.sha256(seed.encode()).hexdigest()
-    if ser_hash == hash:
+    if ser_hash == h:
         init_session()
         session['login'] = 'True'
         session['ver'] = 'pro'
         ##server side 
-
+        tdatetime = dt.now()
+        tstr = tdatetime.strftime('%Y/%m/%d')
+        usname = tstr + 'itch' + str(random.randint(1,10000000))
+        pwd = ser_hash = hashlib.sha256(usname.encode()).hexdigest()
+        db.insert(usname,pwd,session['ver'])
 
         ##
         return True
@@ -208,6 +213,11 @@ def index():
             pwd = ser_hash = hashlib.sha256(usname.encode()).hexdigest()
             db.insert(usname,pwd,session['ver'])
             return render_template("index.html")
+
+        if fromsite == 'android' and 'h' in request.args:
+            h = request.args.get('h')
+            check_hash(h)
+            return render_template("index.html")
     
 
     #session['login'] = 'True'
@@ -233,6 +243,10 @@ def index_sub():
             db.insert(usname,pwd,session['ver'])
             return render_template("index.html")
     
+        if fromsite == 'android' and 'h' in request.args:
+            h = request.args.get('h')
+            check_hash(h)
+            return render_template("index.html")
 
     #session['login'] = 'True'
     #session['ver'] = 'pro'
@@ -272,7 +286,7 @@ def craft():
                         ['Servomotor_mini','Servo mini','True'],
                         ['Solenoid_mini','Solenoid mini','False']]]
 
-            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','False']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','False'],['Gyro','Gyro','False']]]
         elif session['ver'] == 'pro':
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
@@ -301,7 +315,7 @@ def craft():
                         ['Servomotor_mini','Servo mini','True'],
                         ['Solenoid_mini','Solenoid mini','True']]]
 
-            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True']]]
+            Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','True'],['Gyro','Gyro','True']]]
 
         parts = [Basic,Advance,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)

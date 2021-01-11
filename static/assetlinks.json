@@ -3,6 +3,6 @@
     "target": {
         "namespace": "android_app",
         "package_name": "rope.jp.ne.sakura.rope",
-        "sha256_cert_fingerprints": ["14:54:CB:4F:96:C8:D8:52:BC:B6:0A:80:EB:4F:AD:D5:AA:72:76:D2:EF:C5:77:80:ED:E7:3D:A7:37:0E:E5:46"]
+        "sha256_cert_fingerprints": ["37:6D:5F:25:7A:3A:63:2C:74:78:28:FB:3D:E0:30:E1:10:A5:01:77:75:87:09:15:B1:9A:40:B8:E4:EC:87:B3"]
     }
 }]
