@@ -29,7 +29,7 @@ def init_session():
     session['login'] = 'False'
     session['mail'] = ''
     session['pwd'] = ''
-    session['ver'] = 'pro'
+    session['ver'] = 'free'
     session['warn'] = ''
     session['stage'] = 'maze'
     return
