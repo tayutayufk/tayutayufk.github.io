@@ -221,7 +221,7 @@ def index():
     
 
     #session['login'] = 'True'
-    #session['ver'] = 'pro'
+    #session['ver'] = 'free'
     return render_template("index.html")
 
 @app.route("/index.html")
@@ -249,7 +249,7 @@ def index_sub():
             return render_template("index.html")
 
     #session['login'] = 'True'
-    #session['ver'] = 'pro'
+    #session['ver'] = 'free'
     return render_template("index.html")
 
 @app.route("/craft.html", methods=['GET']) 
@@ -271,19 +271,19 @@ def craft():
                                 ['BasicBlock-2','Advance Block','False'],
                                 ['BasicBlock-3','Advance Block','False']]]
         
-            Wheel = ['Wheel',[['Tire_big2','Wheel L','True'],
+            Wheel = ['Wheel',[['Tire_big2','Wheel L','False'],
                             ['TB','Wheel M','True'],
                             ['TM','Wheel S','True'],
                             ['BallTire','Ball Wheel','True'],
                             ['Axle','Axle','True'],
-                            ['Bearing','Bearing','True'],
-                            ['Bearing_Locked','Fixed axle','True']]]
+                            ['Bearing','Bearing','False'],
+                            ['Bearing_Locked','Fixed axle','False']]]
 
             Motor = ['Motor',[['MB','Motor big','False'],
                         ['MN','Motor','True'],
-                        ['MM','Motor mini','False'],
+                        ['MM','Motor mini','True'],
                         ['Servomotor_big','Servo large','False'],
-                        ['Servomotor_mini','Servo mini','True'],
+                        ['Servomotor_mini','Servo mini','False'],
                         ['Solenoid_mini','Solenoid mini','False']]]
 
             Sensor = ['Sensor',[['CS','Color Sensor','True'],['RF','RangeFinder','False'],['Gyro','Gyro','False']]]
@@ -394,4 +394,4 @@ def program():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0' ,debug=True ,threaded=True)
+    app.run( debug=False ,threaded=True)

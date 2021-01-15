@@ -7,7 +7,7 @@
 
     <!-- monaco-editor -->
     <script src="/static/js/node_modules/monaco-editor/min/vs/loader.js"></script>
-    <script src="/static/js/editor.js"></script>
+    
 
 
     <!--CSS-->
@@ -33,7 +33,7 @@
             <input class="icon" type="image" src="/static/img/svg/arrow.svg" onclick="Back();">
             <input class="icon" name="save" type="image" src="/static/img/svg/save.svg" onclick="SaveScript();Hopup('Save');">
             <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
-            <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
+            <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toTest();">
             <input class="icon" type="image" src="/static/img/svg/craft.svg" onclick="toCraft();">
         </div>
     </div>
@@ -80,6 +80,15 @@
             <ul>
                 <li>name (string) :Motor Name</li>
                 <li>status (bool) :True or False</li>
+            </ul>
+        </div>
+
+
+        <div class="func">
+            <a onclick="cp('Robot.KeyRead()');" class="funcbtn">Robot.KeyRead()</a>
+            <p>Function to read a Key. It returns key by char.</p>
+            <ul>
+                <li>return (string) : key that you press.</li>
             </ul>
         </div>
 
@@ -134,6 +143,7 @@
     <input type="text" class="scriptName" value="Script" readonly>
     {%endif%}
     <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/static/js/editor.js"></script>
     <script>
         be_url = document.referrer;
         if(be_url.indexOf("mission") > -1){
@@ -158,6 +168,15 @@
             }
             location.href = {{url_for('missionSelect')|tojson}}
         }
+        function toTest(){
+            sn = $(".scriptName").val();
+            if(sn){
+                localStorage.setItem("lastScript",sn);
+            }else{
+                localStorage.setItem("lastScript","script");
+            }
+            location.href = {{url_for('mission')|tojson}} + "?m=test"
+        }
         function toCraft(){
             sn = $(".scriptName").val();
             if(sn){
@@ -167,7 +186,7 @@
             }
             location.href = {{url_for('craft')|tojson}}
         }
-        $(document).ready(function() {
+        window.onload = function() {
             sn = localStorage.getItem("lastScript");
             if(sn){
                 snd = localStorage.getItem("S_" + sn);
@@ -182,7 +201,7 @@
                 $('input[name="save"]').click();
                 return false;
             });
-        });
+        };
 
         $(function() {
             $('.funcbtn').on('click', () => {

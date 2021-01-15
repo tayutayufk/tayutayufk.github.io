@@ -59,7 +59,7 @@
         <input class="icon" type="image" src="/static/img/svg/save.svg" name="save" onclick="SaveRobot();Hopup('Save');">
         <input class="icon" type="image" src="/static/img/svg/load.svg" onclick="openSelect()">
         <input class="icon" type="image" src="/static/img/svg/eye.svg" onclick="gameInstance.SendMessage('GameDirector','ModuleVisualizer');">
-        <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toMission();">
+        <input class="icon" id="run" type="image" src="/static/img/svg/mission.svg" onclick="toTest();">
         <input class="icon" type="image" src="/static/img/svg/program.svg" onclick="toProgram();">
     </div>
     <input class="icon" type="image" style="position: absolute;margin-top: 87vh;margin-left: 73vw;" src="/static/img/svg/eraser.svg" onclick="onClickButton('Remove')">
@@ -120,6 +120,17 @@
             
             onClickButton("SaveJson");
             location.href = {{url_for('missionSelect')|tojson}}
+        }
+        function toTest(){
+            rn = $(".robotName").val();
+            if(rn){
+                localStorage.setItem("lastRobot",rn);
+            }else{
+                localStorage.setItem("lastRobot","robo3");
+            }
+            
+            onClickButton("SaveJson");
+            location.href = {{url_for('mission')|tojson}}+"?m=test"
         }
         function toProgram(){
             rn = $(".robotName").val();
