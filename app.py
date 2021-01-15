@@ -29,7 +29,7 @@ def init_session():
     session['login'] = 'False'
     session['mail'] = ''
     session['pwd'] = ''
-    session['ver'] = 'free'
+    session['ver'] = 'pro'
     session['warn'] = ''
     session['stage'] = 'maze'
     return
@@ -144,6 +144,7 @@ def logout():
 #Stripe
 @app.route('/payment.html')
 def payment():
+
     if 'login' in session and session['login'] == 'True' and session['ver'] == "free":
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
