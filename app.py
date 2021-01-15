@@ -142,7 +142,7 @@ def logout():
     return redirect(url_for('index'))   
 
 #Stripe
-@app.route('/payment')
+@app.route('/payment.html')
 def payment():
     if 'login' in session and session['login'] == 'True' and session['ver'] == "free":
         checkout_session = stripe.checkout.Session.create(
