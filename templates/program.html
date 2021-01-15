@@ -186,8 +186,7 @@
             }
             location.href = {{url_for('craft')|tojson}}
         }
-        window.onload = function() {
-            sn = localStorage.getItem("lastScript");
+        sn = localStorage.getItem("lastScript");
             if(sn){
                 snd = localStorage.getItem("S_" + sn);
                 setText(snd);
@@ -201,7 +200,6 @@
                 $('input[name="save"]').click();
                 return false;
             });
-        };
 
         $(function() {
             $('.funcbtn').on('click', () => {
