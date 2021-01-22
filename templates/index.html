@@ -1,4 +1,4 @@
-<html lang="en-us">
+<html lang="ja">
 
 <head>
     <meta charset="utf-8">
@@ -6,7 +6,7 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RoPE</title>
+    <title>WeboPy</title>
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/generalDesign.css">
     <link rel="stylesheet" type="text/css" href="/static/css/index.css">
@@ -40,7 +40,7 @@
         <a  class="btn06 " style="font-size: 3vh;position:absolute;bottom:1vh;right:1vh; "onclick="pwaInstall()">Add to HOME</a>
     </div>
 
-    <p style="position:absolute;bottom:1vh;left:1vw;">{{session['ver']}}</p>
+    
 
 
     <div class="selectBack">
@@ -50,12 +50,12 @@
                 
                 <div class="Content" style="text-align:center;">
                     <img src="/static/img/white.png " style="width:75%;height:auto;right:auto;left:auto;">
-                    <h1>Thank you for visiting RoPE!</h1>
+                    <h1>Thank you for visiting WeboPy!</h1>
                     <p>Before starting the game, it is recommended to do the tutorial from the link below.</p>
                     <a class="btn06 " style="font-size: 3vh;" onclick="window.open('https://roperope.sakura.ne.jp/tutorial/DocTop.html', '_blank')">Tutorial</a>
                     <p>If you want to know more about the game, please visit the website.</p>
                     <a class="btn06 " style="font-size: 3vh;" onclick="window.open('https://roperope.sakura.ne.jp', '_blank')">Official site</a>
-                    <p>Enjoy RoPE!</p>
+                    <p>Enjoy WeboPy!</p>
                     <a class="ContentClose" onclick='$(".selectContent").empty();$(".selectBack").hide();'>Start!</a>
                 </div>
                 
@@ -73,6 +73,12 @@
         {% else%}
             <a href="{{url_for('login')}}" class="btn06" style="font-size: 3vh;position:absolute;top:1vh;right:1vh; ">LogIn</a>
         {% endif %} 
+
+        {% if session['login'] == 'True'%}
+            <p style="position:absolute;bottom:1vh;left:1vw;">{{session['ver']}}</p>
+        {%else%}
+            <p style="position:absolute;bottom:1vh;left:1vw;">Guest</p>
+        {%endif%}
     {%endif%}
 
     

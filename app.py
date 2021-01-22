@@ -1,7 +1,5 @@
 from flask import  request,session,redirect,render_template,send_from_directory,Flask,url_for,make_response,jsonify
 from flask import *
-import flask_wtf
-import wtforms
 import db
 import datetime
 import os
@@ -36,7 +34,7 @@ def init_session():
 
 def check_premium():
     if session['login'] == 'True':
-        data = db.search_fromMail(session['mail'])#SQLからデータを取得
+        data = db.search_fromMail(session['mail'])
         if data[0][2] == "pro":
             session['ver'] = "pro"
             return True
@@ -142,10 +140,12 @@ def logout():
     return redirect(url_for('index'))   
 
 #Stripe
-@app.route('/payment.html')
+@app.route('/payment')
 def payment():
+    if session['login'] == 'False':
+        return redirect(url_for('login'))
 
-    if 'login' in session and session['login'] == 'True' and session['ver'] == "free":
+    if session['ver'] == "free":
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
@@ -163,7 +163,7 @@ def payment():
             checkout_public_key = db.PUBLISHABLE_KEY
             )
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
 
 @app.route('/payed')
@@ -255,10 +255,11 @@ def index_sub():
 
 @app.route("/craft.html", methods=['GET']) 
 def craft():
-    if 'login' not in session:
-        init_session()
-        return redirect(url_for('login'))
-    if session['login'] == 'True':
+
+    #if 'login' not in session:
+    #    init_session()
+    #    return redirect(url_for('login'))
+    if 'login' in session:
         if session['ver'] == 'free':
             Basic = ['Basic',[['BB','BasicBlock','True'],
                                 ['BB1','BasicBlock','True'],
@@ -320,19 +321,19 @@ def craft():
 
         parts = [Basic,Advance,Wheel,Motor,Sensor]
         return render_template("craft.html",parts=parts)
-    else:
-        return redirect(url_for('login'))    
 @app.route("/mission.html", methods=['POST', 'GET']) 
 def mission():
-    if 'login' not in session:
-        init_session()
-        return redirect(url_for('login'))
+
+    #if 'login' not in session:
+    #    init_session()
+    #    return redirect(url_for('login'))
 
     if request.method == "GET":
-        if session['login'] == 'True':
-            return render_template("mission.html")
-        else:
-            return redirect(url_for('login'))    
+        return render_template("mission.html")
+        #if session['login'] == 'True':
+        #    return render_template("mission.html")
+        #else:
+        #    return redirect(url_for('login'))    
     else:
         if 'clear' in request.form:
             if request.form['clear'] == 'basic':
@@ -346,10 +347,10 @@ def mission():
             
 @app.route("/missionSelect.html", methods=['POST', 'GET']) 
 def missionSelect():
-    if 'login' not in session:
-        init_session()
-        return redirect(url_for('login'))
-    if session['login'] == 'True':
+    #if 'login' not in session:
+    #    init_session()
+    #    return redirect(url_for('login'))
+    if 'login' in session:
         missions = []
         Basic = ['basic_','Basic',[
             '<p>Go through the checkpoint.</p>',
@@ -380,17 +381,16 @@ def missionSelect():
         missions.append(LineTracking)
         missions.append(Maze)
         return render_template("missionSelect.html",missions = missions)
-    else:
-        return redirect(url_for('login'))    
 
 
 
 @app.route("/program.html", methods=['POST', 'GET']) 
 def program():
-    if session['login'] == 'True':
-        return render_template("program.html")
-    else:
-        return redirect(url_for('login'))    
+    return render_template("program.html")
+    #if session['login'] == 'True':
+    #    return render_template("program.html")
+    #else:
+    #    return redirect(url_for('login'))    
 
 
 
