@@ -25,8 +25,8 @@ body::-webkit-scrollbar {
 
 .logo {
     border-radius: 30px;
-    padding: 10px;
-    height: 30vh;
+    padding: 0px;
+    height: 40vh;
     margin: 5vh 10vh;
     visibility: hidden;
 }
