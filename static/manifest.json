@@ -1,6 +1,6 @@
 {
-    "short_name": "RoPE",
-    "name": "RoPE",
+    "short_name": "WeboPy",
+    "name": "WeboPy",
     "icons": [{
         "src": "/static/icon.png",
         "type": "image/png",
