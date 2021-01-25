@@ -149,7 +149,7 @@ def payment():
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
-                'price':'price_1HyzxCKTMlPLG6E8jslrh1hc',
+                'price':'price_1I9nkSKTMlPLG6E8diP0odDO',
                 'quantity':1,
             }],
             mode='payment',
