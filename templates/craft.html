@@ -91,10 +91,6 @@
         <script src="/static/js/node_modules/jquery/dist/jquery.min.js"></script>
         
         <script>
-            be_url = document.referrer;
-            if(be_url.indexOf("mission") > -1){
-                $("#run").hide();
-            }
     
             lazyload();
             function PS(str) {
@@ -168,6 +164,7 @@
                 onClickButton("ReLoad");
                 closeSelect();
                 localStorage.setItem("robo3","");
+                localStorage.setItem("lastRobot","Robot");
                 $(".robotName").val("Robot");
             }
             function openSelect(){
