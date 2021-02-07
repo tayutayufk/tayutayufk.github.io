@@ -142,16 +142,7 @@
                 location.href = {{url_for('program')|tojson}}
             }
     
-            $(document).ready(function() {
-                $(window).keydown(function(event) {
-                    var code = (event.keyCode ? event.keyCode : event.which);
-                    if (!(code == 83 && event.ctrlKey)) return true;
-                    event.preventDefault();
-                    $('input[name="save"]').click();
-                    return false;
-                });
-            });
-    
+            
             function SaveRobot(){
                 onClickButton('SaveJson');
                 rn = "R_" + $(".robotName").val();
@@ -161,11 +152,13 @@
                 Hopup('Save');
             }
             function newRobot(){
-                onClickButton("ReLoad");
+                
                 closeSelect();
                 localStorage.setItem("robo3","");
-                localStorage.setItem("lastRobot","Robot");
+                localStorage.setItem("lastRobot","");
                 $(".robotName").val("Robot");
+                onClickButton('ReLoad');
+                
             }
             function openSelect(){
                 $(".selectBack").fadeIn("slow");
@@ -221,6 +214,16 @@
                 alert("swipe");
             }
             $(".tab-content").on('swipe',PartSwipe);
+            $(document).ready(function() {//Ctrl+S
+                $(window).keydown(function(event) {
+                    var code = (event.keyCode ? event.keyCode : event.which);
+                    if (!(code == 83 && event.ctrlKey)) return true;
+                    event.preventDefault();
+                    $('input[name="save"]').click();
+                    return false;
+                });
+            });
+    
         </script>
         <script src="/static/js/generalJS.js"></script>
       </div>

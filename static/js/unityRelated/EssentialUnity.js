@@ -107,6 +107,7 @@ function FetchSceneData() {
         SceneName = "Mission";
         gameInstance.SendMessage('GameDirector', 'MoveScene', 'Mission');
         mName = getParam("m");
+        localStorage.setItem("lastMission", mName);
     }
     if (loc.indexOf("craft") != -1) {
         SceneName = "Craft";

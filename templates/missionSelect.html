@@ -92,6 +92,7 @@
             infinite: false,
             centerMode: true,
             dots: true,
+            initialSlide:3,
         });
 
         function makeURL(missionName) {
@@ -108,6 +109,12 @@
             location.href = "/mission.html?m=" + missionName;
         }
 
+
+        //autoScroll
+        var lam = localStorage.getItem("lastMission");
+        if(lam.indexOf("basci")>-1){
+
+        }
     </script>
     <script src="/static/js/generalJS.js"></script>
 </body>
