@@ -284,6 +284,7 @@ def craft():
             Motor = ['Motor',[['MB','Motor big','False'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
+                        ['Thruster','Thruster','True'],
                         ['Servomotor_big','Servo large','False'],
                         ['Servomotor_mini','Servo mini','False'],
                         ['Solenoid_mini','Solenoid mini','False']]]
@@ -313,6 +314,7 @@ def craft():
             Motor = ['Motor',[['MB','Motor big','True'],
                         ['MN','Motor','True'],
                         ['MM','Motor mini','True'],
+                        ['Thruster','Thruster','True'],
                         ['Servomotor_big','Servo large','True'],
                         ['Servomotor_mini','Servo mini','True'],
                         ['Solenoid_mini','Solenoid mini','True']]]
