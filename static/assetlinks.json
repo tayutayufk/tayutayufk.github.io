@@ -1,8 +1,0 @@
-[{
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-        "namespace": "android_app",
-        "package_name": "rope.jp.ne.sakura.rope",
-        "sha256_cert_fingerprints": ["37:6D:5F:25:7A:3A:63:2C:74:78:28:FB:3D:E0:30:E1:10:A5:01:77:75:87:09:15:B1:9A:40:B8:E4:EC:87:B3"]
-    }
-}]
